@@ -1,0 +1,3463 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imersão IA — Jornada de Cliente Premium | NILG.AI · Porto · 2 Junho 2025</title>
+<meta name="description" content="1 dia intensivo para redesenhar a tua jornada de cliente, vender mais caro e criar um serviço premium — escalável com IA, sem depender de mais esforço.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   CSS VARIABLES & RESET
+============================================= */
+:root {
+  --primary: #353cdd;
+  --primary-glow: rgba(53,60,221,0.18);
+  --primary-border: rgba(53,60,221,0.15);
+  --accent: #ff6900;
+  --accent-bg: rgba(255,105,0,0.12);
+  --bg: #08080f;
+  --surface: #111118;
+  --surface2: #16161f;
+  --text: #f0f0f5;
+  --text-muted: #8888aa;
+  --border: rgba(255,255,255,0.07);
+  --radius: 12px;
+  --radius-lg: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* =============================================
+   TYPOGRAPHY
+============================================= */
+.display, h1, h2, h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+}
+
+.text-muted { color: var(--text-muted); }
+.text-accent { color: var(--accent); }
+.text-primary { color: var(--primary); }
+
+/* =============================================
+   LAYOUT UTILITIES
+============================================= */
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section { padding: 100px 0; }
+
+.section-label {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* =============================================
+   BUTTONS
+============================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  border: none;
+  text-decoration: none;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(53,60,221,0.25);
+}
+
+.btn-primary:hover {
+  background: #4049f0;
+  box-shadow: 0 6px 28px rgba(53,60,221,0.38);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.04);
+}
+
+.btn-lg {
+  padding: 16px 36px;
+  font-size: 1rem;
+}
+
+/* =============================================
+   GRAIN TEXTURE
+============================================= */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px;
+  opacity: 0.028;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* =============================================
+   NAVBAR
+============================================= */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  background: rgba(8,8,15,0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.nav-logo {
+  font-size: 1.2rem;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+/* .nav-logo span removed — now uses SVG logo */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+  font-weight: 400;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta { margin-left: 16px; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.3s, opacity 0.3s;
+  border-radius: 2px;
+}
+
+#mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px; left: 0; right: 0;
+  background: rgba(10,10,18,0.98);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  border-bottom: 1px solid var(--border);
+  padding: 20px 24px;
+}
+
+#mobile-menu.open { display: block; }
+
+#mobile-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#mobile-menu a {
+  font-size: 1rem;
+  color: var(--text-muted);
+  display: block;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+
+#mobile-menu a:hover { color: var(--text); }
+
+#mobile-menu .btn {
+  margin-top: 16px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* =============================================
+   HERO
+============================================= */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 68px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* Placeholder video background */
+.hero-video-placeholder {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 40% 40%, rgba(53,60,221,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 70% 70%, rgba(255,105,0,0.04) 0%, transparent 60%),
+    var(--bg);
+}
+
+#hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8,8,15,0.4) 0%, rgba(8,8,15,0.7) 60%, var(--bg) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 0 60px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+  background: rgba(255,255,255,0.03);
+  letter-spacing: 0.04em;
+}
+
+.hero-tag-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+h1.hero-headline {
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 28px;
+  max-width: 780px;
+}
+
+h1.hero-headline strong {
+  font-weight: 800;
+  color: #ffffff;
+  display: block;
+}
+
+h1.hero-headline em {
+  font-style: normal;
+  color: var(--primary);
+}
+
+.hero-headline-sub {
+  display: block;
+  font-size: 0.72em;
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.hero-headline-split {
+  display: flex;
+  gap: 64px;
+  align-items: flex-end;
+  margin-bottom: 36px;
+}
+
+.hero-headline-split h1.hero-headline {
+  flex: 1.1;
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.hero-brand-logo {
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-right .hero-sub {
+  max-width: none;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 36px;
+}
+
+.hero-bottom-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.hero-urgency {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 0;
+}
+
+.urgency-pulse {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse-accent 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-accent {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,105,0,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(255,105,0,0); }
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 44px;
+}
+
+.hero-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.hero-metric {
+  padding-right: 20px;
+  margin-right: 20px;
+  border-right: 1px solid var(--border);
+}
+
+.hero-metric:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+.hero-metric strong {
+  color: var(--text);
+  font-weight: 500;
+  display: block;
+  font-size: 1rem;
+}
+
+/* =============================================
+   CAROUSEL
+============================================= */
+.carousel-section {
+  padding: 0 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-wrap {
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex-shrink: 0;
+  width: calc(100% - 48px);
+  max-width: 720px;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.carousel-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.carousel-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 20px;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.carousel-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  font-size: 1.1rem;
+}
+
+.carousel-btn:hover {
+  background: var(--surface2);
+  border-color: var(--primary-border);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.2s, width 0.2s;
+}
+
+.carousel-dot.active {
+  background: var(--primary);
+  width: 20px;
+  border-radius: 3px;
+}
+
+/* =============================================
+   PROBLEMA
+============================================= */
+
+/* Faixa citação — Opção B */
+.quote-band {
+  background: var(--bg);
+  padding: 64px 24px;
+}
+
+.quote-band-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.quote-band-accent {
+  width: 3px;
+  min-height: 90px;
+  background: linear-gradient(180deg, var(--primary), rgba(53,60,221,0.1));
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+
+.quote-band-text {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.quote-band-text em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--primary);
+}
+
+#problema {
+  background: var(--surface);
+  position: relative;
+}
+
+#problema::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(53,60,221,0.3), transparent);
+}
+
+.problema-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 48px 0;
+}
+
+.problema-card {
+  background: var(--bg);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.problema-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--primary);
+  transform: scaleY(0);
+  transition: transform 0.3s;
+  transform-origin: top;
+}
+
+.problema-card:hover::before,
+.problema-card.open::before { transform: scaleY(1); }
+
+.problema-card:hover {
+  border-color: rgba(53,60,221,0.4);
+  transform: translateY(-2px);
+}
+
+.problema-card.open {
+  border-color: rgba(53,60,221,0.4);
+}
+
+.problema-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.problema-card-header h3 {
+  font-size: 1.15rem;
+}
+
+.problema-toggle {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s, background 0.3s;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.problema-card.open .problema-toggle {
+  transform: rotate(45deg);
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.problema-preview {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.problema-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s;
+  opacity: 0;
+}
+
+.problema-card.open .problema-detail {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.problema-detail p {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.problema-transition {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 48px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.problema-transition-line {
+  width: 3px;
+  height: 60px;
+  background: linear-gradient(180deg, var(--primary) 0%, transparent 100%);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.problema-transition p {
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.65;
+  text-align: left;
+}
+
+.problema-transition p em {
+  font-style: normal;
+  color: var(--text);
+}
+
+/* =============================================
+   RESULTADOS REAIS BLOCK
+============================================= */
+.resultados-reais {
+  margin-top: 56px;
+  padding: 0 8px;
+}
+
+.resultados-reais-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 32px 36px;
+}
+
+.resultados-left {
+  flex: 1;
+  border-right: 1px solid rgba(255,255,255,0.12);
+  padding-right: 36px;
+}
+
+.resultados-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.resultados-titulo {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.resultados-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+.resultados-sub {
+  font-size: 0.95rem;
+  color: var(--primary);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.resultados-right {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  padding-left: 48px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.resultados-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.resultados-num {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.resultados-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+
+.resultados-cta {
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 28px;
+}
+
+/* =============================================
+   SOBRE A IMERSÃO
+============================================= */
+#sobre {
+  background: var(--bg);
+}
+
+/* Dias grid */
+.dias-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 48px 0 56px;
+}
+
+.dia-card {
+  padding: 32px 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.2s;
+}
+
+.dia-card {
+  cursor: pointer;
+}
+
+.dia-card:hover, .dia-card.open {
+  transform: translateY(-3px);
+  border-color: var(--primary-border);
+}
+
+.dia-expand {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease, margin-top 0.35s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.dia-card:hover .dia-expand,
+.dia-card.open .dia-expand {
+  max-height: 260px;
+  opacity: 1;
+  margin-top: 20px;
+}
+
+.dia-expand-inner {
+  border-top: 1px solid var(--primary-border);
+  padding-top: 18px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.dia-expand-inner strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.dia-expand-inner .dia-takeaway {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.01em;
+}
+
+.dia-expand-inner .dia-takeaway::before {
+  content: '✦';
+  font-size: 0.65rem;
+}
+
+/* Linha colorida no topo */
+.dia-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.dia-card.dia1::before {
+  background: linear-gradient(90deg, var(--primary), rgba(53,60,221,0.3));
+}
+
+.dia-card.dia2::before {
+  background: linear-gradient(90deg, rgba(53,60,221,0.5), var(--primary));
+}
+
+/* Glow de fundo suave */
+.dia-card.dia1 {
+  background: linear-gradient(135deg, rgba(53,60,221,0.07) 0%, var(--surface) 60%);
+}
+
+.dia-card.dia2 {
+  background: linear-gradient(135deg, rgba(53,60,221,0.04) 0%, var(--surface) 60%);
+}
+
+.dia-label {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.dia-card h3 {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.dia-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Subheadline entre dias e cards */
+.sobre-subheadline {
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.sobre-subheadline strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Cards de resultados */
+.resultados-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.resultado-card {
+  padding: 28px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.3s, transform 0.2s;
+}
+
+.resultado-card:hover {
+  border-color: var(--primary-border);
+  transform: translateY(-2px);
+}
+
+.resultado-icon {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+  display: block;
+  line-height: 1;
+}
+
+.resultado-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.resultado-card p {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* =============================================
+   PROGRAMA
+============================================= */
+#programa {
+  background: var(--surface);
+  position: relative;
+}
+
+#programa::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(53,60,221,0.3), transparent);
+}
+
+.accordion {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.accordion-item:last-child { border-bottom: none; }
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 28px;
+  cursor: pointer;
+  background: var(--bg);
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.accordion-header:hover { background: var(--surface2); }
+
+.accordion-item.open .accordion-header { background: var(--surface2); }
+
+.accordion-time {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  min-width: 54px;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.accordion-left {
+  width: 3px;
+  height: 24px;
+  background: var(--primary);
+  border-radius: 2px;
+  flex-shrink: 0;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.accordion-item.open .accordion-left { opacity: 1; }
+
+.accordion-title {
+  flex: 1;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 0.97rem;
+  color: var(--text);
+}
+
+.accordion-arrow {
+  color: var(--text-muted);
+  transition: transform 0.3s;
+  font-size: 0.85rem;
+}
+
+.accordion-item.open .accordion-arrow { transform: rotate(180deg); color: var(--primary); }
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+}
+
+.accordion-item.open .accordion-body { max-height: 300px; }
+
+.accordion-body-inner {
+  padding: 0 28px 24px 109px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.accordion-special {
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+/* =============================================
+   LOCAL
+============================================= */
+#local {
+  background: var(--surface);
+}
+
+.local-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+  align-items: start;
+}
+
+.local-photo {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.local-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.local-ambient {
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  border: 1px solid var(--border);
+}
+
+.local-ambient img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.local-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.local-detail {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.local-detail h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.local-detail p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.local-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--primary-glow);
+  border: 1px solid var(--primary-border);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* =============================================
+   SPEAKER
+============================================= */
+#speaker {
+  background: var(--bg);
+  position: relative;
+}
+
+#speaker::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(53,60,221,0.3), transparent);
+}
+
+.speaker-card {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 48px;
+  margin-top: 48px;
+  align-items: center;
+}
+
+.speaker-photo {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.speaker-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.speaker-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(transparent, rgba(8,8,15,0.6));
+  pointer-events: none;
+}
+
+.speaker-info { display: flex; flex-direction: column; gap: 20px; }
+
+.speaker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--primary-glow);
+  border: 1px solid var(--primary-border);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  color: var(--primary);
+  font-weight: 500;
+  width: fit-content;
+}
+
+.speaker-name {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.speaker-title {
+  font-size: 1.4rem;
+  color: var(--text);
+  font-style: normal;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.speaker-name-accent {
+  color: #353cdd;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.speaker-bio {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  border-left: 2px solid var(--primary-border);
+  padding-left: 20px;
+}
+
+.speaker-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.speaker-metric {
+  padding-right: 20px;
+  margin-right: 20px;
+  border-right: 1px solid var(--border);
+}
+
+.speaker-metric:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+
+.speaker-metric strong {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--text);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+}
+
+.speaker-metric span {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.speaker-selos {
+  padding: 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.selos-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.selos-grid img {
+  height: 52px;
+  width: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* =============================================
+   TESTEMUNHOS
+============================================= */
+#testemunhos {
+  background: var(--surface);
+}
+
+.testimonial-star-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.stars {
+  color: #f59e0b;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.star-label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.video-carousel {
+  position: relative;
+  margin-bottom: 64px;
+}
+
+.video-carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.video-item {
+  flex-shrink: 0;
+  width: 280px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.video-item:hover { transform: translateY(-3px); }
+
+.video-thumb {
+  aspect-ratio: 16/9;
+  background: var(--surface2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.video-play {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(53,60,221,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 1rem;
+  color: white;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.video-item:hover .video-play {
+  transform: translate(-50%,-50%) scale(1.1);
+  background: var(--primary);
+}
+
+.video-info { padding: 16px; }
+
+.video-info h4 {
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.video-info p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.video-quote {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.5;
+  border-left: 2px solid var(--primary-border);
+  padding-left: 10px;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 56px;
+}
+
+.testimonial-card {
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.2s;
+}
+
+.testimonial-card {
+  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s;
+}
+
+.testimonial-card:hover {
+  border-color: var(--primary-border);
+  transform: scale(1.06);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  z-index: 2;
+  position: relative;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.testimonial-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1rem;
+  border: 2px solid var(--primary-border);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.testimonial-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.testimonial-meta h4 { font-size: 0.9rem; font-weight: 500; }
+.testimonial-meta p { font-size: 0.78rem; color: var(--text-muted); }
+
+.testimonial-stars { color: #f59e0b; font-size: 0.85rem; }
+
+.testimonial-quote {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.logos-section {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.logos-track {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  width: max-content;
+  animation: logos-scroll 50s linear infinite;
+}
+
+.logos-track:hover { animation-play-state: paused; }
+
+@keyframes logos-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.logos-track img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.6;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.logos-track img:hover { opacity: 1; }
+
+/* =============================================
+   LEAD FORM
+============================================= */
+#leads {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Border top colorida */
+#leads::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--primary), rgba(53,60,221,0.4), transparent);
+}
+
+/* Glow de fundo */
+#leads::after {
+  content: '';
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse, rgba(53,60,221,0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#leads .container {
+  position: relative;
+  z-index: 1;
+}
+
+#leads .section-label {
+  color: var(--primary);
+  opacity: 0.85;
+}
+
+.lead-form-wrap {
+  max-width: 600px;
+  margin: 32px auto 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(53,60,221,0.2);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  text-align: left;
+}
+
+.form-urgency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  color: #86efac;
+  margin-bottom: 32px;
+}
+
+.form-urgency-badge .dot {
+  width: 7px; height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full { grid-column: 1 / -1; }
+
+.form-group label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.form-group input {
+  padding: 13px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  transition: border-color 0.2s;
+  outline: none;
+  width: 100%;
+}
+
+.form-group input:focus {
+  border-color: rgba(53,60,221,0.5);
+}
+
+.form-group input::placeholder { color: rgba(136,136,170,0.5); }
+
+.form-submit {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 24px rgba(53,60,221,0.35);
+}
+
+.form-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.form-success {
+  display: none;
+  padding: 24px;
+  background: rgba(53,60,221,0.1);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--text);
+}
+
+.form-success.show { display: block; }
+
+/* =============================================
+   PRICING
+============================================= */
+#investimento {
+  background: var(--bg);
+}
+
+.pricing-phase-banner {
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 32px;
+  border: 1px solid;
+}
+
+.pricing-phase-banner.early {
+  background: rgba(34,197,94,0.08);
+  border-color: rgba(34,197,94,0.3);
+  color: #4ade80;
+}
+
+.pricing-phase-banner.standard {
+  background: rgba(250,204,21,0.08);
+  border-color: rgba(250,204,21,0.3);
+  color: #facc15;
+}
+
+.pricing-phase-banner.last {
+  background: rgba(239,68,68,0.08);
+  border-color: rgba(239,68,68,0.3);
+  color: #f87171;
+}
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: border-color 0.2s;
+}
+
+.pricing-card:hover { border-color: var(--primary-border); }
+
+.pricing-card.vip {
+  border-color: rgba(53,60,221,0.35);
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(53,60,221,0.04) 100%);
+  position: relative;
+}
+
+.pricing-badge {
+  display: inline-flex;
+  padding: 5px 12px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.pricing-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.pricing-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.pricing-price .euro {
+  font-size: 1.4rem;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.pricing-price .amount {
+  font-size: 3.2rem;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+}
+
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.pricing-features li .check {
+  color: var(--primary);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.pricing-features li.hot { color: var(--text); }
+.pricing-features li.hot .check { color: var(--accent); }
+
+.pricing-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+/* Progress bar */
+.progress-section {
+  padding: 28px 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 28px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.progress-label {
+  font-size: 0.88rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.progress-pct {
+  font-size: 0.88rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+.progress-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Phase table */
+.phase-table-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.phase-table-toggle:hover {
+  border-color: var(--primary-border);
+  color: var(--text);
+}
+
+.phase-table-wrap {
+  display: none;
+  margin-bottom: 28px;
+}
+
+.phase-table-wrap.open { display: block; }
+
+.phase-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.phase-table th {
+  text-align: left;
+  padding: 12px 16px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.phase-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.phase-table tr.active td {
+  background: rgba(53,60,221,0.06);
+  color: var(--text);
+}
+
+.phase-table tr.active td:first-child {
+  border-left: 2px solid var(--primary);
+}
+
+.phase-table tr.closed td {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.phase-status {
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.phase-status.active {
+  background: rgba(34,197,94,0.12);
+  color: #4ade80;
+}
+
+.phase-status.next {
+  background: rgba(250,204,21,0.1);
+  color: #facc15;
+}
+
+.phase-status.closed {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+}
+
+.pricing-guarantee {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.guarantee-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: -2px;
+}
+
+/* =============================================
+   DÚVIDAS / PRÉ-QUALIFICAÇÃO
+============================================= */
+#duvidas {
+  position: relative;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+#duvidas::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(53,60,221,0.3), transparent);
+}
+
+.duvidas-photo-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--surface);
+  /* FOTO AMBIENTE: inserir como background-image aqui */
+}
+
+.duvidas-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17,17,24,0.94);
+}
+
+.duvidas-content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.duvidas-text {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 20px 0 36px;
+}
+
+.duvidas-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* =============================================
+   FOOTER
+============================================= */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 48px 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+/* .footer-logo removed — now uses SVG logo inline */
+
+.footer-tagline {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  max-width: 240px;
+  line-height: 1.5;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--text); }
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.footer-social a:hover {
+  color: var(--text);
+  border-color: var(--primary-border);
+}
+
+.footer-bottom {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-copyright {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.footer-email {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.footer-email:hover { color: var(--primary); }
+
+/* =============================================
+   STICKY MOBILE CTA
+============================================= */
+#sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 900;
+  background: rgba(17,17,24,0.97);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  padding: 12px 20px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#sticky-cta.visible { display: flex; }
+
+.sticky-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sticky-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.sticky-price {
+  font-size: 1rem;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* =============================================
+   SCROLL ANIMATIONS
+============================================= */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+.stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.08s; }
+.stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.16s; }
+.stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.24s; }
+.stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.32s; }
+.stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.4s; }
+.stagger.visible > *:nth-child(7) { opacity: 1; transform: none; transition-delay: 0.48s; }
+.stagger.visible > *:nth-child(8) { opacity: 1; transform: none; transition-delay: 0.56s; }
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 1024px) {
+  .speaker-card { grid-template-columns: 300px 1fr; }
+  .sobre-summary { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  section { padding: 64px 0; }
+
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+
+  h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
+
+  /* HERO */
+  .hero-content { padding: 60px 0 40px; }
+  h1.hero-headline { font-size: clamp(2.2rem, 8vw, 3rem); }
+  .hero-headline-split { flex-direction: column; gap: 24px; align-items: flex-start; }
+  .hero-right { align-items: flex-start; width: 100%; }
+  .hero-right .hero-sub { text-align: left; }
+  .hero-brand-logo { max-width: 180px; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero-metrics { gap: 12px; flex-direction: column; }
+  .hero-metric { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+  .hero-metric:last-child { border-bottom: none; }
+  .hero-bottom-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .hero-tag { font-size: 0.72rem; }
+
+  /* PROBLEMA */
+  .problema-cards { grid-template-columns: 1fr; }
+  .problema-transition { flex-direction: column; align-items: flex-start; }
+
+  /* RESULTADOS REAIS */
+  .resultados-reais-inner { flex-direction: column; gap: 24px; padding: 24px 20px; }
+  .resultados-left { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 24px; width: 100%; }
+  .resultados-right { padding-left: 0; gap: 32px; width: 100%; justify-content: center; }
+
+  /* SOBRE / DIAS */
+  .sobre-summary { grid-template-columns: 1fr 1fr; }
+  .dias-grid { grid-template-columns: 1fr; }
+  .resultados-grid { grid-template-columns: 1fr 1fr; }
+  .resultados-title { font-size: 1rem; }
+
+  /* PROGRAMA */
+  .accordion-body-inner { padding-left: 28px; }
+  .accordion-time { min-width: auto; }
+
+  /* LOCAL */
+  .local-grid { grid-template-columns: 1fr; }
+
+  /* SPEAKER */
+  .speaker-card { grid-template-columns: 1fr; }
+  .speaker-photo { aspect-ratio: 4/3; max-width: 320px; }
+  .selos-grid { flex-wrap: wrap; justify-content: center; }
+  .selos-grid img { width: 72px; height: 44px; }
+
+  /* TESTEMUNHOS */
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .video-carousel-track { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
+  .video-item { scroll-snap-align: start; flex-shrink: 0; }
+
+  /* INVESTIMENTO */
+  .pricing-cards { grid-template-columns: 1fr; }
+
+  /* FORMULÁRIO */
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.full { grid-column: 1; }
+  .lead-form-wrap { padding: 24px 20px; }
+
+  /* FOOTER */
+  .footer-inner { flex-direction: column; gap: 24px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+  #sticky-cta.visible { display: flex; }
+}
+
+@media (max-width: 480px) {
+  section { padding: 52px 0; }
+  .container { padding: 0 16px; }
+
+  /* HERO */
+  h1.hero-headline { font-size: clamp(1.9rem, 9vw, 2.4rem); }
+  .hero-headline-sub { font-size: 0.68em; }
+  .hero-urgency { flex-wrap: wrap; font-size: 0.75rem; }
+
+  /* GRIDS */
+  .resultados-grid { grid-template-columns: 1fr; }
+  .sobre-summary { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .dias-grid { grid-template-columns: 1fr; }
+
+  /* RESULTADOS REAIS */
+  .resultados-right { gap: 20px; }
+  .resultados-num { font-size: clamp(2.2rem, 10vw, 3rem); }
+
+  /* SPEAKER */
+  .speaker-metrics { flex-direction: column; gap: 0; }
+  .speaker-metric { border-right: none; padding-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 14px; }
+  .speaker-metric:last-child { border-bottom: none; }
+  .selos-grid img { width: 64px; height: 38px; }
+
+  /* FORMULÁRIO */
+  .lead-form-wrap { padding: 20px 16px; border-radius: 14px; }
+
+  /* PRICING */
+  .pricing-card { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR
+============================================= -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo"><img src="NILG-AI_Logo-Secondary-White.svg" alt="NILG.AI" style="height:28px;display:block;"></a>
+    <ul class="nav-links">
+      <li><a href="#hero">Início</a></li>
+      <li><a href="#problema">O Problema</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#local">Local</a></li>
+      <li><a href="#investimento">Investimento</a></li>
+      <li><a href="#speaker">Speaker</a></li>
+      <li><a href="#testemunhos">Testemunhos</a></li>
+    </ul>
+    <a href="#investimento" class="btn btn-primary nav-cta">Garantir Lugar →</a>
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+  <ul>
+    <li><a href="#hero" onclick="closeMobileMenu()">Início</a></li>
+    <li><a href="#problema" onclick="closeMobileMenu()">O Problema</a></li>
+    <li><a href="#sobre" onclick="closeMobileMenu()">Sobre</a></li>
+    <li><a href="#local" onclick="closeMobileMenu()">Local</a></li>
+    <li><a href="#investimento" onclick="closeMobileMenu()">Investimento</a></li>
+    <li><a href="#speaker" onclick="closeMobileMenu()">Speaker</a></li>
+    <li><a href="#testemunhos" onclick="closeMobileMenu()">Testemunhos</a></li>
+  </ul>
+  <a href="#investimento" class="btn btn-primary" onclick="closeMobileMenu()">Garantir Lugar →</a>
+</div>
+
+
+<!-- ============================================
+     HERO
+============================================= -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-video-placeholder"></div>
+    <!-- VIDEO HERO: inserir URL do vídeo abaixo -->
+    <video id="hero-video" autoplay muted loop playsinline>
+      <source src="2025 Negocios Inteligentes 1er evento - Marketing - Google Drive - Google Chrome 2026-03-19 15-42-07.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-content fade-up">
+
+      <div class="hero-headline-split">
+        <h1 class="hero-headline">
+          Para de competir<br>por preço.
+          <span class="hero-headline-sub">Começa a ser a única escolha.</span>
+        </h1>
+
+        <div class="hero-right">
+          <img src="Logo imersao.png" alt="Imersão IA — Jornada de cliente premium" class="hero-brand-logo">
+          <p class="hero-sub">
+            1 dia intensivo para redesenhar a tua jornada de cliente,
+            vender mais caro e criar um serviço premium —
+            escalável com IA, sem depender de mais esforço.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-bottom-row">
+        <div class="hero-urgency">
+          <span class="urgency-pulse"></span>
+          <span id="hero-urgency-text">EARLY BIRD — 38% dos lugares garantidos</span>
+        </div>
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          <strong style="font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Imersão de IA</strong> · Porto · 1 e 2 de Junho de 2026 · Evento Presencial
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#investimento" id="hero-cta-main" class="btn btn-primary btn-lg">Garantir o meu lugar →</a>
+        <a href="#programa" class="btn btn-ghost btn-lg">Ver o programa</a>
+      </div>
+
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <strong>+25</strong>
+          indústrias
+        </div>
+        <div class="hero-metric">
+          <strong>+20</strong>
+          países
+        </div>
+        <div class="hero-metric">
+          <strong>+centenas</strong>
+          de empresas
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     CAROUSEL DE FOTOS
+============================================= -->
+<div class="carousel-section">
+  <div class="container">
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carousel-track">
+        <!-- FOTO EVENTO 1: inserir -->
+        <div class="carousel-slide">
+          <div class="carousel-placeholder"><!-- FOTO EVENTO 1: inserir imagem do evento --></div>
+        </div>
+        <!-- FOTO EVENTO 2: inserir -->
+        <div class="carousel-slide">
+          <div class="carousel-placeholder"><!-- FOTO EVENTO 2: inserir imagem do evento --></div>
+        </div>
+        <!-- FOTO EVENTO 3: inserir -->
+        <div class="carousel-slide">
+          <div class="carousel-placeholder"><!-- FOTO EVENTO 3: inserir imagem do evento --></div>
+        </div>
+        <!-- FOTO EVENTO 4: inserir -->
+        <div class="carousel-slide">
+          <div class="carousel-placeholder"><!-- FOTO EVENTO 4: inserir imagem do evento --></div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carousel-prev" aria-label="Anterior">←</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <button class="carousel-btn" id="carousel-next" aria-label="Seguinte">→</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     FAIXA CITAÇÃO
+============================================= -->
+<div class="quote-band">
+  <div class="quote-band-inner">
+    <div class="quote-band-accent"></div>
+    <p class="quote-band-text">"Se competes por preço, vais sempre perder<br>para alguém <em>mais desesperado</em> do que tu."</p>
+  </div>
+</div>
+
+<!-- ============================================
+     SECÇÃO 2 — O PROBLEMA
+============================================= -->
+<section id="problema">
+  <div class="container">
+    <span class="section-label fade-up">Diagnóstico</span>
+    <h2 class="fade-up">O teu negócio sofre<br>de algum disto?</h2>
+
+    <div class="problema-cards stagger">
+
+      <div class="problema-card" id="prob-card-a">
+        <div class="problema-card-header">
+          <h3>O teu serviço é bom demais<br>para escalar</h3>
+          <div class="problema-toggle">+</div>
+        </div>
+        <p class="problema-preview">O teu serviço é tão personalizado que não consegues crescer sem trabalhar mais.</p>
+        <div class="problema-detail">
+          <p>Cada cliente é um caso único. Tens de estar presente em tudo. Escalar parece trair a qualidade que te diferencia. O resultado? Trocas tempo por dinheiro, e o teto é o número de horas que tens.</p>
+        </div>
+      </div>
+
+      <div class="problema-card" id="prob-card-b">
+        <div class="problema-card-header">
+          <h3>Compram-te pelo preço.<br>Trocam-te pelo preço.</h3>
+          <div class="problema-toggle">+</div>
+        </div>
+        <p class="problema-preview">Investiste anos a construir um negócio sólido. Mas na hora de fechar, és comparado a quem cobra metade.</p>
+        <div class="problema-detail">
+          <p>A margem encolhe. A diferenciação é difícil de explicar. E mesmo quando ganhas o cliente, é sempre em cima da corda bamba. Qualquer concorrente mais barato pode tirar-te o cliente amanhã.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="resultados-reais fade-up">
+      <div class="resultados-reais-inner">
+        <div class="resultados-left">
+          <span class="resultados-label">RESULTADOS REAIS</span>
+          <p class="resultados-titulo">Negócios com personalização geram</p>
+          <div class="resultados-divider"></div>
+          <p class="resultados-sub">Mais vendas, mais margem e mais valor por cliente</p>
+        </div>
+        <div class="resultados-right">
+          <div class="resultados-stat">
+            <span class="resultados-num">+25%</span>
+            <span class="resultados-desc">Retenção</span>
+          </div>
+          <div class="resultados-stat">
+            <span class="resultados-num">+20%</span>
+            <span class="resultados-desc">LTV</span>
+          </div>
+        </div>
+      </div>
+      <p class="resultados-cta">Já calculaste o impacto disto na tua margem?</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     SECÇÃO 3 — SOBRE A IMERSÃO
+============================================= -->
+<section id="sobre">
+  <div class="container">
+    <span class="section-label fade-up">A Imersão</span>
+    <h2 class="fade-up">2 dias para sair da guerra de preços<br>e construir um <em style="color:var(--primary);font-style:italic;">negócio premium com IA</em></h2>
+
+    <!-- Blocos Dia 1 e Dia 2 -->
+    <div class="dias-grid stagger">
+
+      <div class="dia-card dia1" onclick="this.classList.toggle('open')">
+        <span class="dia-label">DIA 1 — Estratégia</span>
+        <h3><strong>Hiperpersonalização</strong> aplicada à tua jornada de cliente para aumentar retenção, LTV e margem</h3>
+        <div class="dia-expand">
+          <div class="dia-expand-inner">
+            Aprende a <strong>mapear a jornada do teu cliente</strong> e a usar IA para atrair, converter e fechar com mais margem.
+            <br><br>
+            Trabalhas o teu próprio negócio — não casos genéricos.
+            <div class="dia-takeaway">Sais com o mapa da tua empresa feito.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dia-card dia2" onclick="this.classList.toggle('open')">
+        <span class="dia-label">DIA 2 — Execução</span>
+        <h3><strong>Aplicação prática</strong> no teu negócio com frameworks e decisões acionáveis</h3>
+        <div class="dia-expand">
+          <div class="dia-expand-inner">
+            <strong>Casos reais</strong>, painel com especialistas e <strong>networking temático por setor</strong>.
+            <br><br>
+            Sais com <strong>contactos qualificados</strong> e um plano concreto para começar a implementar.
+            <div class="dia-takeaway">Sais com um plano de 30 dias para começar amanhã.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Subheadline -->
+    <p class="sobre-subheadline fade-up">
+      <strong>No final destes 2 dias,</strong> sais com decisões claras para aplicar no teu negócio.
+    </p>
+
+    <!-- Cards de resultados -->
+    <div class="resultados-grid stagger">
+
+      <div class="resultado-card">
+        <span class="resultado-icon">🏆</span>
+        <h3>Sair da guerra de preços</h3>
+        <p>Posiciona-te como a escolha premium no teu mercado.</p>
+      </div>
+
+      <div class="resultado-card">
+        <span class="resultado-icon">📈</span>
+        <h3>Criar serviços de alto valor</h3>
+        <p>Que escalam sem aumentar proporcionalmente o esforço.</p>
+      </div>
+
+      <div class="resultado-card">
+        <span class="resultado-icon">🔍</span>
+        <h3>Identificar alavancas de margem</h3>
+        <p>Onde pequenas decisões têm maior impacto financeiro.</p>
+      </div>
+
+      <div class="resultado-card">
+        <span class="resultado-icon">🧠</span>
+        <h3>Aplicar IA com impacto no negócio</h3>
+        <p>Na jornada de cliente, com foco em resultado.</p>
+      </div>
+
+      <div class="resultado-card">
+        <span class="resultado-icon">🎯</span>
+        <h3>Redesenhar a experiência do cliente</h3>
+        <p>Para justificar preços mais altos.</p>
+      </div>
+
+      <div class="resultado-card">
+        <span class="resultado-icon">📢</span>
+        <h3>Comunicar o teu valor</h3>
+        <p>De forma clara e consistente no mercado.</p>
+      </div>
+
+    </div>
+
+    <div style="text-align:center" class="fade-up">
+      <a href="#investimento" class="btn btn-primary btn-lg">Garantir o meu lugar →</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ============================================
+     SECÇÃO 5 — LOCAL
+============================================= -->
+<section id="local">
+  <div class="container">
+    <span class="section-label fade-up">Onde</span>
+    <h2 class="fade-up">Local da<br><strong>imersão.</strong></h2>
+
+    <div class="local-grid">
+      <div class="local-photo fade-up">
+        <img src="Terminal Cruzeiros.jpg" alt="Terminal de Cruzeiros de Leixões — fachada">
+      </div>
+
+      <div class="local-info fade-up">
+        <div class="local-badge">📍 Porto, Portugal</div>
+
+        <div class="local-detail">
+          <h3>Data e Local</h3>
+          <p>
+            <strong style="color:var(--text)">1 e 2 de Junho de 2026</strong><br>
+            Terminal de Cruzeiros de Leixões<br>
+            Matosinhos, Porto
+          </p>
+        </div>
+
+        <div class="local-detail">
+          <h3>Sobre o local</h3>
+          <p>
+            Um ícone arquitetónico premiado, junto ao oceano, desenhado para ligar pessoas, ideias e inovação.<br><br>
+            O cenário certo para pensar o teu negócio ao próximo nível.
+          </p>
+        </div>
+
+        <div class="local-ambient">
+          <img src="Interior-Terminal-de-Cruzeiros-Porto-de-Leixoes.jpg" alt="Interior do Terminal de Cruzeiros de Leixões">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     SECÇÃO 6 — SPEAKER
+============================================= -->
+<section id="speaker">
+  <div class="container">
+    <span class="section-label fade-up">O Guia</span>
+    <h2 class="fade-up">Quem te vai<br><strong>guiar neste dia</strong></h2>
+
+    <div class="speaker-card">
+      <!-- FOTO KELWIN: inserir -->
+      <div class="speaker-photo fade-up">
+        <img src="Kelwin F.png" alt="Kelwin Fernandes">
+      </div>
+
+      <div class="speaker-info fade-up">
+        <div class="speaker-badge"><img src="NILG-AI_Logo-Secondary-White.svg" alt="NILG.AI" style="height:14px;display:block;"></div>
+        <div>
+          <h2 class="speaker-name">Maior especialista de IA<br><span class="speaker-name-accent">para negócios em Portugal</span></h2>
+          <p class="speaker-title">Kelwin Fernandes</p>
+        </div>
+
+        <p class="speaker-bio">
+          <!-- BIO KELWIN: inserir 3-4 linhas sobre percurso, NILG.AI, credenciais -->
+          Fundador da NILG.AI e referência nacional na aplicação estratégica de IA em empresas reais.<br><br>
+          Com mais de 15 anos de experiência em Inteligência Artificial, trabalhou com empresas em mais de 25 indústrias e 20 países, ajudando a transformar jornadas de cliente e modelos de negócio com impacto mensurável.
+        </p>
+
+        <div class="speaker-metrics">
+          <div class="speaker-metric">
+            <strong>+25</strong>
+            <span>Indústrias</span>
+          </div>
+          <div class="speaker-metric">
+            <strong>+20</strong>
+            <span>Países</span>
+          </div>
+          <div class="speaker-metric">
+            <strong>+centenas</strong>
+            <span>Empresas transformadas</span>
+          </div>
+        </div>
+
+        <div class="speaker-selos">
+          <div class="selos-grid">
+            <img src="Badges/NILG.AI - 515063142 - Selo TOP5 2025-Scoring.png" alt="Scoring TOP5 Portugal 2025">
+            <img src="Badges/Data changemaker.png" alt="Data Changemaker of the Year">
+            <img src="Badges/banner-award-2025-black-winner-alt.png" alt="TechBehemoth Award 2025">
+            <img src="Badges/Google.png" alt="Google">
+            <img src="Badges/Clutch.png" alt="Clutch">
+            <img src="Badges/Trustpilot.png" alt="Trustpilot">
+            <img src="Badges/Youtube.png" alt="YouTube">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     SECÇÃO 7 — TESTEMUNHOS
+============================================= -->
+<section id="testemunhos">
+  <div class="container">
+    <span class="section-label fade-up">Testemunhos</span>
+    <h2 class="fade-up">O que dizem quem já<br><strong>passou pela NILG.AI</strong></h2>
+
+    <div class="testimonial-star-row fade-up">
+      <span class="stars">★★★★★</span>
+      <span class="star-label">Centenas de empresas transformadas em +25 indústrias</span>
+    </div>
+
+    <!-- Video carousel -->
+    <div class="video-carousel fade-up">
+      <div class="video-carousel-track" id="video-carousel">
+        <!-- VIDEO TESTEMUNHO — Marco Lima -->
+        <div class="video-item" id="marco-video-item" onclick="playMarcoVideo()" style="cursor:pointer;">
+          <div class="video-thumb" id="marco-thumb" style="background:var(--surface2);position:relative;overflow:hidden;">
+            <img src="Marco Lima.png" alt="Marco Lima" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+            <div style="position:absolute;inset:0;background:rgba(10,10,18,0.35);"></div>
+            <div class="video-play">▶</div>
+          </div>
+          <div id="marco-player" style="display:none;aspect-ratio:16/9;border-radius:var(--radius) var(--radius) 0 0;overflow:hidden;">
+            <video src="Marco Lima.mp4" controls autoplay style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+          </div>
+          <div class="video-info">
+            <h4>Marco Lima</h4>
+            <p>Famatour</p>
+            <p class="video-quote">«O Kelwin tem a capacidade de entender a aplicabilidade da IA no nosso negócio. Isso faz a diferença.»</p>
+          </div>
+        </div>
+        <!-- VIDEO TESTEMUNHO — Filipa Amendoeira -->
+        <div class="video-item" id="filipa-video-item" onclick="playVideo('filipa')" style="cursor:pointer;">
+          <div class="video-thumb" id="filipa-thumb" style="position:relative;overflow:hidden;">
+            <img src="Filipa Amendoeira.png" alt="Filipa Amendoeira" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
+            <div style="position:absolute;inset:0;background:rgba(10,10,18,0.35);"></div>
+            <div class="video-play">▶</div>
+          </div>
+          <div id="filipa-player" style="display:none;aspect-ratio:16/9;border-radius:var(--radius) var(--radius) 0 0;overflow:hidden;">
+            <video src="Filipa Amedoeira.mp4" controls autoplay style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+          </div>
+          <div class="video-info">
+            <h4>Filipa Amendoeira</h4>
+            <p>Fitness Coach</p>
+            <p class="video-quote">«Quem fizer acontecer mais rápido é quem vai ganhar.»</p>
+          </div>
+        </div>
+        <!-- VIDEO TESTEMUNHO — Tiago Claro -->
+        <div class="video-item" id="tiago-video-item" onclick="playVideo('tiago')" style="cursor:pointer;">
+          <div class="video-thumb" id="tiago-thumb" style="position:relative;overflow:hidden;">
+            <img src="Tiago Claro.png" alt="Tiago Claro" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
+            <div style="position:absolute;inset:0;background:rgba(10,10,18,0.35);"></div>
+            <div class="video-play">▶</div>
+          </div>
+          <div id="tiago-player" style="display:none;aspect-ratio:16/9;border-radius:var(--radius) var(--radius) 0 0;overflow:hidden;">
+            <video src="Tiago Claro.mp4" controls autoplay style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+          </div>
+          <div class="video-info">
+            <h4>Tiago Claro</h4>
+            <p>Dois Meios</p>
+            <p class="video-quote">«Insights que me fizeram pensar no negócio de uma forma que nunca tinha pensado.»</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text testimonials grid -->
+    <div class="testimonials-grid stagger">
+
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar"><img src="Helena Costa.png" alt="Helena Costa"></div>
+          <div class="testimonial-meta">
+            <h4>Helena Costa</h4>
+            <p>Alma de Luce</p>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">«Os maiores insights deste evento são perceber como potenciar a empresa com a ajuda da IA. Em vez de a ter como inimiga, como é que posso tê-la como parceira para revolucionar o meu negócio, estar à frente dos outros e chegar ao coração e à mente dos clientes.»</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar"><img src="Augusto Pinheirinho.png" alt="Augusto Pinheirinho"></div>
+          <div class="testimonial-meta">
+            <h4>Augusto Pinheirinho</h4>
+            <p>Novo Imobiliário</p>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">«Estar com o Kelwin agrega sempre. Só o facto de absorver esta comunicação ao nível de negócio e estar preparado para o futuro, faz com que eu esteja sempre à frente de qualquer concorrência.»</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar"><img src="Ricardo Soares.png" alt="Ricardo Soares"></div>
+          <div class="testimonial-meta">
+            <h4>Ricardo Soares</h4>
+            <p>Apollotec</p>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">«Aquilo que pagamos tem um valor incalculável para aquilo que levamos. É um evento com muitíssimo conteúdo e clareza, que nos deixa cada vez mais preparados e resilientes para a revolução que a IA traz aos relacionamentos e aos negócios.»</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar"><img src="Gabriel Gonçalves.png" alt="Gabriel Gonçalves"></div>
+          <div class="testimonial-meta">
+            <h4>Gabriel Gonçalves</h4>
+            <p>ERP24</p>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">«Estar com a NILG.AI e o Kelwin é muito importante para estarmos atualizados e conseguirmos oferecer aos nossos clientes o melhor serviço possível. É ouro ter alguém a provocar-nos novas perspetivas sobre o que conseguimos fazer com a IA.»</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar"><img src="Paula Amaral.png" alt="Paula Amaral"></div>
+          <div class="testimonial-meta">
+            <h4>Paula Amaral</h4>
+            <p>Swonkie</p>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">«Este evento obriga-nos a refletir e a tomar decisões sobre como a IA nos pode ajudar a longo prazo, e sobre como podemos acrescentar ainda mais valor para os nossos clientes.»</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar"><img src="Bruna Fernandes.png" alt="Bruna Fernandes"></div>
+          <div class="testimonial-meta">
+            <h4>Bruna Fernandes</h4>
+            <p>A Contabilista</p>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">«O maior insight deste evento é perceber como me aliar à IA, garantindo ao mesmo tempo que entrego um valor único que o cliente não consegue obter sem a minha ajuda.»</p>
+      </div>
+
+    </div>
+
+    <!-- LOGOS CLIENTES -->
+    <p class="fade-up" style="text-align:center;font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px;">Alguns dos nossos clientes</p>
+    <div class="logos-section fade-up">
+      <div class="logos-track">
+        <img src="logos clientes/Continental_logo.svg 2.png" alt="Continental">
+        <img src="logos clientes/Meo_logo.svg 2.png" alt="MEO">
+        <img src="logos clientes/Microcrete 2.png" alt="Microcrete">
+        <img src="logos clientes/Q-Rico-Casal-Logotipo-2 2.png" alt="Q-Rico Casal">
+        <img src="logos clientes/beta i 2.png" alt="Beta-i">
+        <img src="logos clientes/cropped-logo-principal-azul-escuro 2.png" alt="Cliente">
+        <img src="logos clientes/imp-v-white@2x 2.png" alt="IMP">
+        <img src="logos clientes/new_site_organograma_site 2.png" alt="Cliente">
+        <img src="logos clientes/Clip path group.png" alt="Cliente">
+        <img src="logos clientes/Group 9.png" alt="Cliente">
+        <img src="logos clientes/Group 10.png" alt="Cliente">
+        <img src="logos clientes/Group 11.png" alt="Cliente">
+        <img src="logos clientes/Group 12.png" alt="Cliente">
+        <img src="logos clientes/Group 13.png" alt="Cliente">
+        <img src="logos clientes/g4168.png" alt="Cliente">
+        <!-- Duplicado para loop contínuo -->
+        <img src="logos clientes/Continental_logo.svg 2.png" alt="Continental">
+        <img src="logos clientes/Meo_logo.svg 2.png" alt="MEO">
+        <img src="logos clientes/Microcrete 2.png" alt="Microcrete">
+        <img src="logos clientes/Q-Rico-Casal-Logotipo-2 2.png" alt="Q-Rico Casal">
+        <img src="logos clientes/beta i 2.png" alt="Beta-i">
+        <img src="logos clientes/cropped-logo-principal-azul-escuro 2.png" alt="Cliente">
+        <img src="logos clientes/imp-v-white@2x 2.png" alt="IMP">
+        <img src="logos clientes/new_site_organograma_site 2.png" alt="Cliente">
+        <img src="logos clientes/Clip path group.png" alt="Cliente">
+        <img src="logos clientes/Group 9.png" alt="Cliente">
+        <img src="logos clientes/Group 10.png" alt="Cliente">
+        <img src="logos clientes/Group 11.png" alt="Cliente">
+        <img src="logos clientes/Group 12.png" alt="Cliente">
+        <img src="logos clientes/Group 13.png" alt="Cliente">
+        <img src="logos clientes/g4168.png" alt="Cliente">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================
+     FORMULÁRIO DE CAPTURA DE LEADS
+============================================= -->
+<section id="leads">
+  <div class="container">
+    <span class="section-label fade-up">Antes de garantires</span>
+    <h2 class="fade-up">Antes de garantires o teu lugar,<br><strong>deixa-nos conhecer-te.</strong></h2>
+    <p class="fade-up" style="color:var(--text-muted);margin:16px auto 0;font-size:0.95rem;line-height:1.7;max-width:520px">
+      O nosso processo já começa aqui — e já é diferente.<br>
+      Após submissão, vais receber uma mensagem personalizada da nossa parte.
+    </p>
+
+    <div class="lead-form-wrap fade-up">
+      <div class="form-urgency-badge">
+        <span class="dot"></span>
+        Early Bird — 38% dos lugares garantidos
+      </div>
+      <form id="lead-form" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f-nome">Nome completo *</label>
+            <input type="text" id="f-nome" name="nome" placeholder="O teu nome" required>
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email *</label>
+            <input type="email" id="f-email" name="email" placeholder="o.teu@email.pt" required>
+          </div>
+          <div class="form-group">
+            <label for="f-empresa">Nome da empresa *</label>
+            <input type="text" id="f-empresa" name="empresa" placeholder="Nome da tua empresa" required>
+          </div>
+          <div class="form-group">
+            <label for="f-tel">Telefone (opcional)</label>
+            <input type="tel" id="f-tel" name="telefone" placeholder="+351 9xx xxx xxx">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg form-submit" id="form-btn">
+          Quero saber mais →
+        </button>
+        <p class="form-note">✦ Não é um email genérico. Prometemos.</p>
+      </form>
+      <div class="form-success" id="form-success">
+        <div style="font-size:1.5rem;margin-bottom:12px">✓</div>
+        <h3 style="margin-bottom:8px">Recebemos a tua mensagem.</h3>
+        <p style="color:var(--text-muted);font-size:0.9rem">Vais receber uma resposta personalizada em breve. Até já.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     SECÇÃO 8 — INVESTIMENTO
+============================================= -->
+<section id="investimento">
+  <div class="container">
+    <span class="section-label fade-up">Investimento</span>
+    <h2 class="fade-up">Um investimento.<br><strong>Um retorno claro.</strong></h2>
+
+    <div style="margin-top:48px">
+      <!-- Phase banner -->
+      <div class="pricing-phase-banner fade-up" id="phase-banner"></div>
+
+      <!-- Pricing cards -->
+      <div class="pricing-cards stagger">
+
+        <div class="pricing-card">
+          <span class="pricing-label">Standard</span>
+          <div class="pricing-price">
+            <span class="euro">€</span>
+            <span class="amount" id="price-standard">97</span>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 1 dia intensivo de imersão presencial</li>
+            <li><span class="check">✓</span> Framework para sair da guerra de preços</li>
+            <li><span class="check">✓</span> Aplicação prática de IA na jornada do cliente</li>
+            <li><span class="check">✓</span> Exercícios aplicados ao teu negócio</li>
+            <li><span class="check">✓</span> Casos reais de implementação em PMEs</li>
+            <li><span class="check">✓</span> Networking com empresários e decisores</li>
+            <li><span class="check">✓</span> Sessão de Q&amp;A</li>
+            <li><span class="check">✓</span> Templates e frameworks para implementação</li>
+          </ul>
+          <a href="#" id="cta-standard" class="btn btn-ghost pricing-btn">Garantir lugar Standard →</a>
+        </div>
+
+        <div class="pricing-card vip">
+          <span class="pricing-badge">✦ EXPERIÊNCIA COMPLETA</span>
+          <span class="pricing-label">VIP</span>
+          <div class="pricing-price">
+            <span class="euro">€</span>
+            <span class="amount" id="price-vip">197</span>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 1 dia intensivo de imersão presencial</li>
+            <li><span class="check">✓</span> Framework para sair da guerra de preços</li>
+            <li><span class="check">✓</span> Aplicação prática de IA na jornada do cliente</li>
+            <li><span class="check">✓</span> Exercícios aplicados ao teu negócio</li>
+            <li><span class="check">✓</span> Casos reais de implementação em PMEs</li>
+            <li><span class="check">✓</span> Networking com empresários e decisores</li>
+            <li><span class="check">✓</span> Sessão de Q&amp;A</li>
+            <li><span class="check">✓</span> Templates e frameworks para implementação</li>
+            <li class="hot"><span class="check">🔥</span> Almoço de networking estratégico (grupo reduzido)</li>
+            <li class="hot"><span class="check">🔥</span> Acesso direto a feedback durante o almoço</li>
+            <li class="hot"><span class="check">🔥</span> Prioridade em interações e Q&amp;A ao longo do evento</li>
+            <li class="hot"><span class="check">🔥</span> Experiência mais personalizada durante o dia</li>
+            <li class="hot"><span class="check">🔥</span> Gravação completa do evento</li>
+          </ul>
+          <a href="#" id="cta-vip" class="btn btn-primary pricing-btn">Garantir lugar VIP →</a>
+        </div>
+
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress-section fade-up">
+        <div class="progress-header">
+          <span class="progress-label">Lugares garantidos</span>
+          <span class="progress-pct" id="progress-pct">38%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+        <p class="progress-text" id="progress-msg"></p>
+      </div>
+
+      <!-- Phase table -->
+      <button class="phase-table-toggle fade-up" id="table-toggle-btn" onclick="togglePhaseTable()">
+        <span id="table-toggle-arrow">▾</span> Ver evolução de preços
+      </button>
+
+      <div class="phase-table-wrap" id="phase-table-wrap">
+        <table class="phase-table">
+          <thead>
+            <tr>
+              <th>Fase</th>
+              <th>Standard</th>
+              <th>VIP</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="phase-table-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Guarantee -->
+      <div class="pricing-guarantee fade-up">
+        <span class="guarantee-icon">✦</span>
+        <div>
+          <strong style="color:var(--text);display:block;margin-bottom:6px">Garantia de satisfação</strong>
+          Se chegares ao evento e sentires que não foi para ti, devolvemos o valor. Sem letras pequenas.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     SECÇÃO 9 — DÚVIDAS / PRÉ-QUALIFICAÇÃO
+============================================= -->
+<section id="duvidas">
+  <div class="duvidas-photo-bg"></div>
+  <div class="duvidas-overlay"></div>
+  <div class="container">
+    <div class="duvidas-content">
+      <span class="section-label fade-up">Tens dúvidas?</span>
+      <h2 class="fade-up">Não tens a certeza se<br><strong>este evento é para ti?</strong></h2>
+      <p class="duvidas-text fade-up">
+        O nosso processo começa antes de comprares. Fala connosco —
+        vamos perceber juntos se faz sentido para o teu negócio.
+      </p>
+      <div class="duvidas-btns fade-up">
+        <!-- WHATSAPP LINK: inserir -->
+        <a href="<!-- WHATSAPP LINK: inserir -->" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          Falar no WhatsApp →
+        </a>
+        <!-- EMAIL CONTACT: inserir -->
+        <a href="mailto:<!-- EMAIL CONTACT: inserir -->" class="btn btn-ghost btn-lg">
+          Enviar email →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FOOTER
+============================================= -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <img src="NILG-AI_Logo-Secondary-White.svg" alt="NILG.AI" style="height:34px;display:block;margin-bottom:14px;">
+        <p class="footer-tagline">Inteligência Artificial aplicada a negócios reais, em Portugal e no mundo.</p>
+      </div>
+      <div>
+        <div class="footer-links">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos e Condições</a>
+          <a href="mailto:<!-- EMAIL GERAL: inserir -->"><!-- EMAIL GERAL: inserir --></a>
+        </div>
+        <div class="footer-social" style="margin-top:16px">
+          <!-- LinkedIn: inserir link -->
+          <a href="<!-- LINKEDIN: inserir -->" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+          <!-- Instagram: inserir link -->
+          <a href="<!-- INSTAGRAM: inserir -->" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 NILG.AI. Todos os direitos reservados.</p>
+      <a href="mailto:<!-- EMAIL GERAL: inserir -->" class="footer-email"><!-- EMAIL GERAL: inserir --></a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================
+     STICKY CTA MOBILE
+============================================= -->
+<div id="sticky-cta" aria-live="polite">
+  <div class="sticky-info">
+    <span class="sticky-label" id="sticky-label">Early Bird</span>
+    <span class="sticky-price" id="sticky-price">€97</span>
+  </div>
+  <a href="#investimento" id="sticky-btn" class="btn btn-primary">Garantir Lugar →</a>
+</div>
+
+
+<!-- ============================================
+     JAVASCRIPT
+============================================= -->
+<script>
+// ============================================
+// CONFIGURAÇÃO MANUAL — ATUALIZAR REGULARMENTE
+// ============================================
+const CONFIG = {
+  FASE_ATIVA: 'early',         // 'early' | 'standard' | 'last'
+  PERCENTAGEM_VENDIDA: 38,     // % de lugares já garantidos (0-100)
+};
+
+const PRECOS = {
+  early:    { standard: 97,  vip: 197 },
+  standard: { standard: 127, vip: 227 },
+  last:     { standard: 147, vip: 247 },
+};
+
+const LABELS_FASE = {
+  early:    '🟢 Early Bird',
+  standard: '🟡 Fase Standard',
+  last:     '🔴 Last Call',
+};
+
+const LABELS_FASE_BANNER = {
+  early:    '🟢 EARLY BIRD — Lugares Limitados · Preço sobe quando esta fase fechar',
+  standard: '🟡 FASE STANDARD — Lugares ainda disponíveis · Preço sobe na Last Call',
+  last:     '🔴 LAST CALL — Últimos lugares disponíveis · Esta fase fecha em breve',
+};
+
+const LINKS = {
+  early:    { standard: '<!-- STRIPE LINK EARLY STANDARD -->', vip: '<!-- STRIPE LINK EARLY VIP -->' },
+  standard: { standard: '<!-- STRIPE LINK STANDARD STANDARD -->', vip: '<!-- STRIPE LINK STANDARD VIP -->' },
+  last:     { standard: '<!-- STRIPE LINK LAST STANDARD -->', vip: '<!-- STRIPE LINK LAST VIP -->' },
+};
+
+const AC_WEBHOOK = '<!-- AC WEBHOOK URL: inserir -->';
+
+// ============================================
+// INIT PRICING
+// ============================================
+function initPricing() {
+  const fase = CONFIG.FASE_ATIVA;
+  const precos = PRECOS[fase];
+  const pct = CONFIG.PERCENTAGEM_VENDIDA;
+
+  // Prices
+  document.getElementById('price-standard').textContent = precos.standard;
+  document.getElementById('price-vip').textContent = precos.vip;
+
+  // CTAs
+  document.getElementById('cta-standard').href = LINKS[fase].standard;
+  document.getElementById('cta-vip').href = LINKS[fase].vip;
+
+  // Phase banner
+  const banner = document.getElementById('phase-banner');
+  banner.textContent = LABELS_FASE_BANNER[fase];
+  banner.className = 'pricing-phase-banner fade-up ' + fase;
+
+  // Hero urgency text
+  document.getElementById('hero-urgency-text').textContent =
+    LABELS_FASE[fase].replace(/^...\s/, '') + ' — ' + pct + '% dos lugares garantidos';
+
+  // Hero CTA
+  document.getElementById('hero-cta-main').textContent =
+    'Garantir o meu lugar ' + (fase === 'early' ? '(Early Bird)' : '') + ' →';
+
+  // Progress bar
+  document.getElementById('progress-pct').textContent = pct + '%';
+  setTimeout(() => {
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }, 400);
+
+  let msg = '';
+  if (pct < 30) msg = 'Ainda há bons lugares disponíveis.';
+  else if (pct < 60) msg = 'Mais de um terço dos lugares já estão garantidos.';
+  else if (pct < 80) msg = 'Poucos lugares restantes. Não deixes para amanhã.';
+  else msg = '🔴 Últimos lugares. Esta fase fecha em breve.';
+  document.getElementById('progress-msg').textContent = msg;
+
+  // Sticky CTA
+  document.getElementById('sticky-label').textContent = LABELS_FASE[fase];
+  document.getElementById('sticky-price').textContent = '€' + precos.standard;
+
+  // Phase table
+  const phases = ['early', 'standard', 'last'];
+  const phaseNames = { early: 'Early Bird', standard: 'Fase Standard', last: 'Last Call' };
+  const tbody = document.getElementById('phase-table-body');
+  tbody.innerHTML = '';
+
+  phases.forEach(p => {
+    const isActive = p === fase;
+    const isClosed = phases.indexOf(p) < phases.indexOf(fase);
+    const isNext = phases.indexOf(p) > phases.indexOf(fase);
+    const tr = document.createElement('tr');
+    if (isActive) tr.className = 'active';
+    if (isClosed) tr.className = 'closed';
+
+    let statusHtml = '';
+    if (isActive) statusHtml = '<span class="phase-status active">Ativa</span>';
+    else if (isClosed) statusHtml = '<span class="phase-status closed">Encerrada</span>';
+    else statusHtml = '<span class="phase-status next">A seguir</span>';
+
+    tr.innerHTML = `
+      <td>${LABELS_FASE[p]} ${phaseNames[p]}</td>
+      <td>€${PRECOS[p].standard}</td>
+      <td>€${PRECOS[p].vip}</td>
+      <td>${statusHtml}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ============================================
+// ACCORDION
+// ============================================
+document.querySelectorAll('.accordion-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.parentElement;
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.accordion-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// ============================================
+// PROBLEMA CARDS (accordion)
+// ============================================
+['prob-card-a', 'prob-card-b'].forEach(id => {
+  const card = document.getElementById(id);
+  card.addEventListener('click', () => {
+    card.classList.toggle('open');
+  });
+});
+
+// ============================================
+// CAROUSEL
+// ============================================
+(function() {
+  const track = document.getElementById('carousel-track');
+  const dotsContainer = document.getElementById('carousel-dots');
+  const slides = track.querySelectorAll('.carousel-slide');
+  let current = 0;
+  let startX = 0;
+  let isDragging = false;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, slides.length - 1));
+    const slideW = slides[0].offsetWidth + 16;
+    track.style.transform = `translateX(-${current * slideW}px)`;
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  document.getElementById('carousel-prev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('carousel-next').addEventListener('click', () => goTo(current + 1));
+
+  // Touch/swipe
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDragging = true; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (!isDragging) return;
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    isDragging = false;
+  });
+
+  window.addEventListener('resize', () => goTo(current));
+})();
+
+// ============================================
+// PHASE TABLE TOGGLE
+// ============================================
+function togglePhaseTable() {
+  const wrap = document.getElementById('phase-table-wrap');
+  const arrow = document.getElementById('table-toggle-arrow');
+  wrap.classList.toggle('open');
+  arrow.textContent = wrap.classList.contains('open') ? '▴' : '▾';
+}
+
+// ============================================
+// HAMBURGER MENU
+// ============================================
+document.getElementById('hamburger-btn').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.toggle('open');
+});
+
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+// ============================================
+// LEAD FORM
+// ============================================
+document.getElementById('lead-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('form-btn');
+  btn.textContent = 'A enviar...';
+  btn.disabled = true;
+
+  const data = {
+    nome: document.getElementById('f-nome').value,
+    email: document.getElementById('f-email').value,
+    empresa: document.getElementById('f-empresa').value,
+    telefone: document.getElementById('f-tel').value,
+    origem: 'landing_imersao_porto_junho_2025',
+  };
+
+  try {
+    await fetch(AC_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+  } catch (_) {}
+
+  document.getElementById('lead-form').style.display = 'none';
+  document.getElementById('form-success').classList.add('show');
+});
+
+// ============================================
+// SCROLL ANIMATIONS (IntersectionObserver)
+// ============================================
+const observerOpts = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
+
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+}, observerOpts);
+
+document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+document.querySelectorAll('.stagger').forEach(el => fadeObserver.observe(el));
+
+// ============================================
+// STICKY CTA — show/hide based on hero
+// ============================================
+(function() {
+  const hero = document.getElementById('hero');
+  const pricing = document.getElementById('investimento');
+  const stickyCta = document.getElementById('sticky-cta');
+  let heroVisible = true;
+  let pricingVisible = false;
+
+  const heroObs = new IntersectionObserver(([e]) => {
+    heroVisible = e.isIntersecting;
+    update();
+  }, { threshold: 0 });
+
+  const pricingObs = new IntersectionObserver(([e]) => {
+    pricingVisible = e.isIntersecting;
+    update();
+  }, { threshold: 0.2 });
+
+  function update() {
+    if (!heroVisible && !pricingVisible) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  }
+
+  heroObs.observe(hero);
+  pricingObs.observe(pricing);
+})();
+
+// ============================================
+// SMOOTH SCROLL OFFSET FOR FIXED NAVBAR
+// ============================================
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    const offset = 76;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+// ============================================
+// RUN
+// ============================================
+initPricing();
+
+function playMarcoVideo() {
+  playVideo('marco');
+}
+
+function playVideo(id) {
+  const thumb = document.getElementById(id + '-thumb');
+  const player = document.getElementById(id + '-player');
+  if (thumb && player) {
+    thumb.style.display = 'none';
+    player.style.display = 'block';
+  }
+}
+</script>
+
+</body>
+</html>

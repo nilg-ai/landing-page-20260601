@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quote — Opção C</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0e0e12; color: #f0f0f5; font-family: 'DM Sans', sans-serif; }
+
+.mock-hero {
+  background: #0e0e12;
+  padding: 60px 40px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.85rem;
+  color: #8888aa;
+  letter-spacing: 0.05em;
+}
+
+/* OPÇÃO C — Card centrado com glow azul, aspas enormes decorativas */
+.quote-band {
+  background: #0e0e12;
+  padding: 64px 40px;
+}
+
+.quote-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  background: rgba(53,60,221,0.06);
+  border: 1px solid rgba(53,60,221,0.2);
+  border-radius: 20px;
+  padding: 48px 52px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(53,60,221,0.08);
+}
+
+.quote-mark {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 8rem;
+  line-height: 0.7;
+  color: rgba(53,60,221,0.25);
+  font-weight: 800;
+  display: block;
+  margin-bottom: 8px;
+}
+
+blockquote {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.25rem, 2.8vw, 1.8rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: #e8e8f2;
+  letter-spacing: -0.01em;
+}
+
+blockquote em {
+  font-style: italic;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.mock-next {
+  background: #16161c;
+  padding: 60px 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #8888aa;
+  letter-spacing: 0.05em;
+}
+</style>
+</head>
+<body>
+
+<div class="mock-hero">↑ Hero section (fundo escuro)</div>
+
+<!-- OPÇÃO C -->
+<div class="quote-band">
+  <div class="quote-inner">
+    <span class="quote-mark">"</span>
+    <blockquote>
+      Se competes por preço, vais sempre perder<br>
+      para alguém <em>mais desesperado</em> do que tu.
+    </blockquote>
+  </div>
+</div>
+
+<div class="mock-next">↓ Secção seguinte (fundo surface)</div>
+
+</body>
+</html>

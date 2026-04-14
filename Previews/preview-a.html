@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview A — Card com Glow</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f0f14;
+    --surface: #16161e;
+    --primary: #353cdd;
+    --text: #f0f0f8;
+    --text-muted: #8888aa;
+    --border: rgba(255,255,255,0.08);
+  }
+  body { background: var(--surface); font-family: 'DM Sans', sans-serif; color: var(--text); padding: 64px 24px; }
+  .label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; display: block; }
+  h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(2rem,4vw,2.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+  .sub { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 48px; }
+
+  /* OPÇÃO A — Card com glow */
+  .form-card {
+    max-width: 580px;
+    margin: 0 auto;
+    background: var(--bg);
+    border: 1px solid rgba(53,60,221,0.4);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 0 40px rgba(53,60,221,0.15), 0 0 80px rgba(53,60,221,0.06);
+  }
+  .form-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 17px;
+    background: linear-gradient(135deg, rgba(53,60,221,0.3) 0%, transparent 50%, rgba(53,60,221,0.1) 100%);
+    z-index: -1;
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label { font-size: 0.82rem; color: var(--text-muted); }
+  .form-group input {
+    padding: 13px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus { border-color: rgba(53,60,221,0.6); }
+  .form-group input::placeholder { color: rgba(136,136,170,0.5); }
+  .btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  .form-note { font-size: 0.78rem; color: var(--text-muted); text-align: center; }
+  .tag { display: inline-block; background: rgba(53,60,221,0.2); color: var(--primary); font-size: 0.72rem; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 20px; margin-bottom: 20px; font-weight: 600; }
+  .container { max-width: 720px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<div class="container">
+  <span class="label">Antes de garantires</span>
+  <h2>Antes de garantires o teu lugar,<br><strong>deixa-nos conhecer-te.</strong></h2>
+  <p class="sub">O nosso processo já começa aqui — e já é diferente.<br>Após submissão, vais receber uma mensagem personalizada da nossa parte.</p>
+
+  <!-- CARD COM GLOW -->
+  <div class="form-card">
+    <span class="tag">✦ Apenas 22 lugares disponíveis</span>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Nome completo *</label>
+        <input type="text" placeholder="O teu nome">
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" placeholder="o.teu@email.pt">
+      </div>
+      <div class="form-group">
+        <label>Nome da empresa *</label>
+        <input type="text" placeholder="Nome da tua empresa">
+      </div>
+      <div class="form-group">
+        <label>Telefone (opcional)</label>
+        <input type="tel" placeholder="+351 9xx xxx xxx">
+      </div>
+    </div>
+    <button class="btn">Quero saber mais →</button>
+    <p class="form-note">✦ Não é um email genérico. Prometemos.</p>
+  </div>
+</div>
+</body>
+</html>

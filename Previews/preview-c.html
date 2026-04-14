@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview C — Background de Destaque</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f0f14;
+    --surface: #16161e;
+    --primary: #353cdd;
+    --text: #f0f0f8;
+    --text-muted: #8888aa;
+    --border: rgba(255,255,255,0.08);
+  }
+  body { font-family: 'DM Sans', sans-serif; color: var(--text); }
+
+  /* OPÇÃO C — Background de destaque */
+  .section {
+    background: var(--bg);
+    position: relative;
+    padding: 80px 24px;
+    overflow: hidden;
+  }
+  /* Top border colorida */
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary), rgba(53,60,221,0.4), transparent);
+  }
+  /* Glow de fundo */
+  .section::after {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(53,60,221,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; text-align: center; }
+  .label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 16px; display: block; opacity: 0.8; }
+  h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(2rem,4vw,2.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+  .sub { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 40px; }
+
+  .form-wrap {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(53,60,221,0.2);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; text-align: left; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label { font-size: 0.82rem; color: var(--text-muted); }
+  .form-group input {
+    padding: 13px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus { border-color: rgba(53,60,221,0.6); }
+  .form-group input::placeholder { color: rgba(136,136,170,0.5); }
+  .btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 24px rgba(53,60,221,0.35);
+  }
+  .form-note { font-size: 0.78rem; color: var(--text-muted); text-align: center; }
+  .urgency {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    color: #86efac;
+    margin-bottom: 32px;
+  }
+  .dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+</style>
+</head>
+<body>
+<div class="section">
+  <div class="container">
+    <span class="label">Antes de garantires</span>
+    <h2>Antes de garantires o teu lugar,<br><strong>deixa-nos conhecer-te.</strong></h2>
+    <p class="sub">O nosso processo já começa aqui — e já é diferente.<br>Após submissão, vais receber uma mensagem personalizada da nossa parte.</p>
+
+    <div class="urgency">
+      <span class="dot"></span>
+      Early Bird — 38% dos lugares garantidos
+    </div>
+
+    <div class="form-wrap">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nome completo *</label>
+          <input type="text" placeholder="O teu nome">
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" placeholder="o.teu@email.pt">
+        </div>
+        <div class="form-group">
+          <label>Nome da empresa *</label>
+          <input type="text" placeholder="Nome da tua empresa">
+        </div>
+        <div class="form-group">
+          <label>Telefone (opcional)</label>
+          <input type="tel" placeholder="+351 9xx xxx xxx">
+        </div>
+      </div>
+      <button class="btn">Quero saber mais →</button>
+      <p class="form-note">✦ Não é um email genérico. Prometemos.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
