@@ -2938,7 +2938,8 @@ footer {
         <span class="dot"></span>
         Early Bird — 38% dos lugares garantidos
       </div>
-      <form id="lead-form" novalidate>
+      <iframe name="ac-submit-frame" style="display:none;"></iframe>
+      <form id="lead-form" action="https://nilg.activehosted.com/proc.php" method="POST" target="ac-submit-frame" novalidate>
         <input type="hidden" name="u" value="69DE258E4C9D4">
         <input type="hidden" name="f" value="10">
         <input type="hidden" name="s" value="">
@@ -3359,24 +3360,15 @@ function closeMobileMenu() {
 // ============================================
 // LEAD FORM
 // ============================================
-document.getElementById('lead-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
+document.getElementById('lead-form').addEventListener('submit', function(e) {
   const btn = document.getElementById('form-btn');
   btn.textContent = 'A enviar...';
   btn.disabled = true;
 
-  const formData = new FormData(this);
-
-  try {
-    await fetch('https://nilg.activehosted.com/proc.php', {
-      method: 'POST',
-      body: formData,
-      mode: 'no-cors',
-    });
-  } catch (_) {}
-
-  document.getElementById('lead-form').style.display = 'none';
-  document.getElementById('form-success').classList.add('show');
+  setTimeout(function() {
+    document.getElementById('lead-form').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+  }, 1000);
 });
 
 // ============================================
