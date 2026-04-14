@@ -2939,10 +2939,18 @@ footer {
         Early Bird — 38% dos lugares garantidos
       </div>
       <form id="lead-form" novalidate>
+        <input type="hidden" name="u" value="69DE258E4C9D4">
+        <input type="hidden" name="f" value="10">
+        <input type="hidden" name="s" value="">
+        <input type="hidden" name="c" value="0">
+        <input type="hidden" name="m" value="0">
+        <input type="hidden" name="act" value="sub">
+        <input type="hidden" name="v" value="2">
+        <input type="hidden" name="or" value="0e20b493-de2b-4e63-8537-00d020b44a67">
         <div class="form-grid">
           <div class="form-group">
             <label for="f-nome">Nome completo *</label>
-            <input type="text" id="f-nome" name="nome" placeholder="O teu nome" required>
+            <input type="text" id="f-nome" name="fullname" placeholder="O teu nome" required>
           </div>
           <div class="form-group">
             <label for="f-email">Email *</label>
@@ -2950,11 +2958,11 @@ footer {
           </div>
           <div class="form-group">
             <label for="f-empresa">Nome da empresa *</label>
-            <input type="text" id="f-empresa" name="empresa" placeholder="Nome da tua empresa" required>
+            <input type="text" id="f-empresa" name="field[27]" placeholder="Nome da tua empresa" required>
           </div>
           <div class="form-group">
             <label for="f-tel">Telefone (opcional)</label>
-            <input type="tel" id="f-tel" name="telefone" placeholder="+351 9xx xxx xxx">
+            <input type="tel" id="f-tel" name="phone" placeholder="+351 9xx xxx xxx">
           </div>
         </div>
         <button type="submit" class="btn btn-primary btn-lg form-submit" id="form-btn">
@@ -3185,8 +3193,6 @@ const LINKS = {
   last:     { standard: '<!-- STRIPE LINK LAST STANDARD -->', vip: '<!-- STRIPE LINK LAST VIP -->' },
 };
 
-const AC_WEBHOOK = '<!-- AC WEBHOOK URL: inserir -->';
-
 // ============================================
 // INIT PRICING
 // ============================================
@@ -3359,19 +3365,13 @@ document.getElementById('lead-form').addEventListener('submit', async function(e
   btn.textContent = 'A enviar...';
   btn.disabled = true;
 
-  const data = {
-    nome: document.getElementById('f-nome').value,
-    email: document.getElementById('f-email').value,
-    empresa: document.getElementById('f-empresa').value,
-    telefone: document.getElementById('f-tel').value,
-    origem: 'landing_imersao_porto_junho_2025',
-  };
+  const formData = new FormData(this);
 
   try {
-    await fetch(AC_WEBHOOK, {
+    await fetch('https://nilg.activehosted.com/proc.php', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: formData,
+      mode: 'no-cors',
     });
   } catch (_) {}
 
