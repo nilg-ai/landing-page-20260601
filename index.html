@@ -2938,9 +2938,48 @@ footer {
         <span class="dot"></span>
         Early Bird — 38% dos lugares garantidos
       </div>
-      <!-- AC embed test -->
-      <div class="_form_10"></div>
-      <script src="https://nilg.activehosted.com/f/embed.php?id=10" charset="utf-8"></script>
+      <iframe name="ac-submit-frame" style="display:none;"></iframe>
+      <form id="lead-form" action="https://nilg.activehosted.com/proc.php" method="POST" target="ac-submit-frame">
+        <input type="hidden" name="u" value="69DE258E4C9D4">
+        <input type="hidden" name="f" value="10">
+        <input type="hidden" name="s" value="">
+        <input type="hidden" name="c" value="0">
+        <input type="hidden" name="m" value="0">
+        <input type="hidden" name="act" value="sub">
+        <input type="hidden" name="v" value="2">
+        <input type="hidden" name="or" value="0e20b493-de2b-4e63-8537-00d020b44a67">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f-nome">Nome completo *</label>
+            <input type="text" id="f-nome" name="fullname" placeholder="O teu nome" required>
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email *</label>
+            <input type="email" id="f-email" name="email" placeholder="o.teu@email.pt" required>
+          </div>
+          <div class="form-group">
+            <label for="f-empresa">Nome da empresa *</label>
+            <input type="text" id="f-empresa" name="field[27]" placeholder="Nome da tua empresa" required>
+          </div>
+          <div class="form-group">
+            <label for="f-tel">Telefone (opcional)</label>
+            <input type="tel" id="f-tel" name="phone" placeholder="+351 9xx xxx xxx">
+          </div>
+        </div>
+        <label style="display:flex;align-items:flex-start;gap:8px;margin-bottom:16px;font-size:0.85rem;color:var(--text-muted);cursor:pointer;">
+          <input type="checkbox" name="sms_consent" value="1" required style="margin-top:3px;">
+          <span>Aceito receber comunicações sobre este evento e outros conteúdos relevantes. Posso cancelar a qualquer momento.</span>
+        </label>
+        <button type="submit" class="btn btn-primary btn-lg form-submit" id="form-btn">
+          Quero saber mais →
+        </button>
+        <p class="form-note">✦ Não é um email genérico. Prometemos.</p>
+      </form>
+      <div class="form-success" id="form-success">
+        <div style="font-size:1.5rem;margin-bottom:12px">✓</div>
+        <h3 style="margin-bottom:8px">Recebemos a tua mensagem.</h3>
+        <p style="color:var(--text-muted);font-size:0.9rem">Vais receber uma resposta personalizada em breve. Até já.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -3323,8 +3362,19 @@ function closeMobileMenu() {
 }
 
 // ============================================
-// LEAD FORM (disabled — using AC embed for testing)
+// LEAD FORM
 // ============================================
+document.getElementById('lead-form').addEventListener('submit', function() {
+  var btn = document.getElementById('form-btn');
+  btn.textContent = 'A enviar...';
+  btn.disabled = true;
+
+  document.querySelector('[name="ac-submit-frame"]').addEventListener('load', function onLoad() {
+    this.removeEventListener('load', onLoad);
+    document.getElementById('lead-form').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+  });
+});
 
 // ============================================
 // SCROLL ANIMATIONS (IntersectionObserver)
