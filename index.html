@@ -3293,8 +3293,8 @@ const LABELS_FASE_BANNER = {
 
 const LINKS = {
   early:    { standard: 'https://buy.stripe.com/00w7sKdyl4RDbtc65F5Vu0b', vip: 'https://buy.stripe.com/5kQcN4cuh5VH7cWeCb5Vu0c' },
-  standard: { standard: '<!-- STRIPE LINK STANDARD STANDARD -->', vip: '<!-- STRIPE LINK STANDARD VIP -->' },
-  last:     { standard: '<!-- STRIPE LINK LAST STANDARD -->', vip: '<!-- STRIPE LINK LAST VIP -->' },
+  standard: { standard: 'https://buy.stripe.com/00w7sKdyl4RDbtc65F5Vu0b', vip: 'https://buy.stripe.com/5kQcN4cuh5VH7cWeCb5Vu0c' },
+  last:     { standard: 'https://buy.stripe.com/00w7sKdyl4RDbtc65F5Vu0b', vip: 'https://buy.stripe.com/5kQcN4cuh5VH7cWeCb5Vu0c' },
 };
 
 const AC_WEBHOOK = '<!-- AC WEBHOOK URL: inserir -->';
@@ -3314,23 +3314,9 @@ function initPricing() {
   if (document.getElementById('normal-standard')) document.getElementById('normal-standard').textContent = '€' + normais.standard;
   if (document.getElementById('normal-vip')) document.getElementById('normal-vip').textContent = '€' + normais.vip;
 
-  // CTAs — fall back to a disabled "Em breve" state if the link for the
-  // active phase is still a placeholder (prevents broken Stripe redirects).
-  const setCta = (id, url, fallbackLabel) => {
-    const el = document.getElementById(id);
-    if (typeof url === 'string' && /^https?:\/\//.test(url)) {
-      el.href = url;
-    } else {
-      el.href = '#investimento';
-      el.textContent = fallbackLabel;
-      el.setAttribute('aria-disabled', 'true');
-      el.style.pointerEvents = 'none';
-      el.style.opacity = '0.55';
-      console.warn(`[pricing] Missing Stripe link for ${fase}/${id} — CTA disabled.`);
-    }
-  };
-  setCta('cta-standard', LINKS[fase].standard, 'Em breve — contacta-nos');
-  setCta('cta-vip',      LINKS[fase].vip,      'Em breve — contacta-nos');
+  // CTAs
+  document.getElementById('cta-standard').href = LINKS[fase].standard;
+  document.getElementById('cta-vip').href = LINKS[fase].vip;
 
   // Phase banner
   const banner = document.getElementById('phase-banner');
