@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Imersão IA — Jornada de Cliente Premium | NILG.AI · Porto · 2 Junho 2025</title>
+<title>Imersão IA — Jornada de Cliente Premium | NILG.AI · Porto · 22 Setembro 2026</title>
 <meta name="description" content="1 dia intensivo para redesenhar a tua jornada de cliente, vender mais caro e criar um serviço premium — escalável com IA, sem depender de mais esforço.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1761,81 +1761,167 @@ h1.hero-headline em {
   color: #f87171;
 }
 
-.pricing-cards {
+/* ── PRICING COMPARE ── */
+.pricing-compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 40px;
+  gap: 20px;
+  margin-bottom: 28px;
 }
 
-.pricing-card {
+.col-standard {
   background: var(--surface);
-  border: 1px solid var(--border);
+  padding: 40px 36px;
   border-radius: var(--radius-lg);
-  padding: 36px;
+  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  gap: 20px;
   transition: border-color 0.2s;
 }
+.col-standard:hover { border-color: var(--primary-border); }
 
-.pricing-card:hover { border-color: var(--primary-border); }
-
-.pricing-card.vip {
-  border-color: rgba(53,60,221,0.35);
-  background: linear-gradient(135deg, var(--surface) 0%, rgba(53,60,221,0.04) 100%);
+.col-vip {
+  background: #0f1024;
+  padding: 40px 36px;
   position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(53,60,221,0.25);
+  display: flex;
+  flex-direction: column;
+}
+.col-vip::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(53,60,221,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.col-vip::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), rgba(53,60,221,0.4));
 }
 
-.pricing-badge {
-  display: inline-flex;
-  padding: 5px 12px;
-  background: var(--accent-bg);
-  border: 1px solid var(--accent);
-  border-radius: 100px;
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: var(--accent);
-  letter-spacing: 0.08em;
+/* Orange "Experiência Completa" badge on VIP */
+.col-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
+  color: #ff6b00;
+  border: 1px solid rgba(255,107,0,0.4);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 18px;
   width: fit-content;
 }
 
-.pricing-label {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
+/* Subtle grey badge on Standard */
+.col-badge-grey {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 18px;
+  width: fit-content;
 }
 
-.pricing-price {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
+.plan-name {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.col-standard .plan-name { color: var(--text); }
+.col-vip .plan-name { color: #fff; }
+
+.plan-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.5;
 }
 
-.pricing-price .euro {
+/* Early Bird tag */
+.plan-early-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #86efac;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.plan-early-tag .dot {
+  width: 6px; height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Price block */
+.plan-price {
+  margin-bottom: 6px;
+  line-height: 1;
+}
+.plan-price .euro {
   font-size: 1.4rem;
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 400;
-  color: var(--text-muted);
+  font-weight: 500;
+  vertical-align: top;
+  margin-top: 5px;
+  display: inline-block;
 }
+.col-standard .plan-price .euro { color: var(--text-muted); }
+.col-vip .plan-price .euro { color: rgba(255,255,255,0.7); }
 
-.pricing-price .amount {
-  font-size: 3.2rem;
+.plan-price .amount {
   font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 3rem;
   font-weight: 800;
   line-height: 1;
-  color: var(--text);
+}
+.col-standard .plan-price .amount { color: var(--text); }
+.col-vip .plan-price .amount { color: #fff; }
+
+.plan-price .iva {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-left: 4px;
 }
 
+.plan-normal {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.plan-normal s {
+  margin-right: 4px;
+}
+
+/* Features list */
 .pricing-features {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 11px;
   flex: 1;
+  margin-bottom: 28px;
 }
 
 .pricing-features li {
@@ -1843,24 +1929,29 @@ h1.hero-headline em {
   align-items: flex-start;
   gap: 10px;
   font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
-.pricing-features li .check {
-  color: var(--primary);
-  font-size: 0.85rem;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
+.pricing-features li.on { color: var(--text); }
+.pricing-features li.on .check { color: var(--primary); font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
 
-.pricing-features li.hot { color: var(--text); }
-.pricing-features li.hot .check { color: var(--accent); }
+.pricing-features li.off { color: rgba(136,136,170,0.35); }
+.pricing-features li.off .check { color: rgba(136,136,170,0.25); font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+
+.pricing-features li.hot { color: #fff; font-weight: 500; }
+.pricing-features li.hot .check { font-size: 0.82rem; flex-shrink: 0; margin-top: 1px; }
+
+.feat-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 0;
+}
 
 .pricing-btn {
   width: 100%;
   justify-content: center;
   font-size: 0.95rem;
+  margin-top: auto;
 }
 
 /* Progress bar */
@@ -2286,7 +2377,7 @@ footer {
   .video-item { scroll-snap-align: start; flex-shrink: 0; }
 
   /* INVESTIMENTO */
-  .pricing-cards { grid-template-columns: 1fr; }
+  .pricing-compare { grid-template-columns: 1fr; }
 
   /* FORMULÁRIO */
   .form-grid { grid-template-columns: 1fr; }
@@ -2329,7 +2420,7 @@ footer {
   .lead-form-wrap { padding: 20px 16px; border-radius: 14px; }
 
   /* PRICING */
-  .pricing-card { padding: 28px 20px; }
+  .col-standard, .col-vip { padding: 28px 20px; }
 }
 </style>
 </head>
@@ -2408,7 +2499,7 @@ footer {
         </div>
         <div class="hero-tag">
           <span class="hero-tag-dot"></span>
-          <strong style="font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Imersão de IA</strong> · Porto · 1 e 2 de Junho de 2026 · Evento Presencial
+          <strong style="font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Imersão de IA</strong> · Porto · 22 de Setembro de 2026 · Evento Presencial
         </div>
       </div>
 
@@ -2546,33 +2637,21 @@ footer {
 <section id="sobre">
   <div class="container">
     <span class="section-label fade-up">A Imersão</span>
-    <h2 class="fade-up">2 dias para sair da guerra de preços<br>e construir um <em style="color:var(--primary);font-style:italic;">negócio premium com IA</em></h2>
+    <h2 class="fade-up">1 dia para sair da guerra de preços<br>e construir um <em style="color:var(--primary);font-style:italic;">negócio premium com IA</em></h2>
 
-    <!-- Blocos Dia 1 e Dia 2 -->
-    <div class="dias-grid stagger">
+    <!-- Bloco do Dia -->
+    <div class="dias-grid stagger" style="grid-template-columns:1fr;">
 
       <div class="dia-card dia1" onclick="this.classList.toggle('open')">
-        <span class="dia-label">DIA 1 — Estratégia</span>
-        <h3><strong>Hiperpersonalização</strong> aplicada à tua jornada de cliente para aumentar retenção, LTV e margem</h3>
+        <span class="dia-label">O DIA — Estratégia & Execução</span>
+        <h3><strong>Hiperpersonalização</strong> aplicada à tua jornada de cliente, com casos reais e frameworks para implementar imediatamente</h3>
         <div class="dia-expand">
           <div class="dia-expand-inner">
             Aprende a <strong>mapear a jornada do teu cliente</strong> e a usar IA para atrair, converter e fechar com mais margem.
-            <br><br>
-            Trabalhas o teu próprio negócio — não casos genéricos.
-            <div class="dia-takeaway">Sais com o mapa da tua empresa feito.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="dia-card dia2" onclick="this.classList.toggle('open')">
-        <span class="dia-label">DIA 2 — Execução</span>
-        <h3><strong>Aplicação prática</strong> no teu negócio com frameworks e decisões acionáveis</h3>
-        <div class="dia-expand">
-          <div class="dia-expand-inner">
             <strong>Casos reais</strong>, painel com especialistas e <strong>networking temático por setor</strong>.
             <br><br>
-            Sais com <strong>contactos qualificados</strong> e um plano concreto para começar a implementar.
-            <div class="dia-takeaway">Sais com um plano de 30 dias para começar amanhã.</div>
+            Trabalhas o teu próprio negócio — não casos genéricos. Sais com <strong>contactos qualificados</strong> e um plano concreto para começar a implementar.
+            <div class="dia-takeaway">Sais com o mapa feito e um plano de 30 dias para começar amanhã.</div>
           </div>
         </div>
       </div>
@@ -2581,7 +2660,7 @@ footer {
 
     <!-- Subheadline -->
     <p class="sobre-subheadline fade-up">
-      <strong>No final destes 2 dias,</strong> sais com decisões claras para aplicar no teu negócio.
+      <strong>No final deste dia,</strong> sais com decisões claras para aplicar no teu negócio.
     </p>
 
     <!-- Cards de resultados -->
@@ -2644,31 +2723,31 @@ footer {
 
     <div class="local-grid">
       <div class="local-photo fade-up">
-        <img src="assets/images/venue/Terminal Cruzeiros.jpg" alt="Terminal de Cruzeiros de Leixões — fachada">
+        <img src="Yeatman exterior.jpg" alt="The Yeatman — Vista para o Porto">
       </div>
 
       <div class="local-info fade-up">
-        <div class="local-badge">📍 Porto, Portugal</div>
+        <div class="local-badge">📍 Vila Nova de Gaia, Porto</div>
 
         <div class="local-detail">
           <h3>Data e Local</h3>
           <p>
-            <strong style="color:var(--text)">1 e 2 de Junho de 2026</strong><br>
-            Terminal de Cruzeiros de Leixões<br>
-            Matosinhos, Porto
+            <strong style="color:var(--text)">22 de Setembro de 2026</strong><br>
+            The Yeatman Hotel<br>
+            Vila Nova de Gaia, Porto
           </p>
         </div>
 
         <div class="local-detail">
           <h3>Sobre o local</h3>
           <p>
-            Um ícone arquitetónico premiado, junto ao oceano, desenhado para ligar pessoas, ideias e inovação.<br><br>
-            O cenário certo para pensar o teu negócio ao próximo nível.
+            Do alto de Gaia, vês Porto de forma diferente. É essa mudança de perspetiva que queremos para o teu negócio.<br><br>
+            Num ambiente sofisticado, longe da rotina, para pensares mais alto.
           </p>
         </div>
 
         <div class="local-ambient">
-          <img src="assets/images/venue/Interior-Terminal-de-Cruzeiros-Porto-de-Leixoes.jpg" alt="Interior do Terminal de Cruzeiros de Leixões">
+          <img src="Yeatman interior.jpg" alt="The Yeatman — Sala de conferências">
         </div>
       </div>
     </div>
@@ -2998,49 +3077,59 @@ footer {
       <div class="pricing-phase-banner fade-up" id="phase-banner"></div>
 
       <!-- Pricing cards -->
-      <div class="pricing-cards stagger">
+      <div class="pricing-compare stagger">
 
-        <div class="pricing-card">
-          <span class="pricing-label">Standard</span>
-          <div class="pricing-price">
-            <span class="euro">€</span>
-            <span class="amount" id="price-standard">97</span>
+        <!-- STANDARD -->
+        <div class="col-standard">
+          <span class="col-badge-grey">Standard</span>
+          <div class="plan-name">Standard</div>
+          <p class="plan-sub">Para quem quer transformar o negócio neste dia.</p>
+
+          <div class="plan-early-tag"><span class="dot"></span> Early Bird</div>
+          <div class="plan-price">
+            <span class="euro">€</span><span class="amount" id="price-standard">197</span><span class="iva"> + IVA</span>
           </div>
+          <p class="plan-normal" id="normal-standard">Preço normal: <s>€297</s></p>
+
           <ul class="pricing-features">
-            <li><span class="check">✓</span> 1 dia intensivo de imersão presencial</li>
-            <li><span class="check">✓</span> Framework para sair da guerra de preços</li>
-            <li><span class="check">✓</span> Aplicação prática de IA na jornada do cliente</li>
-            <li><span class="check">✓</span> Exercícios aplicados ao teu negócio</li>
-            <li><span class="check">✓</span> Casos reais de implementação em PMEs</li>
-            <li><span class="check">✓</span> Networking com empresários e decisores</li>
-            <li><span class="check">✓</span> Sessão de Q&amp;A</li>
-            <li><span class="check">✓</span> Templates e frameworks para implementação</li>
+            <li class="on"><span class="check">✓</span> 1 dia de imersão presencial intensiva</li>
+            <li class="on"><span class="check">✓</span> Framework para sair da guerra de preços</li>
+            <li class="on"><span class="check">✓</span> Exercícios aplicados à tua jornada de cliente</li>
+            <li class="on"><span class="check">✓</span> Networking com empresários e decisores</li>
+            <li class="on"><span class="check">✓</span> Mesas de trabalho por indústria</li>
+            <li class="on"><span class="check">✓</span> Sessão de Q&amp;A</li>
+            <li class="on"><span class="check">✓</span> Almoço de networking incluído</li>
+            <div class="feat-divider"></div>
+            <li class="off"><span class="check">✕</span> Lugar numerado com vista para o palco</li>
+            <li class="off"><span class="check">✕</span> Coffee breaks premium</li>
+            <li class="off"><span class="check">✕</span> Cocktail exclusivo de networking pós-evento</li>
+            <li class="off"><span class="check">✕</span> Gravação completa disponível por 1 ano</li>
           </ul>
+
           <a href="#" id="cta-standard" class="btn btn-ghost pricing-btn">Garantir lugar Standard →</a>
         </div>
 
-        <div class="pricing-card vip">
-          <span class="pricing-badge">✦ EXPERIÊNCIA COMPLETA</span>
-          <span class="pricing-label">VIP</span>
-          <div class="pricing-price">
-            <span class="euro">€</span>
-            <span class="amount" id="price-vip">197</span>
+        <!-- VIP -->
+        <div class="col-vip">
+          <span class="col-badge">✦ Experiência Completa</span>
+          <div class="plan-name">VIP</div>
+          <p class="plan-sub">Para quem quer o máximo do evento e da rede.</p>
+
+          <div class="plan-early-tag"><span class="dot"></span> Early Bird</div>
+          <div class="plan-price">
+            <span class="euro">€</span><span class="amount" id="price-vip">287</span><span class="iva"> + IVA</span>
           </div>
+          <p class="plan-normal" id="normal-vip">Preço normal: <s>€447</s></p>
+
           <ul class="pricing-features">
-            <li><span class="check">✓</span> 1 dia intensivo de imersão presencial</li>
-            <li><span class="check">✓</span> Framework para sair da guerra de preços</li>
-            <li><span class="check">✓</span> Aplicação prática de IA na jornada do cliente</li>
-            <li><span class="check">✓</span> Exercícios aplicados ao teu negócio</li>
-            <li><span class="check">✓</span> Casos reais de implementação em PMEs</li>
-            <li><span class="check">✓</span> Networking com empresários e decisores</li>
-            <li><span class="check">✓</span> Sessão de Q&amp;A</li>
-            <li><span class="check">✓</span> Templates e frameworks para implementação</li>
-            <li class="hot"><span class="check">🔥</span> Almoço de networking estratégico (grupo reduzido)</li>
-            <li class="hot"><span class="check">🔥</span> Acesso direto a feedback durante o almoço</li>
-            <li class="hot"><span class="check">🔥</span> Prioridade em interações e Q&amp;A ao longo do evento</li>
-            <li class="hot"><span class="check">🔥</span> Experiência mais personalizada durante o dia</li>
-            <li class="hot"><span class="check">🔥</span> Gravação completa do evento</li>
+            <li class="on"><span class="check">✓</span> Tudo o incluído no Standard</li>
+            <div class="feat-divider"></div>
+            <li class="hot"><span class="check">🔥</span> Lugar numerado com vista para o palco</li>
+            <li class="hot"><span class="check">🔥</span> Coffee breaks premium</li>
+            <li class="hot"><span class="check">🔥</span> Cocktail exclusivo de networking pós-evento</li>
+            <li class="hot"><span class="check">🔥</span> Gravação completa disponível por 1 ano</li>
           </ul>
+
           <a href="#" id="cta-vip" class="btn btn-primary pricing-btn">Garantir lugar VIP →</a>
         </div>
 
@@ -3175,9 +3264,15 @@ const CONFIG = {
 };
 
 const PRECOS = {
-  early:    { standard: 97,  vip: 197 },
-  standard: { standard: 127, vip: 227 },
-  last:     { standard: 147, vip: 247 },
+  early:    { standard: 197, vip: 287 },
+  standard: { standard: 297, vip: 397 },
+  last:     { standard: 347, vip: 447 },
+};
+
+const PRECOS_NORMAL = {
+  early:    { standard: 297, vip: 447 },
+  standard: { standard: 347, vip: 497 },
+  last:     { standard: 347, vip: 497 },
 };
 
 const LABELS_FASE = {
@@ -3209,6 +3304,18 @@ function initPricing() {
   // Prices
   document.getElementById('price-standard').textContent = precos.standard;
   document.getElementById('price-vip').textContent = precos.vip;
+
+  // Normal (strikethrough) prices
+  const normal = PRECOS_NORMAL[fase];
+  document.getElementById('normal-standard').innerHTML =
+    fase === 'early' ? `Preço normal: <s>€${normal.standard}</s>` : '';
+  document.getElementById('normal-vip').innerHTML =
+    fase === 'early' ? `Preço normal: <s>€${normal.vip}</s>` : '';
+
+  // Early Bird tag visibility
+  document.querySelectorAll('.plan-early-tag').forEach(el => {
+    el.style.display = fase === 'early' ? '' : 'none';
+  });
 
   // CTAs
   document.getElementById('cta-standard').href = LINKS[fase].standard;
