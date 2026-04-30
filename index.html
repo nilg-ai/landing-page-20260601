@@ -3011,7 +3011,7 @@ footer {
     <div class="lead-form-wrap fade-up">
       <div class="form-urgency-badge">
         <span class="dot"></span>
-        Early Bird — 38% dos lugares garantidos
+        <span id="form-urgency-text">Fase Standard — 38% dos lugares garantidos</span>
       </div>
       <iframe name="ac-submit-frame" style="display:none;"></iframe>
       <form id="lead-form" action="https://nilg.activehosted.com/proc.php" method="POST" target="ac-submit-frame">
@@ -3239,8 +3239,8 @@ footer {
 ============================================= -->
 <div id="sticky-cta" aria-live="polite">
   <div class="sticky-info">
-    <span class="sticky-label" id="sticky-label">Early Bird</span>
-    <span class="sticky-price" id="sticky-price">€97</span>
+    <span class="sticky-label" id="sticky-label">Fase Standard</span>
+    <span class="sticky-price" id="sticky-price">€247</span>
   </div>
   <a href="#investimento" id="sticky-btn" class="btn btn-primary">Garantir Lugar →</a>
 </div>
@@ -3316,10 +3316,11 @@ function initPricing() {
   banner.textContent = LABELS_FASE_BANNER[fase];
   banner.className = 'pricing-phase-banner fade-up ' + fase;
 
-  // Hero urgency text
+  // Hero urgency text + form badge
   const NOMES_FASE = { standard: 'Fase Standard', last: 'Last Call' };
-  document.getElementById('hero-urgency-text').textContent =
-    NOMES_FASE[fase] + ' — ' + pct + '% dos lugares garantidos';
+  const urgencyText = NOMES_FASE[fase] + ' — ' + pct + '% dos lugares garantidos';
+  document.getElementById('hero-urgency-text').textContent = urgencyText;
+  document.getElementById('form-urgency-text').textContent = urgencyText;
 
   // Hero CTA
   document.getElementById('hero-cta-main').textContent =
