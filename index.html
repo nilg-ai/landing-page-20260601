@@ -2495,7 +2495,7 @@ footer {
       <div class="hero-bottom-row">
         <div class="hero-urgency">
           <span class="urgency-pulse"></span>
-          <span id="hero-urgency-text">EARLY BIRD — 38% dos lugares garantidos</span>
+          <span id="hero-urgency-text">Fase Standard — 38% dos lugares garantidos</span>
         </div>
         <div class="hero-tag">
           <span class="hero-tag-dot"></span>
@@ -3317,8 +3317,9 @@ function initPricing() {
   banner.className = 'pricing-phase-banner fade-up ' + fase;
 
   // Hero urgency text
+  const NOMES_FASE = { standard: 'Fase Standard', last: 'Last Call' };
   document.getElementById('hero-urgency-text').textContent =
-    LABELS_FASE[fase].replace(/^...\s/, '') + ' — ' + pct + '% dos lugares garantidos';
+    NOMES_FASE[fase] + ' — ' + pct + '% dos lugares garantidos';
 
   // Hero CTA
   document.getElementById('hero-cta-main').textContent =
