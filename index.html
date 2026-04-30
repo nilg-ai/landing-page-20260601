@@ -3092,14 +3092,13 @@ footer {
             <li class="on"><span class="check">✓</span> Framework para sair da guerra de preços</li>
             <li class="on"><span class="check">✓</span> Exercícios aplicados à tua jornada de cliente</li>
             <li class="on"><span class="check">✓</span> Networking com empresários e decisores</li>
-            <li class="on"><span class="check">✓</span> Mesas de trabalho por indústria</li>
             <li class="on"><span class="check">✓</span> Sessão de Q&amp;A</li>
-            <li class="on"><span class="check">✓</span> Almoço de networking incluído</li>
+            <li class="on"><span class="check">✓</span> Coffee breaks incluídos</li>
             <div class="feat-divider"></div>
-            <li class="off"><span class="check">✕</span> Lugar numerado com vista para o palco</li>
-            <li class="off"><span class="check">✕</span> Coffee breaks premium</li>
-            <li class="off"><span class="check">✕</span> Cocktail exclusivo de networking pós-evento</li>
-            <li class="off"><span class="check">✕</span> Gravação completa disponível por 1 ano</li>
+            <li class="off"><span class="check">✕</span> Almoço exclusivo de networking</li>
+            <li class="off"><span class="check">✕</span> Lugar privilegiado</li>
+            <li class="off"><span class="check">✕</span> Cocktail exclusivo pós-evento</li>
+            <li class="off"><span class="check">✕</span> Gravação completa do evento</li>
           </ul>
 
           <a href="#" id="cta-standard" class="btn btn-ghost pricing-btn">Garantir lugar Standard →</a>
@@ -3120,10 +3119,10 @@ footer {
           <ul class="pricing-features">
             <li class="on"><span class="check">✓</span> Tudo o incluído no Standard</li>
             <div class="feat-divider"></div>
-            <li class="hot"><span class="check">🔥</span> Lugar numerado com vista para o palco</li>
-            <li class="hot"><span class="check">🔥</span> Coffee breaks premium</li>
-            <li class="hot"><span class="check">🔥</span> Cocktail exclusivo de networking pós-evento</li>
-            <li class="hot"><span class="check">🔥</span> Gravação completa disponível por 1 ano</li>
+            <li class="hot"><span class="check">🔥</span> Almoço exclusivo de networking</li>
+            <li class="hot"><span class="check">🔥</span> Lugar privilegiado</li>
+            <li class="hot"><span class="check">🔥</span> Cocktail exclusivo pós-evento</li>
+            <li class="hot"><span class="check">🔥</span> Gravação completa do evento</li>
           </ul>
 
           <a href="#" id="cta-vip" class="btn btn-primary pricing-btn">Garantir lugar VIP →</a>
@@ -3261,12 +3260,12 @@ const CONFIG = {
 
 const PRECOS = {
   standard: { standard: 247, vip: 347 },
-  last:     { standard: 297, vip: 397 },
+  last:     { standard: 317, vip: 417 },
 };
 
 const PRECOS_NORMAL = {
-  standard: { standard: 297, vip: 397 },  // preço que vai subir na Last Call
-  last:     { standard: 297, vip: 397 },
+  standard: { standard: 317, vip: 417 },  // preço que vai subir na Last Call
+  last:     { standard: 317, vip: 417 },
 };
 
 const LABELS_FASE = {
@@ -3344,14 +3343,12 @@ function initPricing() {
 
   // Phase table
   const phases = ['standard', 'last'];
-  const phaseNames = { standard: 'Fase Standard', last: 'Last Call' };
   const tbody = document.getElementById('phase-table-body');
   tbody.innerHTML = '';
 
   phases.forEach(p => {
     const isActive = p === fase;
     const isClosed = phases.indexOf(p) < phases.indexOf(fase);
-    const isNext = phases.indexOf(p) > phases.indexOf(fase);
     const tr = document.createElement('tr');
     if (isActive) tr.className = 'active';
     if (isClosed) tr.className = 'closed';
@@ -3362,7 +3359,7 @@ function initPricing() {
     else statusHtml = '<span class="phase-status next">A seguir</span>';
 
     tr.innerHTML = `
-      <td>${LABELS_FASE[p]} ${phaseNames[p]}</td>
+      <td>${LABELS_FASE[p]}</td>
       <td>€${PRECOS[p].standard}</td>
       <td>€${PRECOS[p].vip}</td>
       <td>${statusHtml}</td>
