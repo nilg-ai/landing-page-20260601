@@ -3255,36 +3255,31 @@ footer {
 // CONFIGURAÇÃO MANUAL — ATUALIZAR REGULARMENTE
 // ============================================
 const CONFIG = {
-  FASE_ATIVA: 'early',         // 'early' | 'standard' | 'last'
+  FASE_ATIVA: 'standard',      // 'standard' | 'last'
   PERCENTAGEM_VENDIDA: 38,     // % de lugares já garantidos (0-100)
 };
 
 const PRECOS = {
-  early:    { standard: 197, vip: 287 },
-  standard: { standard: 297, vip: 397 },
-  last:     { standard: 347, vip: 447 },
+  standard: { standard: 247, vip: 347 },
+  last:     { standard: 297, vip: 397 },
 };
 
 const PRECOS_NORMAL = {
-  early:    { standard: 297, vip: 447 },
-  standard: { standard: 347, vip: 497 },
-  last:     { standard: 347, vip: 497 },
+  standard: { standard: 297, vip: 397 },  // preço que vai subir na Last Call
+  last:     { standard: 297, vip: 397 },
 };
 
 const LABELS_FASE = {
-  early:    '🟢 Early Bird',
   standard: '🟡 Fase Standard',
   last:     '🔴 Last Call',
 };
 
 const LABELS_FASE_BANNER = {
-  early:    '🟢 EARLY BIRD — Lugares Limitados · Preço sobe quando esta fase fechar',
   standard: '🟡 FASE STANDARD — Lugares ainda disponíveis · Preço sobe na Last Call',
   last:     '🔴 LAST CALL — Últimos lugares disponíveis · Esta fase fecha em breve',
 };
 
 const LINKS = {
-  early:    { standard: '<!-- STRIPE LINK EARLY STANDARD -->', vip: '<!-- STRIPE LINK EARLY VIP -->' },
   standard: { standard: '<!-- STRIPE LINK STANDARD STANDARD -->', vip: '<!-- STRIPE LINK STANDARD VIP -->' },
   last:     { standard: '<!-- STRIPE LINK LAST STANDARD -->', vip: '<!-- STRIPE LINK LAST VIP -->' },
 };
@@ -3301,16 +3296,16 @@ function initPricing() {
   document.getElementById('price-standard').textContent = precos.standard;
   document.getElementById('price-vip').textContent = precos.vip;
 
-  // Normal (strikethrough) prices
+  // "Sobe para X na Last Call" — visível só na fase standard
   const normal = PRECOS_NORMAL[fase];
   document.getElementById('normal-standard').innerHTML =
-    fase === 'early' ? `Preço normal: <s>€${normal.standard}</s>` : '';
+    fase === 'standard' ? `Sobe para €${normal.standard} na Last Call` : '';
   document.getElementById('normal-vip').innerHTML =
-    fase === 'early' ? `Preço normal: <s>€${normal.vip}</s>` : '';
+    fase === 'standard' ? `Sobe para €${normal.vip} na Last Call` : '';
 
-  // Early Bird tag visibility
+  // Early Bird tag — sempre oculto (fase removida)
   document.querySelectorAll('.plan-early-tag').forEach(el => {
-    el.style.display = fase === 'early' ? '' : 'none';
+    el.style.display = 'none';
   });
 
   // CTAs
@@ -3328,7 +3323,7 @@ function initPricing() {
 
   // Hero CTA
   document.getElementById('hero-cta-main').textContent =
-    'Garantir o meu lugar ' + (fase === 'early' ? '(Early Bird)' : '') + ' →';
+    'Garantir o meu lugar' + (fase === 'last' ? ' (Last Call)' : '') + ' →';
 
   // Progress bar
   document.getElementById('progress-pct').textContent = pct + '%';
@@ -3348,8 +3343,8 @@ function initPricing() {
   document.getElementById('sticky-price').textContent = '€' + precos.standard;
 
   // Phase table
-  const phases = ['early', 'standard', 'last'];
-  const phaseNames = { early: 'Early Bird', standard: 'Fase Standard', last: 'Last Call' };
+  const phases = ['standard', 'last'];
+  const phaseNames = { standard: 'Fase Standard', last: 'Last Call' };
   const tbody = document.getElementById('phase-table-body');
   tbody.innerHTML = '';
 
