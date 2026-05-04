@@ -1399,14 +1399,13 @@ h1.hero-headline em {
 }
 
 .video-carousel-track {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  overflow: hidden;
 }
 
 .video-item {
-  flex-shrink: 0;
-  width: 280px;
+  width: 100%;
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--surface);
@@ -2373,8 +2372,8 @@ footer {
 
   /* TESTEMUNHOS */
   .testimonials-grid { grid-template-columns: 1fr 1fr; }
-  .video-carousel-track { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
-  .video-item { scroll-snap-align: start; flex-shrink: 0; }
+  .video-carousel-track { grid-template-columns: 1fr; }
+  .video-item { width: 100%; }
 
   /* INVESTIMENTO */
   .pricing-compare { grid-template-columns: 1fr; }
@@ -2496,7 +2495,7 @@ footer {
       <div class="hero-bottom-row">
         <div class="hero-urgency">
           <span class="urgency-pulse"></span>
-          <span id="hero-urgency-text">Fase Standard — 38% dos lugares garantidos</span>
+          <span id="hero-urgency-text">Lote 1 — 68% dos lugares garantidos</span>
         </div>
         <div class="hero-tag">
           <span class="hero-tag-dot"></span>
@@ -3008,7 +3007,7 @@ footer {
     <div class="lead-form-wrap fade-up">
       <div class="form-urgency-badge">
         <span class="dot"></span>
-        <span id="form-urgency-text">Fase Standard — 38% dos lugares garantidos</span>
+        <span id="form-urgency-text">Lote 1 — 68% dos lugares garantidos</span>
       </div>
       <iframe name="ac-submit-frame" style="display:none;"></iframe>
       <form id="lead-form" action="https://nilg.activehosted.com/proc.php" method="POST" target="ac-submit-frame">
@@ -3087,7 +3086,7 @@ footer {
           <ul class="pricing-features">
             <li class="on"><span class="check">✓</span> 1 dia de imersão presencial intensiva</li>
             <li class="on"><span class="check">✓</span> Framework para sair da guerra de preços</li>
-            <li class="on"><span class="check">✓</span> Exercícios aplicados à tua jornada de cliente</li>
+            <li class="on"><span class="check">✓</span> Análise personalizada da tua jornada de cliente</li>
             <li class="on"><span class="check">✓</span> Networking com empresários e decisores</li>
             <li class="on"><span class="check">✓</span> Sessão de Q&amp;A</li>
             <li class="on"><span class="check">✓</span> Coffee breaks incluídos</li>
@@ -3114,10 +3113,15 @@ footer {
           <p class="plan-normal" id="normal-vip">Preço normal: <s>€447</s></p>
 
           <ul class="pricing-features">
-            <li class="on"><span class="check">✓</span> Tudo o incluído no Standard</li>
+            <li class="on"><span class="check">✓</span> 1 dia de imersão presencial intensiva</li>
+            <li class="on"><span class="check">✓</span> Framework para sair da guerra de preços</li>
+            <li class="on"><span class="check">✓</span> Análise personalizada da tua jornada de cliente</li>
+            <li class="on"><span class="check">✓</span> Networking com empresários e decisores</li>
+            <li class="on"><span class="check">✓</span> Sessão de Q&amp;A</li>
+            <li class="on"><span class="check">✓</span> Coffee breaks incluídos</li>
             <div class="feat-divider"></div>
             <li class="hot"><span class="check">🔥</span> Almoço exclusivo de networking</li>
-            <li class="hot"><span class="check">🔥</span> Lugar privilegiado</li>
+            <li class="hot"><span class="check">🔥</span> Lugar privilegiado nas primeiras filas</li>
             <li class="hot"><span class="check">🔥</span> Cocktail exclusivo pós-evento</li>
             <li class="hot"><span class="check">🔥</span> Gravação completa do evento</li>
           </ul>
@@ -3222,7 +3226,7 @@ footer {
 ============================================= -->
 <div id="sticky-cta" aria-live="polite">
   <div class="sticky-info">
-    <span class="sticky-label" id="sticky-label">Fase Standard</span>
+    <span class="sticky-label" id="sticky-label">Lote 1</span>
     <span class="sticky-price" id="sticky-price">€247</span>
   </div>
   <a href="#investimento" id="sticky-btn" class="btn btn-primary">Garantir Lugar →</a>
@@ -3238,7 +3242,7 @@ footer {
 // ============================================
 const CONFIG = {
   FASE_ATIVA: 'standard',      // 'standard' | 'last'
-  PERCENTAGEM_VENDIDA: 38,     // % de lugares já garantidos (0-100)
+  PERCENTAGEM_VENDIDA: 68,     // % de lugares já garantidos (0-100)
 };
 
 const PRECOS = {
@@ -3252,13 +3256,13 @@ const PRECOS_NORMAL = {
 };
 
 const LABELS_FASE = {
-  standard: '🟡 Fase Standard',
-  last:     '🔴 Last Call',
+  standard: '🟡 Lote 1',
+  last:     '🔴 Preço Final',
 };
 
 const LABELS_FASE_BANNER = {
-  standard: '🟡 FASE STANDARD — Lugares ainda disponíveis · Preço sobe na Last Call',
-  last:     '🔴 LAST CALL — Últimos lugares disponíveis · Esta fase fecha em breve',
+  standard: '🟡 LOTE 1 — Lugares ainda disponíveis · Preço sobe no Preço Final',
+  last:     '🔴 PREÇO FINAL — Últimos lugares disponíveis · Esta fase fecha em breve',
 };
 
 const LINKS = {
@@ -3278,12 +3282,12 @@ function initPricing() {
   document.getElementById('price-standard').textContent = precos.standard;
   document.getElementById('price-vip').textContent = precos.vip;
 
-  // "Sobe para X na Last Call" — visível só na fase standard
+  // "Sobe para X no Preço Final" — visível só no Lote 1
   const normal = PRECOS_NORMAL[fase];
   document.getElementById('normal-standard').innerHTML =
-    fase === 'standard' ? `Sobe para €${normal.standard} na Last Call` : '';
+    fase === 'standard' ? `Sobe para €${normal.standard} no Preço Final` : '';
   document.getElementById('normal-vip').innerHTML =
-    fase === 'standard' ? `Sobe para €${normal.vip} na Last Call` : '';
+    fase === 'standard' ? `Sobe para €${normal.vip} no Preço Final` : '';
 
   // Early Bird tag — sempre oculto (fase removida)
   document.querySelectorAll('.plan-early-tag').forEach(el => {
@@ -3300,14 +3304,14 @@ function initPricing() {
   banner.className = 'pricing-phase-banner fade-up ' + fase;
 
   // Hero urgency text + form badge
-  const NOMES_FASE = { standard: 'Fase Standard', last: 'Last Call' };
+  const NOMES_FASE = { standard: 'Lote 1', last: 'Preço Final' };
   const urgencyText = NOMES_FASE[fase] + ' — ' + pct + '% dos lugares garantidos';
   document.getElementById('hero-urgency-text').textContent = urgencyText;
   document.getElementById('form-urgency-text').textContent = urgencyText;
 
   // Hero CTA
   document.getElementById('hero-cta-main').textContent =
-    'Garantir o meu lugar' + (fase === 'last' ? ' (Last Call)' : '') + ' →';
+    'Garantir o meu lugar' + (fase === 'last' ? ' (Preço Final)' : '') + ' →';
 
   // Progress bar
   document.getElementById('progress-pct').textContent = pct + '%';
