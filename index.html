@@ -1634,18 +1634,18 @@ h1.hero-headline em {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(34,197,94,0.1);
-  border: 1px solid rgba(34,197,94,0.2);
+  background: var(--accent-bg);
+  border: 1px solid rgba(255,105,0,0.3);
   border-radius: 20px;
   padding: 6px 14px;
   font-size: 0.78rem;
-  color: #86efac;
+  color: var(--accent);
   margin-bottom: 32px;
 }
 
 .form-urgency-badge .dot {
   width: 7px; height: 7px;
-  background: #22c55e;
+  background: var(--accent);
   border-radius: 50%;
   flex-shrink: 0;
   animation: pulse-dot 2s infinite;
@@ -1742,16 +1742,10 @@ h1.hero-headline em {
   border: 1px solid;
 }
 
-.pricing-phase-banner.early {
-  background: rgba(34,197,94,0.08);
-  border-color: rgba(34,197,94,0.3);
-  color: #4ade80;
-}
-
 .pricing-phase-banner.standard {
-  background: rgba(250,204,21,0.08);
-  border-color: rgba(250,204,21,0.3);
-  color: #facc15;
+  background: var(--accent-bg);
+  border-color: rgba(255,105,0,0.3);
+  color: var(--accent);
 }
 
 .pricing-phase-banner.last {
@@ -2074,13 +2068,13 @@ h1.hero-headline em {
 }
 
 .phase-status.active {
-  background: rgba(34,197,94,0.12);
-  color: #4ade80;
+  background: var(--accent-bg);
+  color: var(--accent);
 }
 
 .phase-status.next {
-  background: rgba(250,204,21,0.1);
-  color: #facc15;
+  background: rgba(239,68,68,0.1);
+  color: #f87171;
 }
 
 .phase-status.closed {
@@ -3256,13 +3250,13 @@ const PRECOS_NORMAL = {
 };
 
 const LABELS_FASE = {
-  standard: '🟡 Lote 1',
-  last:     '🔴 Preço Final',
+  standard: 'Lote 1',
+  last:     'Preço Final',
 };
 
 const LABELS_FASE_BANNER = {
-  standard: '🟡 LOTE 1 — Lugares ainda disponíveis · Preço sobe no Preço Final',
-  last:     '🔴 PREÇO FINAL — Últimos lugares disponíveis · Esta fase fecha em breve',
+  standard: 'LOTE 1 — Lugares ainda disponíveis · Preço sobe no Preço Final',
+  last:     'PREÇO FINAL — Últimos lugares disponíveis · Esta fase fecha em breve',
 };
 
 const LINKS = {
