@@ -1696,6 +1696,54 @@ h1.hero-headline em {
 
 .form-group input::placeholder { color: rgba(136,136,170,0.5); }
 
+.phone-field {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+.phone-field:focus-within {
+  border-color: rgba(53,60,221,0.5);
+}
+.phone-field .phone-country {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  padding: 13px 28px 13px 12px;
+  outline: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%23888' d='M0 0l5 6 5-6z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  flex-shrink: 0;
+}
+.phone-field .phone-country option {
+  background: var(--bg);
+  color: var(--text);
+}
+.phone-field input[type="tel"] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 13px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  outline: none;
+  width: 100%;
+  min-width: 0;
+}
+.phone-field input[type="tel"]:focus { border: none; }
+
 .form-submit {
   width: 100%;
   justify-content: center;
@@ -2462,7 +2510,7 @@ footer {
 <section id="hero">
   <div class="hero-bg">
     <div class="hero-video-placeholder"></div>
-    <iframe id="hero-video" src="https://player.vimeo.com/video/1182983750?background=1&autoplay=1&loop=1&muted=1" allow="autoplay" loading="lazy"></iframe>
+    <iframe id="hero-video" src="https://player.vimeo.com/video/1182983750?background=1&autoplay=1&loop=1&muted=1&dnt=1&controls=0" allow="autoplay" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     <div class="hero-overlay"></div>
   </div>
 
@@ -3027,8 +3075,43 @@ footer {
             <input type="text" id="f-empresa" name="field[27]" placeholder="Nome da tua empresa" required>
           </div>
           <div class="form-group">
-            <label for="f-tel">Telefone (opcional)</label>
-            <input type="tel" id="f-tel" name="phone" placeholder="+351 9xx xxx xxx">
+            <label for="f-tel">Telefone *</label>
+            <div class="phone-field">
+              <select id="f-tel-country" class="phone-country" aria-label="Código do país" required>
+                <option value="+351" selected>🇵🇹 +351</option>
+                <option value="+34">🇪🇸 +34</option>
+                <option value="+33">🇫🇷 +33</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+49">🇩🇪 +49</option>
+                <option value="+39">🇮🇹 +39</option>
+                <option value="+31">🇳🇱 +31</option>
+                <option value="+32">🇧🇪 +32</option>
+                <option value="+41">🇨🇭 +41</option>
+                <option value="+43">🇦🇹 +43</option>
+                <option value="+45">🇩🇰 +45</option>
+                <option value="+46">🇸🇪 +46</option>
+                <option value="+47">🇳🇴 +47</option>
+                <option value="+353">🇮🇪 +353</option>
+                <option value="+352">🇱🇺 +352</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+55">🇧🇷 +55</option>
+                <option value="+244">🇦🇴 +244</option>
+                <option value="+258">🇲🇿 +258</option>
+                <option value="+238">🇨🇻 +238</option>
+                <option value="+239">🇸🇹 +239</option>
+                <option value="+245">🇬🇼 +245</option>
+                <option value="+670">🇹🇱 +670</option>
+                <option value="+853">🇲🇴 +853</option>
+                <option value="+86">🇨🇳 +86</option>
+                <option value="+81">🇯🇵 +81</option>
+                <option value="+91">🇮🇳 +91</option>
+                <option value="+61">🇦🇺 +61</option>
+                <option value="+52">🇲🇽 +52</option>
+                <option value="+54">🇦🇷 +54</option>
+              </select>
+              <input type="tel" id="f-tel" placeholder="9xx xxx xxx" required pattern="[0-9 ]{6,15}">
+              <input type="hidden" name="phone" id="f-tel-full">
+            </div>
           </div>
         </div>
         <label style="display:flex;align-items:flex-start;gap:8px;margin-bottom:16px;font-size:0.85rem;color:var(--text-muted);cursor:pointer;">
@@ -3443,6 +3526,11 @@ function closeMobileMenu() {
 // LEAD FORM
 // ============================================
 document.getElementById('lead-form').addEventListener('submit', function() {
+  // Combine country code + number into the hidden 'phone' field
+  var country = document.getElementById('f-tel-country').value;
+  var num = document.getElementById('f-tel').value.trim().replace(/\s+/g, ' ');
+  document.getElementById('f-tel-full').value = country + ' ' + num;
+
   var btn = document.getElementById('form-btn');
   btn.textContent = 'A enviar...';
   btn.disabled = true;
@@ -3534,6 +3622,39 @@ function playVideo(id) {
     }
   }
 }
+
+// ============================================
+// HERO VIDEO FALLBACK (hide iframe if Vimeo can't autoplay / requires auth)
+// ============================================
+(function() {
+  const heroIframe = document.getElementById('hero-video');
+  if (!heroIframe) return;
+
+  let played = false;
+
+  function hideHeroVideo() {
+    if (played) return;
+    heroIframe.style.display = 'none';
+  }
+
+  // Load Vimeo Player API to detect play/error states
+  const s = document.createElement('script');
+  s.src = 'https://player.vimeo.com/api/player.js';
+  s.async = true;
+  s.onload = function() {
+    try {
+      const player = new Vimeo.Player(heroIframe);
+      player.on('play', function() { played = true; });
+      player.on('error', hideHeroVideo);
+      // If we don't get a 'play' event within 4s, assume it was blocked
+      setTimeout(function() { if (!played) hideHeroVideo(); }, 4000);
+    } catch (e) {
+      hideHeroVideo();
+    }
+  };
+  s.onerror = hideHeroVideo;
+  document.head.appendChild(s);
+})();
 </script>
 
 </body>
