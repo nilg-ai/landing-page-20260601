@@ -2464,6 +2464,24 @@ footer {
   .col-standard, .col-vip { padding: 28px 20px; }
 }
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1292280743007473');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -3539,8 +3557,48 @@ document.getElementById('lead-form').addEventListener('submit', function() {
     this.removeEventListener('load', onLoad);
     document.getElementById('lead-form').style.display = 'none';
     document.getElementById('form-success').classList.add('show');
+    // Meta Pixel — Lead
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
   });
 });
+
+// ============================================
+// META PIXEL EVENTS
+// ============================================
+
+// ViewContent — quando o utilizador chega à secção de preços
+(function() {
+  var pricingSection = document.getElementById('investimento');
+  if (!pricingSection) return;
+  var fired = false;
+  var obs = new IntersectionObserver(function(entries) {
+    if (!fired && entries[0].isIntersecting) {
+      fired = true;
+      if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', { content_name: 'Pricing Section' });
+    }
+  }, { threshold: 0.3 });
+  obs.observe(pricingSection);
+})();
+
+// InitiateCheckout — clique nos botões Stripe
+(function() {
+  var precos = { standard: 247, vip: 347 };
+  ['cta-standard', 'cta-vip'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('click', function() {
+      var tipo = id === 'cta-standard' ? 'standard' : 'vip';
+      var valor = PRECOS[CONFIG.FASE_ATIVA][tipo];
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout', {
+          value: valor,
+          currency: 'EUR',
+          content_name: tipo === 'standard' ? 'Bilhete Standard' : 'Bilhete VIP'
+        });
+      }
+    });
+  });
+})();
 
 // ============================================
 // SCROLL ANIMATIONS (IntersectionObserver)
