@@ -1780,6 +1780,12 @@ h1.hero-headline em {
   background: var(--bg);
 }
 
+.pricing-col-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .pricing-phase-banner {
   padding: 12px 20px;
   border-radius: var(--radius);
@@ -1800,6 +1806,18 @@ h1.hero-headline em {
   background: rgba(239,68,68,0.08);
   border-color: rgba(239,68,68,0.3);
   color: #f87171;
+}
+
+.pricing-phase-banner.lote1 {
+  background: rgba(22,163,74,0.10);
+  border-color: rgba(22,163,74,0.35);
+  color: #4ade80;
+}
+
+.pricing-phase-banner.lote2 {
+  background: var(--accent-bg);
+  border-color: rgba(255,105,0,0.3);
+  color: var(--accent);
 }
 
 /* ── PRICING COMPARE ── */
@@ -3180,13 +3198,12 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
     <h2 class="fade-up">Um dia de IA aplicada.<br><strong>Um retorno claro.</strong></h2>
 
     <div style="margin-top:48px">
-      <!-- Phase banner -->
-      <div class="pricing-phase-banner fade-up" id="phase-banner"></div>
-
       <!-- Pricing cards -->
       <div class="pricing-compare stagger">
 
         <!-- STANDARD -->
+        <div class="pricing-col-wrapper">
+        <div class="pricing-phase-banner lote1 fade-up" id="phase-banner-standard"></div>
         <div class="col-standard">
           <span class="col-badge-grey">Standard</span>
           <div class="plan-name">Standard</div>
@@ -3214,8 +3231,11 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
           <a href="#" id="cta-standard" class="btn btn-ghost pricing-btn">Garantir lugar Standard →</a>
         </div>
+        </div><!-- /pricing-col-wrapper standard -->
 
         <!-- VIP -->
+        <div class="pricing-col-wrapper">
+        <div class="pricing-phase-banner lote2 fade-up" id="phase-banner-vip"></div>
         <div class="col-vip">
           <span class="col-badge">✦ Experiência Completa</span>
           <div class="plan-name">VIP</div>
@@ -3243,6 +3263,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
           <a href="#" id="cta-vip" class="btn btn-primary pricing-btn">Garantir lugar VIP →</a>
         </div>
+        </div><!-- /pricing-col-wrapper vip -->
 
       </div>
 
@@ -3359,11 +3380,12 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 // ============================================
 const CONFIG = {
   FASE_ATIVA: 'standard',      // 'standard' | 'last'
-  PERCENTAGEM_VENDIDA: 68,     // % de lugares já garantidos (0-100)
+  PERCENTAGEM_VENDIDA: 68,     // % Standard já garantidos (0-100)
+  PERCENTAGEM_VIP: 92,         // % VIP já garantidos (0-100)
 };
 
 const PRECOS = {
-  standard: { standard: 247, vip: 347 },
+  standard: { standard: 247, vip: 417 },
   last:     { standard: 317, vip: 417 },
 };
 
@@ -3404,7 +3426,7 @@ function initPricing() {
   document.getElementById('normal-standard').innerHTML =
     fase === 'standard' ? `Sobe para €${normal.standard} no Preço Final` : '';
   document.getElementById('normal-vip').innerHTML =
-    fase === 'standard' ? `Sobe para €${normal.vip} no Preço Final` : '';
+    fase === 'standard' ? '🔒 Este é já o Preço Final' : '';
 
   // Early Bird tag — sempre oculto (fase removida)
   document.querySelectorAll('.plan-early-tag').forEach(el => {
@@ -3415,10 +3437,13 @@ function initPricing() {
   document.getElementById('cta-standard').href = LINKS[fase].standard;
   document.getElementById('cta-vip').href = LINKS[fase].vip;
 
-  // Phase banner
-  const banner = document.getElementById('phase-banner');
-  banner.textContent = LABELS_FASE_BANNER[fase];
-  banner.className = 'pricing-phase-banner fade-up ' + fase;
+  // Phase banners (per card)
+  const bannerStd = document.getElementById('phase-banner-standard');
+  const bannerVip = document.getElementById('phase-banner-vip');
+  bannerStd.textContent = fase === 'standard'
+    ? 'LOTE 1 — Lugares ainda disponíveis · Preço sobe no Lote 2'
+    : 'LOTE 1 — Esgotado';
+  bannerVip.textContent = 'LOTE 2 — Vagas VIP ' + CONFIG.PERCENTAGEM_VIP + '% preenchidas';
 
   // Hero urgency text + form badge
   const NOMES_FASE = { standard: 'Lote 1', last: 'Preço Final' };
