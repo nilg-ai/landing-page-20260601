@@ -431,6 +431,16 @@ h1.hero-headline em {
   margin-bottom: 0;
 }
 
+.hero-urgency.sold-out {
+  background: rgba(239,68,68,0.10);
+  border-color: rgba(239,68,68,0.35);
+  color: #f87171;
+}
+.hero-urgency.sold-out .urgency-pulse {
+  background: #f87171;
+  box-shadow: 0 0 0 0 rgba(239,68,68,0.4);
+}
+
 .urgency-pulse {
   width: 7px; height: 7px;
   border-radius: 50%;
@@ -2591,9 +2601,15 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
       </div>
 
       <div class="hero-bottom-row">
-        <div class="hero-urgency">
-          <span class="urgency-pulse"></span>
-          <span id="hero-urgency-text">Lote 1 — 68% dos lugares garantidos</span>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <div class="hero-urgency sold-out">
+            <span class="urgency-pulse"></span>
+            <span>Lote 1 VIP · ESGOTADO</span>
+          </div>
+          <div class="hero-urgency" id="hero-urgency-std">
+            <span class="urgency-pulse"></span>
+            <span id="hero-urgency-text">Lote 1 · Standard · 82% preenchido</span>
+          </div>
         </div>
         <div class="hero-tag">
           <span class="hero-tag-dot"></span>
@@ -3380,7 +3396,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 // ============================================
 const CONFIG = {
   FASE_ATIVA: 'standard',      // 'standard' | 'last'
-  PERCENTAGEM_VENDIDA: 68,     // % Standard já garantidos (0-100)
+  PERCENTAGEM_VENDIDA: 82,     // % Standard já garantidos (0-100)
   PERCENTAGEM_VIP: 92,         // % VIP já garantidos (0-100)
 };
 
@@ -3447,7 +3463,7 @@ function initPricing() {
 
   // Hero urgency text + form badge
   const NOMES_FASE = { standard: 'Lote 1', last: 'Preço Final' };
-  const urgencyText = NOMES_FASE[fase] + ' — ' + pct + '% dos lugares garantidos';
+  const urgencyText = NOMES_FASE[fase] + ' · Standard · ' + pct + '% preenchido';
   document.getElementById('hero-urgency-text').textContent = urgencyText;
   document.getElementById('form-urgency-text').textContent = urgencyText;
 
