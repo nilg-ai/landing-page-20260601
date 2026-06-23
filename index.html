@@ -264,7 +264,8 @@ body::before {
 ============================================= */
 #hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 88vh;
+  max-height: 88vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -309,7 +310,7 @@ body::before {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 80px 0 60px;
+  padding: 48px 0 32px;
 }
 
 .hero-tag {
@@ -324,6 +325,28 @@ body::before {
   margin-bottom: 0;
   background: rgba(255,255,255,0.03);
   letter-spacing: 0.04em;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+  cursor: pointer;
+  color: rgba(255,255,255,0.6);
+  transition: color 0.2s;
+}
+.scroll-hint:hover { color: rgba(255,255,255,0.95); }
+.scroll-hint svg {
+  animation: scroll-bounce 1.8s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(8px); opacity: 1; }
 }
 
 .hero-tag-dot {
@@ -2638,6 +2661,12 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
       </div>
 
     </div>
+  </div>
+
+  <div class="scroll-hint" onclick="document.getElementById('problema').scrollIntoView({behavior:'smooth'})">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
   </div>
 </section>
 
