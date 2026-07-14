@@ -484,6 +484,27 @@ h1.hero-headline em {
   margin-bottom: 44px;
 }
 
+.hero-bottom-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.hero-parceiros {
+  padding-left: 32px;
+  border-left: 1px solid var(--border);
+  margin-left: auto;
+}
+
+.hero-parceiro-logo {
+  height: 34px;
+  width: auto;
+  opacity: 0.75;
+  display: block;
+}
+
 .hero-metrics {
   display: flex;
   flex-wrap: wrap;
@@ -605,6 +626,57 @@ h1.hero-headline em {
 /* =============================================
    PROBLEMA
 ============================================= */
+
+/* CLIENTES + PARCEIROS GRID */
+.clientes-parceiros-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: start;
+  margin-top: 48px;
+}
+.clientes-col {
+  padding-right: 40px;
+  border-right: 1px solid var(--border);
+}
+.parceiros-col {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.col-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.parceiros-logos {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.parceiros-logo {
+  height: 40px;
+  width: auto;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.parceiros-logo:hover { opacity: 1; }
+.parceiros-mais {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .clientes-parceiros-grid { grid-template-columns: 1fr; gap: 40px; }
+  .clientes-col { padding-right: 0; border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+  .parceiros-col { padding-left: 0; }
+}
 
 /* Faixa citação — Opção B */
 .quote-band {
@@ -2644,19 +2716,27 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         <a href="#investimento" id="hero-cta-main" class="btn btn-primary btn-lg">Garantir o meu lugar →</a>
       </div>
 
-      <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Já ajudamos a transformar</p>
-      <div class="hero-metrics">
-        <div class="hero-metric">
-          <strong>+25</strong>
-          indústrias
+      <div class="hero-bottom-grid">
+        <div>
+          <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Já ajudamos a transformar</p>
+          <div class="hero-metrics">
+            <div class="hero-metric">
+              <strong>+25</strong>
+              indústrias
+            </div>
+            <div class="hero-metric">
+              <strong>+20</strong>
+              países
+            </div>
+            <div class="hero-metric">
+              <strong>+centenas</strong>
+              de empresas
+            </div>
+          </div>
         </div>
-        <div class="hero-metric">
-          <strong>+20</strong>
-          países
-        </div>
-        <div class="hero-metric">
-          <strong>+centenas</strong>
-          de empresas
+        <div class="hero-parceiros">
+          <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
+          <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
         </div>
       </div>
 
@@ -3095,10 +3175,14 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
     </div>
 
-    <!-- LOGOS CLIENTES -->
-    <p class="fade-up" style="text-align:center;font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px;">Alguns dos nossos clientes</p>
-    <div class="logos-section fade-up">
-      <div class="logos-track">
+    <!-- CLIENTES + PARCEIROS -->
+    <div class="clientes-parceiros-grid fade-up">
+
+      <!-- Clientes -->
+      <div class="clientes-col">
+        <p class="col-label">Alguns dos nossos clientes</p>
+        <div class="logos-section">
+          <div class="logos-track">
         <img src="assets/images/clients/Continental_logo.svg 2.png" alt="Continental">
         <img src="assets/images/clients/Meo_logo.svg 2.png" alt="MEO">
         <img src="assets/images/clients/Microcrete 2.png" alt="Microcrete">
@@ -3130,6 +3214,18 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         <img src="assets/images/clients/g4168.png" alt="Cliente">
       </div>
     </div>
+      </div><!-- /clientes-col -->
+
+      <!-- Parceiros -->
+      <div class="parceiros-col">
+        <p class="col-label">Parceiros</p>
+        <div class="parceiros-logos">
+          <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="parceiros-logo">
+        </div>
+        <p class="parceiros-mais">e mais parceiros a ser anunciados em breve</p>
+      </div><!-- /parceiros-col -->
+
+    </div><!-- /clientes-parceiros-grid -->
 
   </div>
 </section>
