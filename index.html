@@ -498,12 +498,38 @@ h1.hero-headline em {
   margin-left: auto;
 }
 
+.hero-parceiros-strip {
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.hero-parceiros-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: max-content;
+  animation: parceiros-scroll 18s linear infinite;
+}
+
+.hero-parceiros-track:hover { animation-play-state: paused; }
+
+@keyframes parceiros-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 .hero-parceiro-logo {
-  height: 34px;
+  height: 28px;
   width: auto;
   opacity: 0.75;
-  display: block;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.2s;
 }
+
+.hero-parceiro-logo:hover { opacity: 1; }
 
 .hero-metrics {
   display: flex;
@@ -2509,7 +2535,8 @@ footer {
   .hero-tag strong { white-space: nowrap; }
   .hero-bottom-grid { flex-direction: column; gap: 16px; }
   .hero-parceiros { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 14px; margin-left: 0; }
-  .hero-parceiro-logo { height: 22px; max-width: 90px; }
+  .hero-parceiro-logo { height: 22px; }
+  .hero-parceiros-strip { max-width: 200px; }
 
   /* PROBLEMA */
   .problema-cards { grid-template-columns: 1fr; }
@@ -2740,9 +2767,13 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         </div>
         <div class="hero-parceiros">
           <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
-          <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
-            <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+          <div class="hero-parceiros-strip">
+            <div class="hero-parceiros-track">
+              <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
+              <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+              <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+              <img src="assets/images/logos/UPTEC.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+            </div>
           </div>
         </div>
       </div>
