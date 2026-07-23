@@ -498,6 +498,9 @@ h1.hero-headline em {
   margin-left: auto;
 }
 
+.hero-parceiros--mobile { display: none; }
+.hero-parceiros--desktop { display: block; }
+
 .hero-parceiros-strip {
   overflow: hidden;
   position: relative;
@@ -2531,16 +2534,17 @@ footer {
   .hero-brand-logo { max-width: 180px; }
   .hero-ctas { flex-direction: column; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
-  .hero-metrics { gap: 12px; flex-direction: column; }
-  .hero-metric { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-  .hero-metric:last-child { border-bottom: none; }
+  .hero-metrics { gap: 0; flex-direction: row; flex-wrap: nowrap; }
+  .hero-metric { border-right: 1px solid var(--border); border-bottom: none; padding-bottom: 0; padding-right: 14px; margin-right: 14px; }
+  .hero-metric:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+  .hero-metric strong { font-size: 1rem; }
   .hero-bottom-row { flex-direction: column; align-items: flex-start; gap: 10px; }
   .hero-tag { font-size: 0.72rem; flex-wrap: wrap; }
   .hero-tag strong { white-space: nowrap; }
   .hero-bottom-grid { flex-direction: column; gap: 16px; }
-  .hero-parceiros { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 14px; margin-left: 0; }
+  .hero-parceiros--mobile { display: block; margin-bottom: 12px; }
+  .hero-parceiros--desktop { display: none; }
   .hero-parceiro-logo { height: 22px; }
-  .hero-parceiros-strip { max-width: 200px; }
 
   /* PROBLEMA */
   .problema-cards { grid-template-columns: 1fr; }
@@ -2747,6 +2751,21 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         </div>
       </div>
 
+      <!-- parceiros: visível só no mobile, acima do botão -->
+      <div class="hero-parceiros hero-parceiros--mobile">
+        <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
+        <div class="hero-parceiros-strip">
+          <div class="hero-parceiros-track">
+            <img src="assets/images/logos/CC_Logo.svg" alt="CC" class="hero-parceiro-logo hero-parceiro-logo--destaque">
+            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
+            <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+            <img src="assets/images/logos/CC_Logo.svg" alt="" class="hero-parceiro-logo hero-parceiro-logo--destaque" aria-hidden="true">
+            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+            <img src="assets/images/logos/UPTEC.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+          </div>
+        </div>
+      </div>
+
       <div class="hero-ctas">
         <a href="#investimento" id="hero-cta-main" class="btn btn-primary btn-lg">Garantir o meu lugar →</a>
       </div>
@@ -2769,7 +2788,8 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
             </div>
           </div>
         </div>
-        <div class="hero-parceiros">
+        <!-- parceiros: visível só no desktop, ao lado das métricas -->
+        <div class="hero-parceiros hero-parceiros--desktop">
           <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
           <div class="hero-parceiros-strip">
             <div class="hero-parceiros-track">
