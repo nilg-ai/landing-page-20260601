@@ -521,14 +521,19 @@ h1.hero-headline em {
 }
 
 .hero-parceiro-logo {
-  height: 28px;
+  height: 26px;
   width: auto;
-  opacity: 0.8;
+  opacity: 0.65;
   flex-shrink: 0;
   transition: opacity 0.2s;
 }
 
 .hero-parceiro-logo:hover { opacity: 1; }
+
+.hero-parceiro-logo--destaque {
+  height: 34px;
+  opacity: 1;
+}
 
 .hero-metrics {
   display: flex;
@@ -2768,8 +2773,10 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
           <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
           <div class="hero-parceiros-strip">
             <div class="hero-parceiros-track">
+              <img src="assets/images/logos/CC_Logo.svg" alt="CC" class="hero-parceiro-logo hero-parceiro-logo--destaque">
               <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
               <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+              <img src="assets/images/logos/CC_Logo.svg" alt="" class="hero-parceiro-logo hero-parceiro-logo--destaque" aria-hidden="true">
               <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
               <img src="assets/images/logos/UPTEC.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
             </div>
