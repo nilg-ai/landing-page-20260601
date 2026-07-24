@@ -504,6 +504,19 @@ h1.hero-headline em {
 
 .hero-parceiros--mobile { display: none; }
 
+.hero-ver-lugares {
+  display: none;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hero-ver-lugares:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+
 .hero-parceiros--desktop {
   display: flex;
   flex-direction: column;
@@ -2573,11 +2586,12 @@ footer {
   .hero-tag-info--desktop { display: none; }
   .hero-tag-info--mobile { display: inline; }
   .hero-bottom-grid { flex-direction: column; gap: 0; }
-  .hero-parceiros--mobile { display: block; margin-bottom: 16px; }
+  .hero-parceiros--mobile { display: block; margin-bottom: 20px; }
   .hero-parceiros--desktop { display: none; }
-  .hero-parceiros--mobile .hero-parceiro-logo { height: 18px; opacity: 0.75; }
-  .hero-parceiros--mobile .hero-parceiro-logo--destaque { height: 22px; opacity: 1; }
-  .hero-parceiros--mobile .hero-parceiro-sep { height: 18px; }
+  .hero-parceiros--mobile .hero-parceiro-logo { height: 28px; opacity: 0.8; }
+  .hero-parceiros--mobile .hero-parceiro-logo--destaque { height: 36px; opacity: 1; }
+  #hero-urgency-std { display: none; }
+  .hero-ver-lugares { display: inline-flex; align-items: center; }
   .hero-ctas { margin-bottom: 28px; }
 
   /* PROBLEMA */
@@ -2768,12 +2782,28 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         </div>
       </div>
 
+      <!-- parceiros: visível só no mobile, scrolling, acima dos badges -->
+      <div class="hero-parceiros hero-parceiros--mobile">
+        <p style="font-size:0.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
+        <div class="hero-parceiros-strip">
+          <div class="hero-parceiros-track">
+            <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
+            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
+            <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+            <img src="assets/images/logos/CC_Logo.svg" alt="" class="hero-parceiro-logo hero-parceiro-logo--destaque" aria-hidden="true">
+            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+            <img src="assets/images/logos/UPTEC.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+          </div>
+        </div>
+      </div>
+
       <div class="hero-bottom-row">
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
           <div class="hero-urgency sold-out">
             <span class="urgency-pulse"></span>
             <span>Lote 1 VIP · ESGOTADO</span>
           </div>
+          <a href="#investimento" class="hero-ver-lugares">Ver lugares disponíveis →</a>
           <div class="hero-urgency" id="hero-urgency-std">
             <span class="urgency-pulse"></span>
             <span id="hero-urgency-text">Lote 1 · Standard · 82% preenchido</span>
@@ -2782,18 +2812,6 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         <div class="hero-tag">
           <span class="hero-tag-dot"></span>
           <strong class="hero-tag-label" style="font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Imersão de IA</strong><span class="hero-tag-sep"> · </span><span class="hero-tag-info--desktop">The Yeatman Hotel · 22 de Setembro de 2026 · Vila Nova de Gaia</span><span class="hero-tag-info--mobile">The Yeatman Hotel · 22 Set 2026 · Gaia</span>
-        </div>
-      </div>
-
-      <!-- parceiros: visível só no mobile, acima do botão -->
-      <div class="hero-parceiros hero-parceiros--mobile">
-        <p style="font-size:0.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:8px;">Com o apoio de</p>
-        <div class="hero-parceiros-static">
-          <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
-          <span class="hero-parceiro-sep"></span>
-          <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
-          <span class="hero-parceiro-sep"></span>
-          <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
         </div>
       </div>
 
