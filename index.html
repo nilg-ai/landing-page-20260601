@@ -2563,13 +2563,15 @@ footer {
   .hero-metric { border-right: 1px solid var(--border); border-bottom: none; padding-bottom: 0; padding-right: 14px; margin-right: 14px; }
   .hero-metric:last-child { border-right: none; margin-right: 0; padding-right: 0; }
   .hero-metric strong { font-size: 1rem; }
-  .hero-bottom-row { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .hero-tag { font-size: 0.72rem; flex-wrap: wrap; }
-  .hero-tag strong { white-space: nowrap; }
-  .hero-bottom-grid { flex-direction: column; gap: 16px; }
-  .hero-parceiros--mobile { display: block; margin-bottom: 12px; }
+  .hero-bottom-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .hero-tag { display: none; }
+  .hero-bottom-grid { flex-direction: column; gap: 0; }
+  .hero-parceiros--mobile { display: block; margin-bottom: 16px; }
   .hero-parceiros--desktop { display: none; }
-  .hero-parceiro-logo { height: 22px; }
+  .hero-parceiros--mobile .hero-parceiro-logo { height: 18px; opacity: 0.75; }
+  .hero-parceiros--mobile .hero-parceiro-logo--destaque { height: 22px; opacity: 1; }
+  .hero-parceiros--mobile .hero-parceiro-sep { height: 18px; }
+  .hero-ctas { margin-bottom: 28px; }
 
   /* PROBLEMA */
   .problema-cards { grid-template-columns: 1fr; }
@@ -2778,16 +2780,13 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
       <!-- parceiros: visível só no mobile, acima do botão -->
       <div class="hero-parceiros hero-parceiros--mobile">
-        <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
-        <div class="hero-parceiros-strip">
-          <div class="hero-parceiros-track">
-            <img src="assets/images/logos/CC_Logo.svg" alt="CC" class="hero-parceiro-logo hero-parceiro-logo--destaque">
-            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
-            <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
-            <img src="assets/images/logos/CC_Logo.svg" alt="" class="hero-parceiro-logo hero-parceiro-logo--destaque" aria-hidden="true">
-            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
-            <img src="assets/images/logos/UPTEC.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
-          </div>
+        <p style="font-size:0.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:8px;">Com o apoio de</p>
+        <div class="hero-parceiros-static">
+          <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
+          <span class="hero-parceiro-sep"></span>
+          <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
+          <span class="hero-parceiro-sep"></span>
+          <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
         </div>
       </div>
 
