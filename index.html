@@ -350,6 +350,7 @@ body::before {
 
 .hero-tag-info--mobile { display: none; }
 .hero-tag-info--desktop { display: inline; }
+.hero-mobile-date { display: none; }
 
 .hero-tag-dot {
   width: 6px; height: 6px;
@@ -2587,6 +2588,14 @@ footer {
   .hero-tag-info--mobile { display: inline; }
   .hero-bottom-grid { flex-direction: column; gap: 0; }
   .hero-brand-logo { display: none; }
+  .hero-mobile-date {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 4px 0 20px;
+    letter-spacing: 0.01em;
+  }
   .hero-parceiros--mobile { display: block; margin-bottom: 16px; }
   .hero-parceiros--desktop { display: none; }
   .hero-parceiros--mobile .hero-parceiro-logo { height: 20px; max-width: 80px; object-fit: contain; opacity: 0.8; }
@@ -2783,8 +2792,12 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- parceiros: visível só no mobile, scrolling, acima dos badges -->
+      <!-- data/local: visível só no mobile, abaixo da descrição -->
+      <div class="hero-mobile-date">22 Set 2026 · The Yeatman Hotel · Gaia</div>
+
+      <!-- parceiros: visível só no mobile, scrolling -->
       <div class="hero-parceiros hero-parceiros--mobile">
+        <p style="font-size:0.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
         <div class="hero-parceiros-strip">
           <div class="hero-parceiros-track">
             <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
