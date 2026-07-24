@@ -479,6 +479,7 @@ h1.hero-headline em {
 
 .hero-ctas {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 14px;
   margin-bottom: 44px;
@@ -499,7 +500,27 @@ h1.hero-headline em {
 }
 
 .hero-parceiros--mobile { display: none; }
-.hero-parceiros--desktop { display: block; }
+
+.hero-parceiros--desktop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 32px;
+  border-left: 1px solid var(--border);
+}
+
+.hero-parceiros-static {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-parceiro-sep {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
+}
 
 .hero-parceiros-strip {
   overflow: hidden;
@@ -524,9 +545,9 @@ h1.hero-headline em {
 }
 
 .hero-parceiro-logo {
-  height: 26px;
+  height: 30px;
   width: auto;
-  opacity: 0.65;
+  opacity: 0.7;
   flex-shrink: 0;
   transition: opacity 0.2s;
 }
@@ -534,9 +555,13 @@ h1.hero-headline em {
 .hero-parceiro-logo:hover { opacity: 1; }
 
 .hero-parceiro-logo--destaque {
-  height: 34px;
+  height: 38px;
   opacity: 1;
 }
+
+/* mobile sizes (smaller) */
+.hero-parceiros--mobile .hero-parceiro-logo { height: 22px; }
+.hero-parceiros--mobile .hero-parceiro-logo--destaque { height: 28px; }
 
 .hero-metrics {
   display: flex;
@@ -2768,6 +2793,17 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
       <div class="hero-ctas">
         <a href="#investimento" id="hero-cta-main" class="btn btn-primary btn-lg">Garantir o meu lugar →</a>
+        <!-- parceiros: visível só no desktop, ao lado do botão -->
+        <div class="hero-parceiros hero-parceiros--desktop">
+          <p style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
+          <div class="hero-parceiros-static">
+            <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
+            <span class="hero-parceiro-sep"></span>
+            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
+            <span class="hero-parceiro-sep"></span>
+            <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+          </div>
+        </div>
       </div>
 
       <div class="hero-bottom-grid">
@@ -2785,20 +2821,6 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
             <div class="hero-metric">
               <strong>+centenas</strong>
               de empresas
-            </div>
-          </div>
-        </div>
-        <!-- parceiros: visível só no desktop, ao lado das métricas -->
-        <div class="hero-parceiros hero-parceiros--desktop">
-          <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
-          <div class="hero-parceiros-strip">
-            <div class="hero-parceiros-track">
-              <img src="assets/images/logos/CC_Logo.svg" alt="CC" class="hero-parceiro-logo hero-parceiro-logo--destaque">
-              <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
-              <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
-              <img src="assets/images/logos/CC_Logo.svg" alt="" class="hero-parceiro-logo hero-parceiro-logo--destaque" aria-hidden="true">
-              <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
-              <img src="assets/images/logos/UPTEC.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
             </div>
           </div>
         </div>
