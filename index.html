@@ -348,6 +348,9 @@ body::before {
   50% { transform: translateY(8px); opacity: 1; }
 }
 
+.hero-tag-info--mobile { display: none; }
+.hero-tag-info--desktop { display: inline; }
+
 .hero-tag-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
@@ -2564,7 +2567,11 @@ footer {
   .hero-metric:last-child { border-right: none; margin-right: 0; padding-right: 0; }
   .hero-metric strong { font-size: 1rem; }
   .hero-bottom-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .hero-tag { display: none; }
+  .hero-tag { display: inline-flex; font-size: 0.7rem; }
+  .hero-tag-label { display: none; }
+  .hero-tag-sep { display: none; }
+  .hero-tag-info--desktop { display: none; }
+  .hero-tag-info--mobile { display: inline; }
   .hero-bottom-grid { flex-direction: column; gap: 0; }
   .hero-parceiros--mobile { display: block; margin-bottom: 16px; }
   .hero-parceiros--desktop { display: none; }
@@ -2774,7 +2781,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         </div>
         <div class="hero-tag">
           <span class="hero-tag-dot"></span>
-          <strong style="font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Imersão de IA</strong> · The Yeatman Hotel · 22 de Setembro de 2026 · Vila Nova de Gaia
+          <strong class="hero-tag-label" style="font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Imersão de IA</strong><span class="hero-tag-sep"> · </span><span class="hero-tag-info--desktop">The Yeatman Hotel · 22 de Setembro de 2026 · Vila Nova de Gaia</span><span class="hero-tag-info--mobile">The Yeatman Hotel · 22 Set 2026 · Gaia</span>
         </div>
       </div>
 
