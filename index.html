@@ -2586,13 +2586,14 @@ footer {
   .hero-tag-info--desktop { display: none; }
   .hero-tag-info--mobile { display: inline; }
   .hero-bottom-grid { flex-direction: column; gap: 0; }
-  .hero-parceiros--mobile { display: block; margin-bottom: 20px; }
+  .hero-brand-logo { display: none; }
+  .hero-parceiros--mobile { display: block; margin-bottom: 16px; }
   .hero-parceiros--desktop { display: none; }
-  .hero-parceiros--mobile .hero-parceiro-logo { height: 28px; opacity: 0.8; }
-  .hero-parceiros--mobile .hero-parceiro-logo--destaque { height: 36px; opacity: 1; }
+  .hero-parceiros--mobile .hero-parceiro-logo { height: 20px; max-width: 80px; object-fit: contain; opacity: 0.8; }
+  .hero-parceiros--mobile .hero-parceiro-logo--destaque { height: 24px; max-width: 110px; opacity: 1; }
   #hero-urgency-std { display: none; }
   .hero-ver-lugares { display: inline-flex; align-items: center; }
-  .hero-ctas { margin-bottom: 28px; }
+  .hero-ctas { margin-bottom: 24px; }
 
   /* PROBLEMA */
   .problema-cards { grid-template-columns: 1fr; }
@@ -2784,7 +2785,6 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
       <!-- parceiros: visível só no mobile, scrolling, acima dos badges -->
       <div class="hero-parceiros hero-parceiros--mobile">
-        <p style="font-size:0.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
         <div class="hero-parceiros-strip">
           <div class="hero-parceiros-track">
             <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
