@@ -203,6 +203,225 @@ body::before {
 
 .nav-cta { margin-left: 16px; }
 
+/* =============================================
+   COUNTDOWN BAR
+============================================= */
+
+/* Hero counter card */
+.hero-counter-card {
+  display: inline-flex;
+  flex-direction: column;
+  background: rgba(255,105,0,0.06);
+  border: 1px solid rgba(255,105,0,0.22);
+  border-radius: 10px;
+  padding: 14px 18px 12px;
+  margin-bottom: 28px;
+}
+
+.hero-counter-top {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.hero-counter-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: counterPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes counterPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.75); }
+}
+
+.hero-counter-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,105,0,0.85);
+}
+
+.hero-counter-nums {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.hero-counter-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 44px;
+}
+
+.hero-counter-num {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.hero-counter-unit {
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+  margin-top: 4px;
+}
+
+.hero-counter-colon {
+  font-size: 2rem;
+  font-weight: 300;
+  color: rgba(255,105,0,0.25);
+  margin: 0 3px;
+  padding-bottom: 14px;
+  line-height: 1;
+}
+
+.hero-counter-sub {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.4;
+}
+
+.hero-counter-sub strong {
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .hero-counter-card { margin-bottom: 20px; padding: 12px 14px 10px; }
+  .hero-counter-num { font-size: 1.8rem; }
+  .hero-counter-colon { font-size: 1.5rem; padding-bottom: 10px; }
+  .hero-counter-block { min-width: 36px; }
+}
+
+#countdown-bar {
+  position: sticky;
+  top: 68px;
+  z-index: 99;
+  background: rgba(255,105,0,0.07);
+  border-top: 1px solid rgba(255,105,0,0.18);
+  border-bottom: 1px solid rgba(255,105,0,0.18);
+  padding: 10px 24px;
+}
+
+.countdown-bar-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.countdown-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.countdown-bar-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: counterPulse 1.6s ease-in-out infinite;
+}
+
+.countdown-bar-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,105,0,0.85);
+  white-space: nowrap;
+}
+
+.countdown-bar-timer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 34px;
+}
+
+.countdown-unit span {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.countdown-unit small {
+  font-size: 0.42rem;
+  font-weight: 500;
+  color: rgba(255,105,0,0.6);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.countdown-sep {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255,105,0,0.28);
+  margin: 0 2px;
+  padding-bottom: 10px;
+  line-height: 1;
+}
+
+.countdown-bar-after {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.32);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.countdown-bar-after strong {
+  color: rgba(255,255,255,0.65);
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  #countdown-bar { display: none; }
+  .hero-counter-card { display: flex; align-items: center; text-align: center; }
+  .hero-counter-top { justify-content: center; }
+  .hero-counter-nums { justify-content: center; }
+  .hero-counter-block { min-width: 38px; }
+  .hero-counter-num { font-size: 1.9rem; }
+  .hero-counter-colon { font-size: 1.6rem; padding-bottom: 12px; }
+  .hero-urgency { display: none !important; }
+  .hero-ver-lugares { display: none !important; }
+}
+
+@media (min-width: 768px) {
+  .hero-counter-card { display: none; }
+}
+
+@media (min-width: 768px) {
+  .hero-urgency { display: none !important; }
+  .hero-bottom-row { justify-content: flex-start; }
+  .hero-tag { border: none; background: none; padding: 0; letter-spacing: 0.02em; }
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -2743,6 +2962,26 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
   </div>
 </nav>
 
+<!-- COUNTDOWN BAR -->
+<div id="countdown-bar">
+  <div class="countdown-bar-inner">
+    <div class="countdown-bar-left">
+      <span class="countdown-bar-dot"></span>
+      <span class="countdown-bar-label">Lote 1 · Standard fecha em</span>
+    </div>
+    <div class="countdown-bar-timer">
+      <span class="countdown-unit"><span id="cd-days">--</span><small>dias</small></span>
+      <span class="countdown-sep">:</span>
+      <span class="countdown-unit"><span id="cd-hours">--</span><small>horas</small></span>
+      <span class="countdown-sep">:</span>
+      <span class="countdown-unit"><span id="cd-mins">--</span><small>min</small></span>
+      <span class="countdown-sep">:</span>
+      <span class="countdown-unit"><span id="cd-secs">--</span><small>seg</small></span>
+    </div>
+    <span class="countdown-bar-after">após esta data o preço sobe para <strong>€317</strong></span>
+  </div>
+</div>
+
 <!-- Mobile Menu -->
 <div id="mobile-menu">
   <ul>
@@ -2770,6 +3009,23 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
   <div class="container">
     <div class="hero-content fade-up">
+
+      <div class="hero-counter-card">
+        <div class="hero-counter-top">
+          <div class="hero-counter-dot"></div>
+          <span class="hero-counter-eyebrow">Lote 1 · Standard fecha em</span>
+        </div>
+        <div class="hero-counter-nums">
+          <div class="hero-counter-block"><span class="hero-counter-num" id="hc-days">--</span><span class="hero-counter-unit">dias</span></div>
+          <span class="hero-counter-colon">:</span>
+          <div class="hero-counter-block"><span class="hero-counter-num" id="hc-hours">--</span><span class="hero-counter-unit">horas</span></div>
+          <span class="hero-counter-colon">:</span>
+          <div class="hero-counter-block"><span class="hero-counter-num" id="hc-mins">--</span><span class="hero-counter-unit">min</span></div>
+          <span class="hero-counter-colon">:</span>
+          <div class="hero-counter-block"><span class="hero-counter-num" id="hc-secs">--</span><span class="hero-counter-unit">seg</span></div>
+        </div>
+        <div class="hero-counter-sub">após esta data o preço sobe para <strong>€317</strong></div>
+      </div>
 
       <div class="hero-headline-split">
         <h1 class="hero-headline">
@@ -4028,6 +4284,50 @@ function playVideo(id) {
   };
   s.onerror = hideHeroVideo;
   document.head.appendChild(s);
+})();
+</script>
+
+<script>
+(function() {
+  var deadline = new Date('2026-08-07T23:59:00');
+  var bar = document.getElementById('countdown-bar');
+  var dEl = document.getElementById('cd-days');
+  var hEl = document.getElementById('cd-hours');
+  var mEl = document.getElementById('cd-mins');
+  var sEl = document.getElementById('cd-secs');
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  var hcD = document.getElementById('hc-days');
+  var hcH = document.getElementById('hc-hours');
+  var hcM = document.getElementById('hc-mins');
+  var hcS = document.getElementById('hc-secs');
+
+  function tick() {
+    var now = new Date();
+    var diff = deadline - now;
+    if (diff <= 0) {
+      if (bar) bar.style.display = 'none';
+      var card = document.querySelector('.hero-counter-card');
+      if (card) card.style.display = 'none';
+      return;
+    }
+    var days  = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins  = Math.floor((diff % 3600000) / 60000);
+    var secs  = Math.floor((diff % 60000) / 1000);
+    if (dEl) dEl.textContent = days;
+    if (hEl) hEl.textContent = pad(hours);
+    if (mEl) mEl.textContent = pad(mins);
+    if (sEl) sEl.textContent = pad(secs);
+    if (hcD) hcD.textContent = days;
+    if (hcH) hcH.textContent = pad(hours);
+    if (hcM) hcM.textContent = pad(mins);
+    if (hcS) hcS.textContent = pad(secs);
+  }
+
+  tick();
+  setInterval(tick, 1000);
 })();
 </script>
 
