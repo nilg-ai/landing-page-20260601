@@ -756,19 +756,6 @@ h1.hero-headline em {
   border-left: 1px solid var(--border);
 }
 
-.hero-parceiros-static {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.hero-parceiro-sep {
-  width: 1px;
-  height: 28px;
-  background: var(--border);
-  flex-shrink: 0;
-}
-
 .hero-parceiros-strip {
   overflow: hidden;
   position: relative;
@@ -776,19 +763,28 @@ h1.hero-headline em {
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 
+/* no desktop a tira vive ao lado do CTA: largura fixa para o overflow cortar */
+.hero-parceiros--desktop .hero-parceiros-strip { width: 300px; }
+
 .hero-parceiros-track {
   display: flex;
   align-items: center;
   gap: 28px;
   width: max-content;
-  animation: parceiros-scroll 18s linear infinite;
+  /* metade do track = 4 logos + gaps; duração ajustada a esse comprimento */
+  animation: parceiros-scroll 26s linear infinite;
 }
 
 .hero-parceiros-track:hover { animation-play-state: paused; }
 
+/* o track tem os 4 logos duplicados, logo -50% volta ao ponto de partida */
 @keyframes parceiros-scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(calc(-50% - 14px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-parceiros-track { animation: none; }
 }
 
 .hero-parceiro-logo {
@@ -3066,9 +3062,11 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
             <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
             <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
             <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+            <img src="assets/images/logos/InovaGaia.svg" alt="InovaGaia" class="hero-parceiro-logo">
             <img src="assets/images/logos/CC_Logo.svg" alt="" class="hero-parceiro-logo hero-parceiro-logo--destaque" aria-hidden="true">
             <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
             <img src="assets/images/logos/UPTEC.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+            <img src="assets/images/logos/InovaGaia.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
           </div>
         </div>
       </div>
@@ -3096,12 +3094,17 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         <!-- parceiros: visível só no desktop, ao lado do botão -->
         <div class="hero-parceiros hero-parceiros--desktop">
           <p style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
-          <div class="hero-parceiros-static">
-            <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
-            <span class="hero-parceiro-sep"></span>
-            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
-            <span class="hero-parceiro-sep"></span>
-            <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+          <div class="hero-parceiros-strip">
+            <div class="hero-parceiros-track">
+              <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
+              <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
+              <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+              <img src="assets/images/logos/InovaGaia.svg" alt="InovaGaia" class="hero-parceiro-logo">
+              <img src="assets/images/logos/CC_Logo.svg" alt="" class="hero-parceiro-logo hero-parceiro-logo--destaque" aria-hidden="true">
+              <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+              <img src="assets/images/logos/UPTEC.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+              <img src="assets/images/logos/InovaGaia.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
+            </div>
           </div>
         </div>
       </div>
