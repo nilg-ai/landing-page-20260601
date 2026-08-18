@@ -224,7 +224,7 @@ body::before {
   border: 1px solid rgba(255,105,0,0.22);
   border-radius: 10px;
   padding: 14px 18px 12px;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 
 .hero-counter-top {
@@ -539,12 +539,13 @@ body::before {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 48px 0 32px;
+  padding: 20px 0 0;
 }
 
 .hero-tag {
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
   gap: 10px;
   padding: 7px 14px;
   border: 1px solid var(--border);
@@ -627,7 +628,7 @@ h1.hero-headline em {
   display: flex;
   gap: 64px;
   align-items: flex-end;
-  margin-bottom: 36px;
+  margin-bottom: 24px;
 }
 
 .hero-headline-split h1.hero-headline {
@@ -671,7 +672,7 @@ h1.hero-headline em {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
 }
 
 .hero-urgency {
@@ -716,7 +717,7 @@ h1.hero-headline em {
   align-items: center;
   flex-wrap: wrap;
   gap: 14px;
-  margin-bottom: 44px;
+  margin-bottom: 18px;
 }
 
 
@@ -753,10 +754,10 @@ h1.hero-headline em {
   position: relative;
   z-index: 2;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 4px;
   /* folga em baixo para a seta de scroll, que é absoluta a bottom: 20px */
   margin-bottom: 48px;
-  padding: 20px 24px 22px;
+  padding: 12px 24px 20px;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: rgba(0,0,0,0.22);
@@ -769,7 +770,7 @@ h1.hero-headline em {
   letter-spacing: 0.14em;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 14px;
+  margin-bottom: 22px;
 }
 
 /* os 5 logos cabem na largura do ecrã, logo ficam estáticos — sem rotação */
@@ -781,7 +782,8 @@ h1.hero-headline em {
   gap: 20px 48px;
 }
 
-.hero-parceiros-row .hero-parceiro-logo { height: 36px; }
+/* na barra todos os logos têm a mesma opacidade */
+.hero-parceiros-row .hero-parceiro-logo { height: 36px; opacity: 1; }
 .hero-parceiros-row .hero-parceiro-logo--destaque { height: 44px; }
 
 /* entre 769 e 1023px encolhe para os 5 continuarem numa linha */
@@ -3119,14 +3121,15 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
             <span id="hero-urgency-text">Lote 2 · Standard · 82% preenchido</span>
           </div>
         </div>
-        <div class="hero-tag">
-          <span class="hero-tag-dot"></span>
-          <strong class="hero-tag-label" style="font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Imersão de IA</strong><span class="hero-tag-sep"> · </span><span class="hero-tag-info--desktop">The Yeatman Hotel · 22 de Setembro de 2026 · Vila Nova de Gaia</span><span class="hero-tag-info--mobile">The Yeatman Hotel · 22 Set 2026 · Gaia</span>
-        </div>
       </div>
 
       <div class="hero-ctas">
         <a href="#investimento" id="hero-cta-main" class="btn btn-primary btn-lg">Garantir o meu lugar →</a>
+        <!-- rectângulo do evento: ao lado do botão, numa linha só (sem "Vila Nova de Gaia") -->
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          <strong class="hero-tag-label" style="font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Imersão de IA</strong><span class="hero-tag-sep"> · </span><span class="hero-tag-info--desktop">The Yeatman Hotel · 22 de Setembro de 2026</span><span class="hero-tag-info--mobile">The Yeatman Hotel · 22 Set 2026 · Gaia</span>
+        </div>
         <!-- métricas: no desktop ficam ao lado do botão, no lugar onde estavam os parceiros -->
         <div class="hero-ctas-metrics">
           <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Já ajudamos a transformar</p>
@@ -3155,8 +3158,8 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
     <p class="hero-parceiros-bar-label">Com o apoio de</p>
     <div class="hero-parceiros-row">
       <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
-      <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
       <img src="assets/images/logos/Swonkie.svg" alt="Swonkie" class="hero-parceiro-logo">
+      <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
       <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
       <img src="assets/images/logos/InovaGaia.svg" alt="InovaGaia" class="hero-parceiro-logo">
     </div>
