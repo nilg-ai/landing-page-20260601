@@ -719,13 +719,6 @@ h1.hero-headline em {
   margin-bottom: 44px;
 }
 
-.hero-bottom-grid {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
-}
 
 .hero-parceiros {
   padding-left: 32px;
@@ -748,12 +741,54 @@ h1.hero-headline em {
 }
 .hero-ver-lugares:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
 
-.hero-parceiros--desktop {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* no desktop as métricas ficam à direita do CTA, onde antes estavam os parceiros */
+.hero-ctas-metrics {
+  margin-left: auto;
   padding-left: 32px;
   border-left: 1px solid var(--border);
+}
+
+/* barra de parceiros: largura total do ecrã, abaixo do CTA */
+.hero-parceiros--desktop {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin-top: 8px;
+  /* folga em baixo para a seta de scroll, que é absoluta a bottom: 20px */
+  margin-bottom: 48px;
+  padding: 20px 24px 22px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.22);
+}
+
+.hero-parceiros-bar-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+/* os 5 logos cabem na largura do ecrã, logo ficam estáticos — sem rotação */
+.hero-parceiros-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px 48px;
+}
+
+.hero-parceiros-row .hero-parceiro-logo { height: 36px; }
+.hero-parceiros-row .hero-parceiro-logo--destaque { height: 44px; }
+
+/* entre 769 e 1023px encolhe para os 5 continuarem numa linha */
+@media (max-width: 1023px) {
+  .hero-parceiros-row { gap: 16px 32px; }
+  .hero-parceiros-row .hero-parceiro-logo { height: 28px; }
+  .hero-parceiros-row .hero-parceiro-logo--destaque { height: 34px; }
 }
 
 .hero-parceiros-strip {
@@ -763,8 +798,6 @@ h1.hero-headline em {
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 
-/* no desktop a tira vive ao lado do CTA: largura fixa para o overflow cortar */
-.hero-parceiros--desktop .hero-parceiros-strip { width: 300px; }
 
 .hero-parceiros-track {
   display: flex;
@@ -2808,7 +2841,6 @@ footer {
   .hero-metric strong { font-size: 1rem; }
   .hero-bottom-row { flex-direction: column; align-items: flex-start; gap: 8px; }
   .hero-tag { display: none; }
-  .hero-bottom-grid { flex-direction: column; gap: 0; }
   .hero-brand-logo { display: none; }
   .hero-mobile-date {
     display: block;
@@ -2824,7 +2856,9 @@ footer {
   .hero-parceiros--mobile .hero-parceiro-logo--destaque { height: 24px; max-width: 110px; opacity: 1; }
   #hero-urgency-std { display: none; }
   .hero-ver-lugares { display: inline-flex; align-items: center; }
-  .hero-ctas { margin-bottom: 24px; }
+  /* as métricas passaram para dentro de .hero-ctas: repor o espaçamento de antes */
+  .hero-ctas-metrics { margin-left: 0; padding-left: 0; border-left: none; margin-top: 10px; }
+  .hero-ctas { margin-bottom: 0; }
 
   /* PROBLEMA */
   .problema-cards { grid-template-columns: 1fr; }
@@ -3093,28 +3127,8 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
       <div class="hero-ctas">
         <a href="#investimento" id="hero-cta-main" class="btn btn-primary btn-lg">Garantir o meu lugar →</a>
-        <!-- parceiros: visível só no desktop, ao lado do botão -->
-        <div class="hero-parceiros hero-parceiros--desktop">
-          <p style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Com o apoio de</p>
-          <div class="hero-parceiros-strip">
-            <div class="hero-parceiros-track">
-              <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
-              <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
-              <img src="assets/images/logos/Swonkie.svg" alt="Swonkie" class="hero-parceiro-logo">
-              <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
-              <img src="assets/images/logos/InovaGaia.svg" alt="InovaGaia" class="hero-parceiro-logo">
-              <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
-              <img src="assets/images/logos/CC_Logo.svg" alt="" class="hero-parceiro-logo hero-parceiro-logo--destaque" aria-hidden="true">
-              <img src="assets/images/logos/Swonkie.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
-              <img src="assets/images/logos/UPTEC.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
-              <img src="assets/images/logos/InovaGaia.svg" alt="" class="hero-parceiro-logo" aria-hidden="true">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-bottom-grid">
-        <div>
+        <!-- métricas: no desktop ficam ao lado do botão, no lugar onde estavam os parceiros -->
+        <div class="hero-ctas-metrics">
           <p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-bottom:10px;">Já ajudamos a transformar</p>
           <div class="hero-metrics">
             <div class="hero-metric">
@@ -3133,6 +3147,18 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- barra de parceiros: largura total do ecrã, abaixo do CTA, só no desktop -->
+  <div class="hero-parceiros--desktop">
+    <p class="hero-parceiros-bar-label">Com o apoio de</p>
+    <div class="hero-parceiros-row">
+      <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="hero-parceiro-logo">
+      <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="hero-parceiro-logo hero-parceiro-logo--destaque">
+      <img src="assets/images/logos/Swonkie.svg" alt="Swonkie" class="hero-parceiro-logo">
+      <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="hero-parceiro-logo">
+      <img src="assets/images/logos/InovaGaia.svg" alt="InovaGaia" class="hero-parceiro-logo">
     </div>
   </div>
 
