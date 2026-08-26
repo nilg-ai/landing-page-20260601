@@ -4811,9 +4811,26 @@ function playVideo(id) {
           <label for="vf-email">Email profissional *</label>
           <input type="email" id="vf-email" placeholder="o.teu@empresa.pt" required>
         </div>
-        <div class="form-group full">
+        <div class="form-group">
           <label for="vf-empresa">Nome da empresa *</label>
           <input type="text" id="vf-empresa" placeholder="Nome da tua empresa" required>
+        </div>
+        <div class="form-group">
+          <label for="vf-tel">Telem&oacute;vel *</label>
+          <div class="phone-field">
+            <select id="vf-tel-pais" class="phone-country" aria-label="C&oacute;digo do pa&iacute;s">
+              <option value="+351" selected>&#127477;&#127481; +351</option>
+              <option value="+34">&#127466;&#127480; +34</option>
+              <option value="+33">&#127467;&#127479; +33</option>
+              <option value="+44">&#127468;&#127463; +44</option>
+              <option value="+49">&#127465;&#127466; +49</option>
+              <option value="+55">&#127463;&#127479; +55</option>
+              <option value="+244">&#127462;&#127476; +244</option>
+              <option value="+258">&#127474;&#127487; +258</option>
+              <option value="+1">&#127482;&#127480; +1</option>
+            </select>
+            <input type="tel" id="vf-tel" placeholder="9xx xxx xxx" required>
+          </div>
         </div>
       </div>
 
@@ -4864,6 +4881,8 @@ function playVideo(id) {
 (function () {
   // endpoint do n8n que faz o levantamento da empresa
   var URL_LEVANTAMENTO = 'https://n8n-service-0tpv.onrender.com/webhook/levantamento-lead';
+  // troca o token do link do WhatsApp pelo contexto da lead no CRM
+  var URL_CONTEXTO = 'https://n8n-service-0tpv.onrender.com/webhook/contexto-voz';
   var ESPERA_MAX = 9000;   // ms; se demorar mais, liga na mesma sem briefing
 
   var host   = document.querySelector('#agente-voz-float elevenlabs-convai');
@@ -4894,11 +4913,11 @@ function playVideo(id) {
       if (!contextoPronto) convite.classList.add('visivel');
     }, 4000);
 
-    convite.addEventListener('click', function () { abrir(); });
+    convite.addEventListener('click', function () { entrar(); });
     convite.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
         e.preventDefault();
-        abrir();
+        entrar();
       }
     });
 
@@ -4916,6 +4935,126 @@ function playVideo(id) {
       }
     } catch (err) { /* sem sessionStorage, mostra-se na mesma */ }
   }
+
+  // Carrega no botao de chamada do widget (vive dentro do shadow DOM, que a
+  // ElevenLabs deixa aberto). Serve o formulario e tambem o link do WhatsApp.
+  function arrancarChamada() {
+    setTimeout(function () {
+      var alvo = null;
+      try {
+        var bts = host.shadowRoot.querySelectorAll('button');
+        for (var i = 0; i < bts.length; i++) {
+          var l2 = (bts[i].getAttribute('aria-label') || '').toLowerCase();
+          if (/chamada|call/.test(l2)) { alvo = bts[i]; break; }
+        }
+      } catch (err) { /* shadow root indisponivel */ }
+      var b = alvo || botaoPendente;
+      if (b) b.click();
+      botaoPendente = null;
+    }, 250);
+  }
+
+  // ---- link personalizado (?v=token) vindo da mensagem do WhatsApp ----
+  // A lead preencheu o formulario do Meta Ads, entrou no CRM e recebeu do
+  // chatbot uma mensagem com um link so dela. Aqui trocamos o token pelo
+  // contexto que o CRM ja tem e saltamos o formulario: ela ja se identificou
+  // uma vez, seria absurdo pedir tudo outra vez.
+  var leadDoLink = null;
+
+  function escaparHtml(txt) {
+    return String(txt).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  function entrar() {
+    if (leadDoLink) { chamarComContexto(); return; }
+    abrir();
+  }
+
+  function chamarComContexto() {
+    var d = leadDoLink;
+    var lote = dadosLote();
+    host.setAttribute('dynamic-variables', JSON.stringify({
+      lead_id:          d.lead_id || '',
+      lead_name:        d.lead_name || '',
+      lead_email:       d.lead_email || '',
+      lead_phone:       d.lead_phone || '',
+      lead_company:     d.lead_company || '',
+      lead_industry:    'n\u00e3o indicado',
+      previous_context: d.contexto,
+      preco_evento:     lote.preco,
+      percentagem_lote: lote.pct
+    }));
+    host.setAttribute('override-first-message', d.saudacao);
+    contextoPronto = true;
+    esconderConvite();
+    document.documentElement.classList.add('voz-em-chamada');
+    arrancarChamada();
+  }
+
+  (function lerLinkPersonalizado() {
+    var t = '';
+    try { t = new URLSearchParams(location.search).get('v') || ''; } catch (e) { return; }
+    if (!t) return;
+
+    // tira o token da barra de endereco, para nao ficar no historico do
+    // browser nem ser partilhado por engano num screenshot
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+
+    fetch(URL_CONTEXTO, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: t })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        // token gasto, adulterado ou fora de prazo: o site segue o fluxo normal
+        if (!d || !d.ok || !d.lead_name) return;
+
+        var nome = d.lead_name;
+        var empresa = d.lead_company || '';
+
+        d.contexto =
+          'CANAL: a lead veio do link que recebeu por WhatsApp, depois de preencher o ' +
+          'formul\u00e1rio do an\u00fancio. J\u00e1 se identificou, j\u00e1 sabe que fala com uma IA e est\u00e1 ' +
+          '\u00e0 espera que atendas. N\u00e3o perguntes se falas com ela nem se tem dois minutos: ' +
+          'cumprimenta pelo nome e vai ao neg\u00f3cio dela.\n' +
+          'DADOS DO CRM:\n' +
+          '- Nome: ' + nome + '\n' +
+          (empresa ? '- Empresa: ' + empresa + '\n' : '') +
+          (d.lead_email ? '- Email: ' + d.lead_email + '\n' : '') +
+          (d.lead_phone ? '- Telem\u00f3vel: ' + d.lead_phone + '\n' : '') +
+          (d.origem ? '- Origem: ' + d.origem + '\n' : '') +
+          (d.tem_briefing
+            ? '\nO QUE J\u00c1 SABEMOS DELA:\n' + d.briefing +
+              '\n\nCOMO USAR: entra a demonstrar que percebeste o neg\u00f3cio dela, com uma frase ' +
+              'curta e concreta, e p\u00f5e logo uma hip\u00f3tese de dor comercial em cima da mesa em ' +
+              'forma de pergunta. Nunca leias isto em voz alta nem digas que consultaste ficha ' +
+              'nenhuma: usa-o como quem j\u00e1 conhece o setor. Se ela te corrigir, o que ela diz manda.'
+            : '\nAinda n\u00e3o sabemos quase nada do neg\u00f3cio dela. Descobre na conversa o que fazem, ' +
+              'a quem vendem e o que trava as vendas, antes de falares do evento.');
+
+        d.saudacao = 'Ol\u00e1 ' + nome + ', tudo bem? Sou o g\u00e9meo digital do Andr\u00e9 Sousa, da NILG.AI. ' +
+          'Foi a minha mensagem que recebeste no WhatsApp' +
+          (empresa ? ', e j\u00e1 vi aqui o que faz a ' + empresa : '') +
+          '. Posso ir directo ao assunto?';
+
+        leadDoLink = d;
+
+        // ela veio de proposito, por isso o convite aparece logo e ja tratado
+        // pelo nome, mesmo que tenha fechado o convite noutra visita
+        try { sessionStorage.removeItem('voz-convite-fechado'); } catch (e) {}
+        var txt = convite && convite.querySelector('.voz-convite-texto');
+        if (txt) {
+          txt.innerHTML =
+            '<strong>' + escaparHtml(nome) + ', o agente est\u00e1 \u00e0 tua espera.</strong>' +
+            '<span>Clica e falamos agora, sem preencheres nada.</span>';
+        }
+        mostrarConvite();
+      })
+      .catch(function () { /* sem contexto, fica o fluxo normal do site */ });
+  })();
 
   function esconderConvite() {
     if (!convite) return;
@@ -5083,9 +5222,10 @@ function playVideo(id) {
     var nome    = val('vf-nome');
     var email   = val('vf-email');
     var empresa = val('vf-empresa');
+    var tel     = val('vf-tel');
     var ok      = document.getElementById('vf-consent').checked;
 
-    if (!nome || !email || !empresa || !ok) {
+    if (!nome || !email || !empresa || !tel || !ok) {
       erroEl.textContent = 'Falta preencher os campos obrigat\u00f3rios.';
       erroEl.style.display = 'block';
       return;
@@ -5102,6 +5242,10 @@ function playVideo(id) {
     }
     erroEl.style.display = 'none';
 
+    var indicativo = document.getElementById('vf-tel-pais').value;
+    var telefone = indicativo + ' ' + tel.replace(/\s+/g, ' ');
+    // versao so com digitos e +, para o WhatsApp (Evolution) e para o CRM
+    var telefoneLimpo = (indicativo + tel).replace(/[^0-9+]/g, '');
     var primeiro = nome.split(/\s+/)[0];
     var lote = dadosLote();
 
@@ -5122,6 +5266,7 @@ function playVideo(id) {
         '- Nome: ' + nome + '\n' +
         '- Empresa: ' + empresa + '\n' +
         '- Email: ' + email + '\n' +
+        '- Telem\u00f3vel: ' + telefone + '\n' +
         (briefing
           ? '\nLEVANTAMENTO DA EMPRESA (investiga\u00e7\u00e3o autom\u00e1tica, pode ter imprecis\u00f5es):\n' +
             briefing + '\n' +
@@ -5133,22 +5278,20 @@ function playVideo(id) {
             'personalizado que ela leva no fim do dia.'
           : '\nN\u00e3o houve tempo de investigar a empresa. Descobre na conversa o que fazem, a quem ' +
             'vendem e o que trava as vendas, antes de falares do evento.') + '\n' +
-        'Tens o email acima: usa-o nas tools de envio, sem o voltar a pedir. Nao tens o ' +
-        'telefone da lead, por isso qualquer tool que precise dele (SMS, callback) fica sem ' +
-        'numero valido — pede-o na conversa se for mesmo preciso.';
+        'Tens o email e o telem\u00f3vel acima: usa-os nas tools de envio, sem os voltar a pedir. ' +
+        'Antes de enviares WhatsApp, confirma em voz alta o n\u00famero com ela, lendo-o devagar, ' +
+        'e s\u00f3 envias depois de ela dizer que sim.';
 
       // As tools do agente (SMS, email, callback, marcar nao interessado)
       // tambem correm em variaveis dinamicas: lead_id, lead_email e
-      // lead_phone. Se faltar a CHAVE (nao so o valor), a conversa nem
-      // arranca — por isso lead_phone fica sempre presente, mesmo vazio,
-      // agora que o formulario ja nao pede o telefone.
+      // lead_phone. Se faltar uma so que seja, a conversa nem arranca.
       // O lead_id e o id do contacto no ActiveCampaign; o n8n procura-o
       // pelo email e devolve-o quando existe.
       host.setAttribute('dynamic-variables', JSON.stringify({
         lead_id:          (res && res.lead_id) ? String(res.lead_id) : '',
         lead_name:        primeiro,
         lead_email:       email,
-        lead_phone:       '',
+        lead_phone:       telefoneLimpo,
         lead_company:     empresa,
         lead_industry:    setor,
         previous_context: contexto,
@@ -5173,19 +5316,7 @@ function playVideo(id) {
       // chamada, o mudo e o desligar. Ate aqui esteve invisivel.
       document.documentElement.classList.add('voz-em-chamada');
 
-      setTimeout(function () {
-        var alvo = null;
-        try {
-          var bts = host.shadowRoot.querySelectorAll('button');
-          for (var i = 0; i < bts.length; i++) {
-            var l2 = (bts[i].getAttribute('aria-label') || '').toLowerCase();
-            if (/chamada|call/.test(l2)) { alvo = bts[i]; break; }
-          }
-        } catch (err) { /* shadow root indisponivel */ }
-        var b = alvo || botaoPendente;
-        if (b) b.click();
-        botaoPendente = null;
-      }, 250);
+      arrancarChamada();
     });
   });
 })();
