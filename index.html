@@ -2296,9 +2296,20 @@ h1.hero-headline em {
   background: var(--surface);
   border: 1px dashed var(--border);
 }
-.col-vip.esgotado .plan-name,
-.col-vip.esgotado .plan-sub,
 .col-vip.esgotado .pricing-features { opacity: 0.45; }
+
+/* O nome do VIP tem de continuar a ler-se: é a comparação que faz o Plus
+   parecer a escolha óbvia. Fica à opacidade cheia e riscado, com o risco em
+   vermelho para o esgotado ser imediato, e o texto num tom apagado para não
+   competir com o nome do bilhete que ainda se pode comprar. */
+.col-vip.esgotado .plan-name {
+  opacity: 1;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  text-decoration-color: #f87171;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 0;
+}
 
 .plan-esgotado {
   font-family: 'Bricolage Grotesque', sans-serif;
@@ -2367,19 +2378,15 @@ h1.hero-headline em {
 
 .plan-name {
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.5rem;
+  font-size: 2.15rem;
   font-weight: 800;
-  margin-bottom: 6px;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 10px;
 }
 .col-standard .plan-name { color: var(--text); }
 .col-vip .plan-name { color: #fff; }
 
-.plan-sub {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-bottom: 24px;
-  line-height: 1.5;
-}
 
 /* Early Bird tag */
 .plan-early-tag {
@@ -3811,7 +3818,6 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         <div class="col-standard">
           <span class="col-badge-grey">Standard</span>
           <div class="plan-name">Standard</div>
-          <p class="plan-sub">Para quem quer transformar o negócio neste dia.</p>
 
           <div class="plan-early-tag"><span class="dot"></span> Early Bird</div>
           <div class="plan-price-zone">
@@ -3844,7 +3850,6 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         <div class="col-plus">
           <span class="col-badge">✦ Mais escolhido</span>
           <div class="plan-name">Plus</div>
-          <p class="plan-sub">Para quem quer a experiência completa do dia.</p>
 
           <div class="plan-early-tag"><span class="dot"></span> Early Bird</div>
           <div class="plan-price-zone">
@@ -3876,7 +3881,6 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         <div class="col-vip esgotado">
           <span class="col-badge-grey">Esgotado</span>
           <div class="plan-name">VIP</div>
-          <p class="plan-sub">Incluía o almoço exclusivo de networking.</p>
 
           <div class="plan-price-zone">
             <div class="plan-esgotado">Esgotado</div>
