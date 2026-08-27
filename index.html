@@ -2236,41 +2236,12 @@ h1.hero-headline em {
   gap: 10px;
 }
 
-.pricing-phase-banner {
-  padding: 12px 20px;
-  border-radius: var(--radius);
-  font-size: 0.88rem;
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: 32px;
-  border: 1px solid;
-}
-
-.pricing-phase-banner.standard {
-  background: var(--accent-bg);
-  border-color: rgba(255,105,0,0.3);
-  color: var(--accent);
-}
-
-.pricing-phase-banner.last {
-  background: rgba(239,68,68,0.08);
-  border-color: rgba(239,68,68,0.3);
-  color: #f87171;
-}
-
-.pricing-phase-banner.lote1 {
-  background: rgba(22,163,74,0.10);
-  border-color: rgba(22,163,74,0.35);
-  color: #4ade80;
-}
-
-.pricing-phase-banner.lote2 {
-  background: var(--accent-bg);
-  border-color: rgba(255,105,0,0.3);
-  color: var(--accent);
-}
-
 /* ── PRICING COMPARE ── */
+/* Os wrappers sao os itens da grelha e esticam todos à altura do mais alto.
+   Sem o flex: 1 nos cartões, cada um ficava com a altura do seu conteúdo e os
+   botões acabavam em três alturas diferentes. */
+.col-standard, .col-plus, .col-vip { flex: 1; }
+
 .pricing-compare {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2337,12 +2308,12 @@ h1.hero-headline em {
   text-transform: uppercase;
   color: #f87171;
   line-height: 1;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 .plan-esgotado-sub {
   font-size: 0.82rem;
   color: var(--text-muted);
-  margin-bottom: 6px;
+  margin-bottom: 0;
 }
 .pricing-btn.esgotado {
   pointer-events: none;
@@ -2433,8 +2404,20 @@ h1.hero-headline em {
 }
 
 /* Price block */
+/* Os três cartões têm blocos de preço diferentes: o Standard leva a linha do
+   preço anterior, o Plus não leva nada e o VIP leva o ESGOTADO. Sem uma altura
+   comum, as listas de benefícios começavam em três alturas diferentes e as
+   linhas deixavam de emparelhar de cartão para cartão. */
+.plan-price-zone {
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
 .plan-price {
-  margin-bottom: 6px;
+  margin-bottom: 0;
   line-height: 1;
 }
 .plan-price .euro {
@@ -2468,7 +2451,7 @@ h1.hero-headline em {
 .plan-normal {
   font-size: 0.78rem;
   color: var(--text-muted);
-  margin-bottom: 24px;
+  margin-bottom: 0;
 }
 .plan-normal s {
   margin-right: 4px;
@@ -3825,17 +3808,18 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
         <!-- STANDARD -->
         <div class="pricing-col-wrapper">
-        <div class="pricing-phase-banner lote2 fade-up" id="phase-banner-standard"></div>
         <div class="col-standard">
           <span class="col-badge-grey">Standard</span>
           <div class="plan-name">Standard</div>
           <p class="plan-sub">Para quem quer transformar o negócio neste dia.</p>
 
           <div class="plan-early-tag"><span class="dot"></span> Early Bird</div>
-          <div class="plan-price">
-            <span class="euro">€</span><span class="amount" id="price-standard">317</span><span class="iva"> + IVA</span>
+          <div class="plan-price-zone">
+            <div class="plan-price">
+              <span class="euro">€</span><span class="amount" id="price-standard">317</span><span class="iva"> + IVA</span>
+            </div>
+            <p class="plan-normal" id="normal-standard">Preço do Lote 1: <s>€247</s></p>
           </div>
-          <p class="plan-normal" id="normal-standard">Preço do Lote 1: <s>€247</s></p>
 
           <ul class="pricing-features">
             <li class="on"><span class="check">✓</span> 1 dia de imersão presencial intensiva</li>
@@ -3857,15 +3841,16 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
         <!-- PLUS -->
         <div class="pricing-col-wrapper">
-        <div class="pricing-phase-banner lote2 fade-up" id="phase-banner-plus"></div>
         <div class="col-plus">
           <span class="col-badge">✦ Mais escolhido</span>
           <div class="plan-name">Plus</div>
           <p class="plan-sub">Para quem quer a experiência completa do dia.</p>
 
           <div class="plan-early-tag"><span class="dot"></span> Early Bird</div>
-          <div class="plan-price">
-            <span class="euro">€</span><span class="amount" id="price-plus">417</span><span class="iva"> + IVA</span>
+          <div class="plan-price-zone">
+            <div class="plan-price">
+              <span class="euro">€</span><span class="amount" id="price-plus">417</span><span class="iva"> + IVA</span>
+            </div>
           </div>
 
           <ul class="pricing-features">
@@ -3888,14 +3873,15 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
         <!-- VIP -->
         <div class="pricing-col-wrapper">
-        <div class="pricing-phase-banner lote2 fade-up" id="phase-banner-vip"></div>
         <div class="col-vip esgotado">
           <span class="col-badge-grey">Esgotado</span>
           <div class="plan-name">VIP</div>
           <p class="plan-sub">Incluía o almoço exclusivo de networking.</p>
 
-          <div class="plan-esgotado">Esgotado</div>
-          <p class="plan-esgotado-sub">Já não há lugares VIP disponíveis.</p>
+          <div class="plan-price-zone">
+            <div class="plan-esgotado">Esgotado</div>
+            <p class="plan-esgotado-sub">Já não há lugares VIP disponíveis.</p>
+          </div>
 
           <ul class="pricing-features">
             <li class="on"><span class="check">✓</span> 1 dia de imersão presencial intensiva</li>
@@ -4084,15 +4070,6 @@ function initPricing() {
   // O VIP esgotou e o botão dele já nem é um link, por isso só o Plus.
   document.getElementById('cta-plus').href = LINKS[fase].plus;
 
-  // Phase banners (per card)
-  const bannerStd = document.getElementById('phase-banner-standard');
-  const bannerPlus = document.getElementById('phase-banner-plus');
-  const bannerVip = document.getElementById('phase-banner-vip');
-  bannerStd.textContent = fase === 'lote1'
-    ? 'LOTE 1 — Lugares ainda disponíveis · Preço sobe no Lote 2'
-    : 'LOTE 2 — Lote 1 esgotado · Últimos lugares disponíveis';
-  bannerPlus.textContent = 'LOTE 2 — Últimos lugares disponíveis';
-  bannerVip.textContent = 'VIP — ESGOTADO';
 
   // Hero urgency text + form badge
   const urgencyText = LABELS_FASE[fase] + ' · Standard · ' + pct + '% preenchido';
