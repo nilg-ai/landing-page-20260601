@@ -980,6 +980,15 @@ h1.hero-headline em {
   align-items: start;
   margin-top: 48px;
 }
+
+/* Um item de grelha tem min-width: auto, logo não encolhe abaixo do conteúdo.
+   O marquee de logótipos aqui dentro tem width: max-content e mede 5668px, e
+   arrastava a coluna com ele: no telemóvel o viewport de layout ia a 5684px
+   num ecrã de 375. O body tem overflow-x: hidden, por isso não havia scroll
+   lateral a denunciar o problema — só se via ao fazer pinch, com a página
+   encolhida numa faixa à esquerda. O min-width: 0 deixa a coluna encolher e o
+   overflow: hidden do .logos-section volta a cortar o marquee como devia. */
+.clientes-parceiros-grid > * { min-width: 0; }
 .clientes-col {
   padding-right: 40px;
   border-right: 1px solid var(--border);
