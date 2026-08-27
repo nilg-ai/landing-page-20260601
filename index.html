@@ -3054,7 +3054,15 @@ html.voz-em-chamada #agente-voz-float elevenlabs-convai {
 }
 .voz-consent input { margin-top: 3px; }
 .voz-consent a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
-.voz-consent.erro > span { color: var(--accent); }
+/* O sinal de erro e o mesmo nos dois tipos de campo: a moldura acende e o
+   aviso curto aparece por baixo. Pintar o texto inteiro da caixa de laranja
+   destoava dos campos de cima e tornava ilegivel justamente o texto que a
+   pessoa tem de ler antes de aceitar. */
+.voz-consent.erro input[type="checkbox"] {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-radius: 2px;
+}
 .campo-erro {
   display: none;
   /* O .form-group e flex-column com 8px de gap: a margem negativa encosta o
