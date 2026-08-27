@@ -3057,12 +3057,21 @@ html.voz-em-chamada #agente-voz-float elevenlabs-convai {
 .voz-consent.erro > span { color: var(--accent); }
 .campo-erro {
   display: none;
-  margin: 6px 0 0;
-  font-size: 0.8rem;
-  line-height: 1.45;
+  /* O .form-group e flex-column com 8px de gap: a margem negativa encosta o
+     aviso ao campo dele (5px) contra os 16px que o separam do campo
+     seguinte. Sem isto ficava a igual distancia dos dois. */
+  margin: -3px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
   color: var(--accent);
 }
 .campo-erro.visivel { display: block; }
+/* Nas caixas o erro tem de colar ao texto da propria caixa. A etiqueta tem
+   18px de margem em baixo, por isso sem isto o aviso ficava a meio caminho
+   entre a caixa a que pertence e a seguinte, e lia-se como sendo da de
+   baixo. O recuo alinha-o com o texto, nao com o quadrado. */
+.campo-erro-tick { padding-left: 21px; }
+.campo-erro-tick.visivel { margin: -14px 0 18px; }
 /* Nota informativa, nao um alerta: o cracha laranja de urgencia fazia isto
    parecer um erro de preenchimento. */
 .voz-aviso {
@@ -4865,13 +4874,13 @@ function playVideo(id) {
         <input type="checkbox" id="vf-consent" required>
         <span>Percebi que vou falar com um assistente de intelig&ecirc;ncia artificial, e n&atilde;o com uma pessoa, e que a conversa &eacute; gravada e transcrita. Ver <a href="https://nilg.ai/privacy-policy/" target="_blank" rel="noopener">como tratamos os teus dados</a>.</span>
       </label>
-      <p class="campo-erro" id="e-vf-consent" role="alert"></p>
+      <p class="campo-erro campo-erro-tick" id="e-vf-consent" role="alert"></p>
 
       <label class="voz-consent">
         <input type="checkbox" id="vf-marketing" required>
         <span>Autorizo a NILG.AI a contactar-me sobre a Imers&atilde;o IA e a enviar-me conte&uacute;dos relacionados, pelos contactos que deixei aqui. Posso cancelar a qualquer momento.</span>
       </label>
-      <p class="campo-erro" id="e-vf-marketing" role="alert"></p>
+      <p class="campo-erro campo-erro-tick" id="e-vf-marketing" role="alert"></p>
 
       <div class="voz-acoes">
         <button type="submit" class="btn btn-primary" id="voz-submeter">Falar com o agente &rarr;</button>
@@ -5313,23 +5322,23 @@ function playVideo(id) {
       if (!primeiroMau) primeiroMau = id;
     }
 
-    if (!nome) falha('vf-nome', 'Escreve o teu nome.');
-    if (!empresa) falha('vf-empresa', 'Escreve o nome da tua empresa.');
-    if (!tel) falha('vf-tel', 'Escreve o teu telemóvel.');
+    if (!nome) falha('vf-nome', 'Campo obrigatório.');
+    if (!empresa) falha('vf-empresa', 'Campo obrigatório.');
+    if (!tel) falha('vf-tel', 'Campo obrigatório.');
 
     if (!email) {
-      falha('vf-email', 'Escreve o teu email profissional.');
+      falha('vf-email', 'Campo obrigatório.');
     } else if (email.indexOf('@') < 1 || email.indexOf('.') < 0) {
-      falha('vf-email', 'Confirma o email, parece estar incompleto.');
+      falha('vf-email', 'Email incompleto.');
     } else if (!ehEmailProfissional(email)) {
-      falha('vf-email', 'Usa o teu email profissional, não uma conta pessoal (Gmail, Hotmail, etc.).');
+      falha('vf-email', 'Usa o email da tua empresa.');
     }
 
     if (!document.getElementById('vf-consent').checked) {
-      falha('vf-consent', 'Marca esta caixa para confirmares que percebeste com quem vais falar.');
+      falha('vf-consent', 'Obrigatório.');
     }
     if (!document.getElementById('vf-marketing').checked) {
-      falha('vf-marketing', 'Marca esta caixa: sem ela não te podemos contactar depois da conversa.');
+      falha('vf-marketing', 'Obrigatório.');
     }
 
     // leva a pessoa ao primeiro campo que está mal, em vez de a deixar à
