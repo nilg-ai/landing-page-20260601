@@ -2273,14 +2273,20 @@ h1.hero-headline em {
 /* ── PRICING COMPARE ── */
 .pricing-compare {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   margin-bottom: 28px;
+}
+
+/* Com tres cartoes a 1160px de container sobram ~340px cada, e a lista de
+   features comeca a quebrar em todas as linhas. Abaixo de 1024 empilha. */
+@media (max-width: 1023px) {
+  .pricing-compare { grid-template-columns: 1fr; }
 }
 
 .col-standard {
   background: var(--surface);
-  padding: 40px 36px;
+  padding: 32px 26px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   display: flex;
@@ -2291,13 +2297,56 @@ h1.hero-headline em {
 
 .col-vip {
   background: #0f1024;
-  padding: 40px 36px;
+  padding: 32px 26px;
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(53,60,221,0.25);
   display: flex;
   flex-direction: column;
+}
+
+/* O Plus passa a ser o cartao de topo entre os que se podem comprar, por
+   isso herda o tratamento visual que era do VIP. */
+.col-plus {
+  background: #0f1024;
+  padding: 32px 26px;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,105,0,0.30);
+  display: flex;
+  flex-direction: column;
+}
+
+/* VIP esgotado: fica na grelha porque mostra o que o Plus nao inclui, mas
+   sem preco e com o botao inerte. */
+.col-vip.esgotado {
+  background: var(--surface);
+  border: 1px dashed var(--border);
+}
+.col-vip.esgotado .plan-name,
+.col-vip.esgotado .plan-sub,
+.col-vip.esgotado .pricing-features { opacity: 0.45; }
+
+.plan-esgotado {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f87171;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.plan-esgotado-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.pricing-btn.esgotado {
+  pointer-events: none;
+  opacity: 0.35;
 }
 .col-vip::before {
   content: '';
@@ -2397,7 +2446,8 @@ h1.hero-headline em {
   display: inline-block;
 }
 .col-standard .plan-price .euro { color: var(--text-muted); }
-.col-vip .plan-price .euro { color: rgba(255,255,255,0.7); }
+.col-vip .plan-price .euro,
+.col-plus .plan-price .euro { color: rgba(255,255,255,0.7); }
 
 .plan-price .amount {
   font-family: 'Bricolage Grotesque', sans-serif;
@@ -2406,7 +2456,8 @@ h1.hero-headline em {
   line-height: 1;
 }
 .col-standard .plan-price .amount { color: var(--text); }
-.col-vip .plan-price .amount { color: #fff; }
+.col-vip .plan-price .amount,
+.col-plus .plan-price .amount { color: #fff; }
 
 .plan-price .iva {
   font-size: 0.78rem;
@@ -3122,7 +3173,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
           <div class="hero-urgency sold-out">
             <span class="urgency-pulse"></span>
-            <span>Lote 1 VIP · ESGOTADO</span>
+            <span>VIP · ESGOTADO</span>
           </div>
           <a href="#investimento" class="hero-ver-lugares">Ver lugares disponíveis →</a>
           <div class="hero-urgency" id="hero-urgency-std">
@@ -3804,19 +3855,48 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         </div>
         </div><!-- /pricing-col-wrapper standard -->
 
-        <!-- VIP -->
+        <!-- PLUS -->
         <div class="pricing-col-wrapper">
-        <div class="pricing-phase-banner lote2 fade-up" id="phase-banner-vip"></div>
-        <div class="col-vip">
-          <span class="col-badge">✦ Experiência Completa</span>
-          <div class="plan-name">VIP</div>
-          <p class="plan-sub">Para quem quer o máximo do evento e da rede.</p>
+        <div class="pricing-phase-banner lote2 fade-up" id="phase-banner-plus"></div>
+        <div class="col-plus">
+          <span class="col-badge">✦ Mais escolhido</span>
+          <div class="plan-name">Plus</div>
+          <p class="plan-sub">Para quem quer a experiência completa do dia.</p>
 
           <div class="plan-early-tag"><span class="dot"></span> Early Bird</div>
           <div class="plan-price">
-            <span class="euro">€</span><span class="amount" id="price-vip">417</span><span class="iva"> + IVA</span>
+            <span class="euro">€</span><span class="amount" id="price-plus">417</span><span class="iva"> + IVA</span>
           </div>
-          <p class="plan-normal" id="normal-vip">🔒 Este é já o preço final</p>
+          <p class="plan-normal" id="normal-plus">🔒 Este é já o preço final</p>
+
+          <ul class="pricing-features">
+            <li class="on"><span class="check">✓</span> 1 dia de imersão presencial intensiva</li>
+            <li class="on"><span class="check">✓</span> Framework para sair da guerra de preços</li>
+            <li class="on"><span class="check">✓</span> Análise personalizada da tua jornada de cliente</li>
+            <li class="on"><span class="check">✓</span> Networking com empresários e decisores</li>
+            <li class="on"><span class="check">✓</span> Sessão de Q&amp;A</li>
+            <li class="on"><span class="check">✓</span> Coffee breaks incluídos</li>
+            <div class="feat-divider"></div>
+            <li class="off"><span class="check">✕</span> Almoço exclusivo de networking</li>
+            <li class="hot"><span class="check">🔥</span> Lugar privilegiado nas primeiras filas</li>
+            <li class="hot"><span class="check">🔥</span> Cocktail exclusivo pós-evento</li>
+            <li class="hot"><span class="check">🔥</span> Gravação completa do evento</li>
+          </ul>
+
+          <a href="#" id="cta-plus" class="btn btn-primary pricing-btn">Garantir lugar Plus →</a>
+        </div>
+        </div><!-- /pricing-col-wrapper plus -->
+
+        <!-- VIP -->
+        <div class="pricing-col-wrapper">
+        <div class="pricing-phase-banner lote2 fade-up" id="phase-banner-vip"></div>
+        <div class="col-vip esgotado">
+          <span class="col-badge-grey">Esgotado</span>
+          <div class="plan-name">VIP</div>
+          <p class="plan-sub">Incluía o almoço exclusivo de networking.</p>
+
+          <div class="plan-esgotado">Esgotado</div>
+          <p class="plan-esgotado-sub">Já não há lugares VIP disponíveis.</p>
 
           <ul class="pricing-features">
             <li class="on"><span class="check">✓</span> 1 dia de imersão presencial intensiva</li>
@@ -3832,7 +3912,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
             <li class="hot"><span class="check">🔥</span> Gravação completa do evento</li>
           </ul>
 
-          <a href="#" id="cta-vip" class="btn btn-primary pricing-btn">Garantir lugar VIP →</a>
+          <span class="btn btn-ghost pricing-btn esgotado" aria-disabled="true">Esgotado</span>
         </div>
         </div><!-- /pricing-col-wrapper vip -->
 
@@ -3861,7 +3941,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
             <tr>
               <th>Fase</th>
               <th>Standard</th>
-              <th>VIP</th>
+              <th>Plus</th>
               <th>Estado</th>
             </tr>
           </thead>
@@ -3952,13 +4032,15 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 const CONFIG = {
   FASE_ATIVA: 'lote2',         // 'lote1' | 'lote2'
   PERCENTAGEM_VENDIDA: 82,     // % Standard já garantidos (0-100)
-  PERCENTAGEM_VIP: 92,         // % VIP já garantidos (0-100)
 };
 
 // { <fase> : { standard: <preço bilhete Standard>, vip: <preço bilhete VIP> } }
+// O Plus entra no Lote 2 com o valor a que o VIP estava a ser vendido. O VIP
+// esgotou e o preço dele deixa de aparecer em qualquer sitio da página, por
+// isso sai daqui: o único stio que ainda o lia era a tabela de fases.
 const PRECOS = {
-  lote1: { standard: 247, vip: 417 },
-  lote2: { standard: 317, vip: 417 },
+  lote1: { standard: 247 },
+  lote2: { standard: 317, plus: 417 },
 };
 
 const LABELS_FASE = {
@@ -3966,9 +4048,13 @@ const LABELS_FASE = {
   lote2: 'Lote 2',
 };
 
+// O Plus tem payment link próprio. O do VIP saiu daqui de vez: o VIP está
+// esgotado e o botão dele já não é um link, por isso desactivá-lo no Stripe
+// não parte nada nesta página.
 const LINKS = {
-  lote1: { standard: 'https://buy.stripe.com/28E4gy1PDabXbtc1Pp5Vu0d', vip: 'https://buy.stripe.com/7sY14m1PD3Nz0OyalV5Vu0e' },
-  lote2: { standard: 'https://buy.stripe.com/28E4gy1PDabXbtc1Pp5Vu0d', vip: 'https://buy.stripe.com/7sY14m1PD3Nz0OyalV5Vu0e' },
+  lote1: { standard: 'https://buy.stripe.com/28E4gy1PDabXbtc1Pp5Vu0d' },
+  lote2: { standard: 'https://buy.stripe.com/28E4gy1PDabXbtc1Pp5Vu0d',
+           plus:     'https://buy.stripe.com/9B600ifGtck57cW3Xx5Vu0r' },
 };
 
 // ============================================
@@ -3981,14 +4067,14 @@ function initPricing() {
 
   // Prices
   document.getElementById('price-standard').textContent = precos.standard;
-  document.getElementById('price-vip').textContent = precos.vip;
+  document.getElementById('price-plus').textContent = precos.plus;
 
   // Linha sob o preço: no Lote 1 anuncia a subida, no Lote 2 mostra o preço anterior
   document.getElementById('normal-standard').innerHTML =
     fase === 'lote1'
       ? `Sobe para €${PRECOS.lote2.standard} no Lote 2`
       : `Preço do Lote 1: <s>€${PRECOS.lote1.standard}</s>`;
-  document.getElementById('normal-vip').innerHTML = '🔒 Este é já o preço final';
+  document.getElementById('normal-plus').innerHTML = '🔒 Este é já o preço final';
 
   // Early Bird tag — sempre oculto (fase removida)
   document.querySelectorAll('.plan-early-tag').forEach(el => {
@@ -3997,15 +4083,18 @@ function initPricing() {
 
   // CTAs
   document.getElementById('cta-standard').href = LINKS[fase].standard;
-  document.getElementById('cta-vip').href = LINKS[fase].vip;
+  // O VIP esgotou e o botão dele já nem é um link, por isso só o Plus.
+  document.getElementById('cta-plus').href = LINKS[fase].plus;
 
   // Phase banners (per card)
   const bannerStd = document.getElementById('phase-banner-standard');
+  const bannerPlus = document.getElementById('phase-banner-plus');
   const bannerVip = document.getElementById('phase-banner-vip');
   bannerStd.textContent = fase === 'lote1'
     ? 'LOTE 1 — Lugares ainda disponíveis · Preço sobe no Lote 2'
     : 'LOTE 2 — Lote 1 esgotado · Últimos lugares disponíveis';
-  bannerVip.textContent = 'LOTE 2 — Vagas VIP ' + CONFIG.PERCENTAGEM_VIP + '% preenchidas';
+  bannerPlus.textContent = 'LOTE 2 — Últimos lugares disponíveis';
+  bannerVip.textContent = 'VIP — ESGOTADO';
 
   // Hero urgency text + form badge
   const urgencyText = LABELS_FASE[fase] + ' · Standard · ' + pct + '% preenchido';
@@ -4052,7 +4141,7 @@ function initPricing() {
     tr.innerHTML = `
       <td>${LABELS_FASE[p]}</td>
       <td>€${PRECOS[p].standard}</td>
-      <td>€${PRECOS[p].vip}</td>
+      <td>${PRECOS[p].plus ? '€' + PRECOS[p].plus : '—'}</td>
       <td>${statusHtml}</td>
     `;
     tbody.appendChild(tr);
@@ -4191,24 +4280,24 @@ document.getElementById('lead-form').addEventListener('submit', function() {
 
 // InitiateCheckout — clique nos botões Stripe
 (function() {
-  ['cta-standard', 'cta-vip'].forEach(function(id) {
+  ['cta-standard', 'cta-plus'].forEach(function(id) {
     var el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('click', function() {
-      var tipo = id === 'cta-standard' ? 'standard' : 'vip';
+      var tipo = id === 'cta-standard' ? 'standard' : 'plus';
       var valor = PRECOS[CONFIG.FASE_ATIVA][tipo];
       if (typeof fbq !== 'undefined') {
         fbq('track', 'InitiateCheckout', {
           value: valor,
           currency: 'EUR',
-          content_name: tipo === 'standard' ? 'Bilhete Standard' : 'Bilhete VIP'
+          content_name: tipo === 'standard' ? 'Bilhete Standard' : 'Bilhete Plus'
         });
       }
       if (typeof gtag !== 'undefined') {
         gtag('event', 'begin_checkout', {
           value: valor,
           currency: 'EUR',
-          items: [{ item_name: tipo === 'standard' ? 'Bilhete Standard' : 'Bilhete VIP', price: valor }]
+          items: [{ item_name: tipo === 'standard' ? 'Bilhete Standard' : 'Bilhete Plus', price: valor }]
         });
       }
     });
