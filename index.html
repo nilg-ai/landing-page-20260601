@@ -3867,7 +3867,6 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
           <div class="plan-price">
             <span class="euro">€</span><span class="amount" id="price-plus">417</span><span class="iva"> + IVA</span>
           </div>
-          <p class="plan-normal" id="normal-plus">🔒 Este é já o preço final</p>
 
           <ul class="pricing-features">
             <li class="on"><span class="check">✓</span> 1 dia de imersão presencial intensiva</li>
@@ -4074,7 +4073,6 @@ function initPricing() {
     fase === 'lote1'
       ? `Sobe para €${PRECOS.lote2.standard} no Lote 2`
       : `Preço do Lote 1: <s>€${PRECOS.lote1.standard}</s>`;
-  document.getElementById('normal-plus').innerHTML = '🔒 Este é já o preço final';
 
   // Early Bird tag — sempre oculto (fase removida)
   document.querySelectorAll('.plan-early-tag').forEach(el => {
