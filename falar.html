@@ -107,6 +107,7 @@ h1 {
   color: var(--text-muted);
   line-height: 1.5;
 }
+.nota a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
 /* ---- estado: em chamada ---- */
 .ondas { display: none; justify-content: center; gap: 5px; height: 46px; align-items: center; margin-bottom: 20px; }
@@ -179,7 +180,9 @@ body.em-chamada #agente { opacity: 1; pointer-events: auto; }
   </button>
 
   <p class="nota" id="nota" style="display:none">
-    Vais precisar de dar acesso ao microfone.
+    Falas com um assistente de intelig&ecirc;ncia artificial, n&atilde;o com uma pessoa.
+    A conversa &eacute; gravada e transcrita. Vais precisar de dar acesso ao microfone.<br>
+    <a href="https://nilg.ai/privacy-policy/" target="_blank" rel="noopener">Como tratamos os teus dados</a>
   </p>
 
   <div id="agente">
@@ -257,8 +260,11 @@ body.em-chamada #agente { opacity: 1; pointer-events: auto; }
         ? '\nO QUE JÁ SABEMOS DELA:\n' + d.briefing +
           '\n\nCOMO USAR: entra a demonstrar que percebeste o negócio dela, com uma frase ' +
           'curta e concreta, e põe logo uma hipótese de dor comercial em cima da mesa em ' +
-          'forma de pergunta. Nunca leias isto em voz alta nem digas que consultaste ficha ' +
-          'nenhuma: usa-o como quem já conhece o setor. Se ela te corrigir, o que ela diz manda.'
+          'forma de pergunta. Não leias isto em voz alta como uma lista. Se ela perguntar ' +
+          'como sabes, diz a verdade sem rodeios: ficou registado quando ela deixou os dados ' +
+          'no formulário, e o resto é informação pública da empresa. Nunca negues que ' +
+          'temos ficha dela nem finjas que não consultaste nada. Se ela te corrigir, o que ' +
+          'ela diz manda.'
         : '\nAinda não sabemos quase nada do negócio dela. Descobre na conversa o que fazem, ' +
           'a quem vendem e o que trava as vendas, antes de falares do evento.');
 
@@ -275,7 +281,8 @@ body.em-chamada #agente { opacity: 1; pointer-events: auto; }
     }));
 
     host.setAttribute('override-first-message',
-      'Olá ' + nome + ', tudo bem? Sou o gémeo digital do André Sousa, da NILG.AI. ' +
+      'Olá ' + nome + ', tudo bem? Sou um assistente de inteligência artificial da ' +
+      'NILG.AI, não uma pessoa, e falo em nome do André Sousa. ' +
       'Foi a minha mensagem que recebeste no WhatsApp' +
       (empresa ? ', e já vi aqui o que faz a ' + empresa : '') +
       '. Posso ir directo ao assunto?');

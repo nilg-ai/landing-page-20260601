@@ -3053,6 +3053,7 @@ html.voz-em-chamada #agente-voz-float elevenlabs-convai {
   line-height: 1.45;
 }
 .voz-consent input { margin-top: 3px; }
+.voz-consent a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
 
 .voz-acoes { display: flex; gap: 12px; align-items: center; }
 .voz-acoes .btn {
@@ -4795,7 +4796,7 @@ function playVideo(id) {
 
     <div class="form-urgency-badge" style="margin-bottom:20px">
       <span class="dot"></span>
-      <span id="voz-urgency-text">O agente atende em segundos. Vais precisar de dar acesso ao microfone.</span>
+      <span id="voz-urgency-text">Falas com um assistente de intelig&ecirc;ncia artificial. A conversa &eacute; gravada e vais precisar de dar acesso ao microfone.</span>
     </div>
 
     <h3 id="voz-titulo">Antes de falares com o agente</h3>
@@ -4836,7 +4837,12 @@ function playVideo(id) {
 
       <label class="voz-consent">
         <input type="checkbox" id="vf-consent" required>
-        <span>Aceito receber comunica&ccedil;&otilde;es sobre este evento e outros conte&uacute;dos relevantes. Posso cancelar a qualquer momento.</span>
+        <span>Percebi que vou falar com um assistente de intelig&ecirc;ncia artificial, e n&atilde;o com uma pessoa, e que a conversa &eacute; gravada e transcrita. Ver <a href="https://nilg.ai/privacy-policy/" target="_blank" rel="noopener">como tratamos os teus dados</a>.</span>
+      </label>
+
+      <label class="voz-consent">
+        <input type="checkbox" id="vf-marketing">
+        <span>Aceito receber comunica&ccedil;&otilde;es sobre este evento e outros conte&uacute;dos relevantes. Posso cancelar a qualquer momento. <em>(opcional)</em></span>
       </label>
 
       <div class="voz-acoes">
@@ -5030,12 +5036,16 @@ function playVideo(id) {
             ? '\nO QUE J\u00c1 SABEMOS DELA:\n' + d.briefing +
               '\n\nCOMO USAR: entra a demonstrar que percebeste o neg\u00f3cio dela, com uma frase ' +
               'curta e concreta, e p\u00f5e logo uma hip\u00f3tese de dor comercial em cima da mesa em ' +
-              'forma de pergunta. Nunca leias isto em voz alta nem digas que consultaste ficha ' +
-              'nenhuma: usa-o como quem j\u00e1 conhece o setor. Se ela te corrigir, o que ela diz manda.'
+              'forma de pergunta. N\u00e3o leias isto em voz alta como uma lista. Se ela perguntar ' +
+              'como sabes, diz a verdade sem rodeios: ficou registado quando ela deixou os dados ' +
+              'no formul\u00e1rio, e o resto \u00e9 informa\u00e7\u00e3o p\u00fablica da empresa. Nunca negues ' +
+              'que temos ficha dela nem finjas que n\u00e3o consultaste nada. Se ela te corrigir, ' +
+              'o que ela diz manda.'
             : '\nAinda n\u00e3o sabemos quase nada do neg\u00f3cio dela. Descobre na conversa o que fazem, ' +
               'a quem vendem e o que trava as vendas, antes de falares do evento.');
 
-        d.saudacao = 'Ol\u00e1 ' + nome + ', tudo bem? Sou o g\u00e9meo digital do Andr\u00e9 Sousa, da NILG.AI. ' +
+        d.saudacao = 'Ol\u00e1 ' + nome + ', tudo bem? Sou um assistente de intelig\u00eancia ' +
+          'artificial da NILG.AI, n\u00e3o uma pessoa, e falo em nome do Andr\u00e9 Sousa. ' +
           'Foi a minha mensagem que recebeste no WhatsApp' +
           (empresa ? ', e j\u00e1 vi aqui o que faz a ' + empresa : '') +
           '. Posso ir directo ao assunto?';
@@ -5272,8 +5282,10 @@ function playVideo(id) {
             briefing + '\n' +
             '\nCOMO USAR: entra a demonstrar que percebeste o neg\u00f3cio dela, com uma frase curta e ' +
             'concreta, e p\u00f5e logo uma hip\u00f3tese de dor comercial em cima da mesa em forma de ' +
-            'pergunta. Nunca leias o levantamento em voz alta nem digas que investigaste a empresa: ' +
-            'usa-o como quem j\u00e1 conhece o setor. Se ela te corrigir, o que ela diz manda. S\u00f3 ' +
+            'pergunta. N\u00e3o leias o levantamento em voz alta como uma lista. Se ela perguntar ' +
+            'como sabes, diz a verdade sem rodeios: parte foi ela que deixou no formul\u00e1rio e o ' +
+            'resto \u00e9 informa\u00e7\u00e3o p\u00fablica da empresa. Nunca negues que investigaste. Se ela ' +
+            'te corrigir, o que ela diz manda. S\u00f3 ' +
             'depois de a dor estar confirmada fazes a ponte para o evento e para o plano ' +
             'personalizado que ela leva no fim do dia.'
           : '\nN\u00e3o houve tempo de investigar a empresa. Descobre na conversa o que fazem, a quem ' +
@@ -5303,8 +5315,9 @@ function playVideo(id) {
       // Aqui a pessoa ja se identificou, por isso trocamos por uma de site,
       // com o nome escrito por extenso e sem variaveis de template nenhumas.
       host.setAttribute('override-first-message',
-        'Ol\u00e1 ' + primeiro + ', tudo bem? Sou o assistente virtual do Andr\u00e9 Sousa, da ' +
-        'NILG.AI. Vi aqui o que me deixaste sobre a ' + empresa + ' \u2014 posso ir directo ao assunto?');
+        'Ol\u00e1 ' + primeiro + ', tudo bem? Sou um assistente de intelig\u00eancia artificial da ' +
+        'NILG.AI, n\u00e3o uma pessoa, e falo em nome do Andr\u00e9 Sousa. Vi aqui o que me deixaste ' +
+        'sobre a ' + empresa + ' \u2014 posso ir directo ao assunto?');
 
       contextoPronto = true;
       botaoOk.disabled = false;
