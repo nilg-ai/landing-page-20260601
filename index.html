@@ -5066,6 +5066,18 @@ function playVideo(id) {
         var empresa = d.lead_company || '';
 
         d.contexto =
+          'A saudação já foi dita antes de tu falares. Não te voltes a apresentar nem repitas ' +
+          'quem és: uma só apresentação, e segues para o negócio dela.\n' +
+          'COMO TE IDENTIFICAS EM MENSAGENS: qualquer WhatsApp, email ou SMS que envies sai de ' +
+          'um número da equipa, não do telemóvel do André. Assinas sempre como agente de IA da ' +
+          'NILG.AI. Nunca te apresentes como o André, como gémeo digital dele, nem como pessoa.\n' +
+          'O QUE ELA LEVA (usa quando fizeres a ponte para o evento): "Sais no fim do dia com a ' +
+          'tua própria jornada de cliente redesenhada, desde o momento em que a lead descobre a ' +
+          'tua empresa, passando pela decisão de compra e experiência como cliente, até ao ' +
+          'momento em que recomenda a tua marca a outros." Diz isto nas palavras do negócio ' +
+          'dela: troca "a tua empresa" pelo nome real quando o souberes, e "lead" pela palavra ' +
+          'do setor (aluno numa escola, doente numa clínica, hóspede num hotel, consumidor no ' +
+          'retalho). Sem dados para personalizar, diz como está.\n' +
           'CANAL: a lead veio do link que recebeu por WhatsApp, depois de preencher o ' +
           'formul\u00e1rio do an\u00fancio. J\u00e1 se identificou, j\u00e1 sabe que fala com uma IA e est\u00e1 ' +
           '\u00e0 espera que atendas. N\u00e3o perguntes se falas com ela nem se tem dois minutos: ' +
@@ -5088,11 +5100,8 @@ function playVideo(id) {
             : '\nAinda n\u00e3o sabemos quase nada do neg\u00f3cio dela. Descobre na conversa o que fazem, ' +
               'a quem vendem e o que trava as vendas, antes de falares do evento.');
 
-        d.saudacao = 'Ol\u00e1 ' + nome + ', tudo bem? Sou um assistente de intelig\u00eancia ' +
-          'artificial da NILG.AI, n\u00e3o uma pessoa, e falo em nome do Andr\u00e9 Sousa. ' +
-          'Foi a minha mensagem que recebeste no WhatsApp' +
-          (empresa ? ', e j\u00e1 vi aqui o que faz a ' + empresa : '') +
-          '. Posso ir directo ao assunto?';
+        d.saudacao = 'Ol\u00e1 ' + nome + ', sou o agente de IA da NILG.AI. ' +
+          'Posso ir directo ao assunto?';
 
         leadDoLink = d;
 
@@ -5373,6 +5382,18 @@ function playVideo(id) {
       var setor    = (res && res.setor) || 'n\u00e3o indicado';
 
       var contexto =
+        'A saudação já foi dita antes de tu falares. Não te voltes a apresentar nem repitas ' +
+        'quem és: uma só apresentação, e segues para o negócio dela.\n' +
+        'COMO TE IDENTIFICAS EM MENSAGENS: qualquer WhatsApp, email ou SMS que envies sai de ' +
+        'um número da equipa, não do telemóvel do André. Assinas sempre como agente de IA da ' +
+        'NILG.AI. Nunca te apresentes como o André, como gémeo digital dele, nem como pessoa.\n' +
+        'O QUE ELA LEVA (usa quando fizeres a ponte para o evento): "Sais no fim do dia com a ' +
+        'tua própria jornada de cliente redesenhada, desde o momento em que a lead descobre a ' +
+        'tua empresa, passando pela decisão de compra e experiência como cliente, até ao ' +
+        'momento em que recomenda a tua marca a outros." Diz isto nas palavras do negócio ' +
+        'dela: troca "a tua empresa" pelo nome real quando o souberes, e "lead" pela palavra ' +
+        'do setor (aluno numa escola, doente numa clínica, hóspede num hotel, consumidor no ' +
+        'retalho). Sem dados para personalizar, diz como está.\n' +
         'CANAL: widget de voz do site. A lead carregou no bot\u00e3o, deixou os dados e est\u00e1 ' +
         '\u00e0 espera que atendas. J\u00e1 sabe que fala com uma IA. N\u00e3o perguntes se tem dois ' +
         'minutos nem confirmes se falas com a pessoa certa: cumprimenta pelo nome e vai ao ' +
@@ -5391,8 +5412,7 @@ function playVideo(id) {
             'como sabes, diz a verdade sem rodeios: parte foi ela que deixou no formul\u00e1rio e o ' +
             'resto \u00e9 informa\u00e7\u00e3o p\u00fablica da empresa. Nunca negues que investigaste. Se ela ' +
             'te corrigir, o que ela diz manda. S\u00f3 ' +
-            'depois de a dor estar confirmada fazes a ponte para o evento e para o plano ' +
-            'personalizado que ela leva no fim do dia.'
+            'depois de a dor estar confirmada fazes a ponte para o evento.'
           : '\nN\u00e3o houve tempo de investigar a empresa. Descobre na conversa o que fazem, a quem ' +
             'vendem e o que trava as vendas, antes de falares do evento.') + '\n' +
         'Tens o email e o telem\u00f3vel acima: usa-os nas tools de envio, sem os voltar a pedir. ' +
@@ -5420,9 +5440,8 @@ function playVideo(id) {
       // Aqui a pessoa ja se identificou, por isso trocamos por uma de site,
       // com o nome escrito por extenso e sem variaveis de template nenhumas.
       host.setAttribute('override-first-message',
-        'Ol\u00e1 ' + primeiro + ', tudo bem? Sou um assistente de intelig\u00eancia artificial da ' +
-        'NILG.AI, n\u00e3o uma pessoa, e falo em nome do Andr\u00e9 Sousa. Vi aqui o que me deixaste ' +
-        'sobre a ' + empresa + ' \u2014 posso ir directo ao assunto?');
+        'Ol\u00e1 ' + primeiro + ', sou o agente de IA da NILG.AI. ' +
+        'Posso ir directo ao assunto?');
 
       contextoPronto = true;
       botaoOk.disabled = false;

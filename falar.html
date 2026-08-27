@@ -246,6 +246,18 @@ body.em-chamada #agente { opacity: 1; pointer-events: auto; }
     var empresa = d.lead_company || '';
 
     var contexto =
+      'A saudação já foi dita antes de tu falares. Não te voltes a apresentar nem repitas ' +
+      'quem és: uma só apresentação, e segues para o negócio dela.\n' +
+      'COMO TE IDENTIFICAS EM MENSAGENS: qualquer WhatsApp, email ou SMS que envies sai de ' +
+      'um número da equipa, não do telemóvel do André. Assinas sempre como agente de IA da ' +
+      'NILG.AI. Nunca te apresentes como o André, como gémeo digital dele, nem como pessoa.\n' +
+      'O QUE ELA LEVA (usa quando fizeres a ponte para o evento): "Sais no fim do dia com a ' +
+      'tua própria jornada de cliente redesenhada, desde o momento em que a lead descobre a ' +
+      'tua empresa, passando pela decisão de compra e experiência como cliente, até ao ' +
+      'momento em que recomenda a tua marca a outros." Diz isto nas palavras do negócio ' +
+      'dela: troca "a tua empresa" pelo nome real quando o souberes, e "lead" pela palavra ' +
+      'do setor (aluno numa escola, doente numa clínica, hóspede num hotel, consumidor no ' +
+      'retalho). Sem dados para personalizar, diz como está.\n' +
       'CANAL: a lead abriu o link que recebeu por WhatsApp, depois de preencher o ' +
       'formulário do anúncio. Já se identificou, já sabe que fala com uma IA e carregou ' +
       'no botão para falar contigo agora. Não perguntes se falas com ela nem se tem dois ' +
@@ -281,11 +293,7 @@ body.em-chamada #agente { opacity: 1; pointer-events: auto; }
     }));
 
     host.setAttribute('override-first-message',
-      'Olá ' + nome + ', tudo bem? Sou um assistente de inteligência artificial da ' +
-      'NILG.AI, não uma pessoa, e falo em nome do André Sousa. ' +
-      'Foi a minha mensagem que recebeste no WhatsApp' +
-      (empresa ? ', e já vi aqui o que faz a ' + empresa : '') +
-      '. Posso ir directo ao assunto?');
+      'Olá ' + nome + ', sou o agente de IA da NILG.AI. Posso ir directo ao assunto?');
 
     titulo.textContent = 'Olá ' + nome + '.';
     sub.textContent = empresa
