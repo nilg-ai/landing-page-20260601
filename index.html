@@ -3054,6 +3054,28 @@ html.voz-em-chamada #agente-voz-float elevenlabs-convai {
 }
 .voz-consent input { margin-top: 3px; }
 .voz-consent a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+.voz-consent.erro > span { color: var(--accent); }
+.campo-erro {
+  display: none;
+  margin: 6px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--accent);
+}
+.campo-erro.visivel { display: block; }
+/* Nota informativa, nao um alerta: o cracha laranja de urgencia fazia isto
+   parecer um erro de preenchimento. */
+.voz-aviso {
+  margin: 0 0 20px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+.voz-card .campo-invalido { border-color: var(--accent); }
 
 .voz-acoes { display: flex; gap: 12px; align-items: center; }
 .voz-acoes .btn {
@@ -4794,27 +4816,30 @@ function playVideo(id) {
   <div class="voz-card">
     <button type="button" class="voz-fechar" id="voz-fechar" aria-label="Fechar">&times;</button>
 
-    <div class="form-urgency-badge" style="margin-bottom:20px">
-      <span class="dot"></span>
-      <span id="voz-urgency-text">Falas com um assistente de intelig&ecirc;ncia artificial. A conversa &eacute; gravada e vais precisar de dar acesso ao microfone.</span>
-    </div>
+    <p class="voz-aviso" id="voz-urgency-text">
+      Ir&aacute;s falar com um assistente de intelig&ecirc;ncia artificial. A conversa &eacute;
+      gravada e transcrita, e vais precisar de dar acesso ao microfone.
+    </p>
 
     <h3 id="voz-titulo">Antes de falares com o agente</h3>
-    <p class="voz-sub">Deixa-nos os teus dados. O agente entra na conversa j&aacute; a saber quem &eacute;s e o que a tua empresa faz.</p>
+    <p class="voz-sub">Deixa-nos os teus dados para come&ccedil;armos.</p>
 
     <form id="voz-form" novalidate>
       <div class="form-grid">
         <div class="form-group">
           <label for="vf-nome">Nome completo *</label>
           <input type="text" id="vf-nome" placeholder="O teu nome" required>
+          <p class="campo-erro" id="e-vf-nome" role="alert"></p>
         </div>
         <div class="form-group">
           <label for="vf-email">Email profissional *</label>
           <input type="email" id="vf-email" placeholder="o.teu@empresa.pt" required>
+          <p class="campo-erro" id="e-vf-email" role="alert"></p>
         </div>
         <div class="form-group">
           <label for="vf-empresa">Nome da empresa *</label>
           <input type="text" id="vf-empresa" placeholder="Nome da tua empresa" required>
+          <p class="campo-erro" id="e-vf-empresa" role="alert"></p>
         </div>
         <div class="form-group">
           <label for="vf-tel">Telem&oacute;vel *</label>
@@ -4832,6 +4857,7 @@ function playVideo(id) {
             </select>
             <input type="tel" id="vf-tel" placeholder="9xx xxx xxx" required>
           </div>
+          <p class="campo-erro" id="e-vf-tel" role="alert"></p>
         </div>
       </div>
 
@@ -4839,14 +4865,15 @@ function playVideo(id) {
         <input type="checkbox" id="vf-consent" required>
         <span>Percebi que vou falar com um assistente de intelig&ecirc;ncia artificial, e n&atilde;o com uma pessoa, e que a conversa &eacute; gravada e transcrita. Ver <a href="https://nilg.ai/privacy-policy/" target="_blank" rel="noopener">como tratamos os teus dados</a>.</span>
       </label>
+      <p class="campo-erro" id="e-vf-consent" role="alert"></p>
 
       <label class="voz-consent">
-        <input type="checkbox" id="vf-marketing">
-        <span>Aceito receber comunica&ccedil;&otilde;es sobre este evento e outros conte&uacute;dos relevantes. Posso cancelar a qualquer momento. <em>(opcional)</em></span>
+        <input type="checkbox" id="vf-marketing" required>
+        <span>Autorizo a NILG.AI a contactar-me sobre a Imers&atilde;o IA e a enviar-me conte&uacute;dos relacionados, pelos contactos que deixei aqui. Posso cancelar a qualquer momento.</span>
       </label>
+      <p class="campo-erro" id="e-vf-marketing" role="alert"></p>
 
       <div class="voz-acoes">
-        <button type="button" class="voz-cancelar" id="voz-cancelar">Agora n&atilde;o</button>
         <button type="submit" class="btn btn-primary" id="voz-submeter">Falar com o agente &rarr;</button>
       </div>
       <p class="voz-nota" id="voz-erro" style="display:none;color:var(--accent)"></p>
@@ -5183,7 +5210,9 @@ function playVideo(id) {
     erroEl.style.display = 'none';
   }
   document.getElementById('voz-fechar').addEventListener('click', fechar);
-  document.getElementById('voz-cancelar').addEventListener('click', fechar);
+  // o "Agora nao" saiu: fechar e o X no canto
+  var btCancelar = document.getElementById('voz-cancelar');
+  if (btCancelar) btCancelar.addEventListener('click', fechar);
   modal.addEventListener('click', function (e) { if (e.target === modal) fechar(); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && modal.classList.contains('aberto')) fechar();
@@ -5226,6 +5255,48 @@ function playVideo(id) {
     document.getElementById(id).addEventListener('blur', arrancarCedo);
   });
 
+  // ============================================
+  // ERROS JUNTO AO CAMPO QUE OS GERA
+  // Um unico aviso no fundo do formulario obrigava a pessoa a adivinhar qual
+  // dos campos estava mal -- e no caso das caixas nem sequer dizia que faltava
+  // marcar uma. Cada campo passa a ter o seu slot.
+  // ============================================
+  var CAMPOS_OBRIG = ['vf-nome', 'vf-email', 'vf-empresa', 'vf-tel', 'vf-consent', 'vf-marketing'];
+
+  function limparErro(id) {
+    var slot = document.getElementById('e-' + id);
+    var campo = document.getElementById(id);
+    if (slot) { slot.textContent = ''; slot.classList.remove('visivel'); }
+    if (campo) {
+      campo.classList.remove('campo-invalido');
+      campo.removeAttribute('aria-invalid');
+      var etiqueta = campo.closest ? campo.closest('.voz-consent') : null;
+      if (etiqueta) etiqueta.classList.remove('erro');
+    }
+  }
+
+  function porErro(id, texto) {
+    var slot = document.getElementById('e-' + id);
+    var campo = document.getElementById(id);
+    if (slot) { slot.textContent = texto; slot.classList.add('visivel'); }
+    if (campo) {
+      campo.setAttribute('aria-invalid', 'true');
+      if (campo.type !== 'checkbox') campo.classList.add('campo-invalido');
+      var etiqueta = campo.closest ? campo.closest('.voz-consent') : null;
+      if (etiqueta) etiqueta.classList.add('erro');
+    }
+  }
+
+  // o erro desaparece assim que a pessoa mexe no campo, e nao so na proxima
+  // tentativa de submeter
+  CAMPOS_OBRIG.forEach(function (id) {
+    var campo = document.getElementById(id);
+    if (!campo) return;
+    campo.addEventListener(campo.type === 'checkbox' ? 'change' : 'input', function () {
+      limparErro(id);
+    });
+  });
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -5233,24 +5304,41 @@ function playVideo(id) {
     var email   = val('vf-email');
     var empresa = val('vf-empresa');
     var tel     = val('vf-tel');
-    var ok      = document.getElementById('vf-consent').checked;
-
-    if (!nome || !email || !empresa || !tel || !ok) {
-      erroEl.textContent = 'Falta preencher os campos obrigat\u00f3rios.';
-      erroEl.style.display = 'block';
-      return;
-    }
-    if (email.indexOf('@') < 1 || email.indexOf('.') < 0) {
-      erroEl.textContent = 'Confirma o email, parece estar incompleto.';
-      erroEl.style.display = 'block';
-      return;
-    }
-    if (!ehEmailProfissional(email)) {
-      erroEl.textContent = 'Usa o teu email profissional, não uma conta pessoal (Gmail, Hotmail, etc.).';
-      erroEl.style.display = 'block';
-      return;
-    }
     erroEl.style.display = 'none';
+    CAMPOS_OBRIG.forEach(limparErro);
+
+    var primeiroMau = null;
+    function falha(id, texto) {
+      porErro(id, texto);
+      if (!primeiroMau) primeiroMau = id;
+    }
+
+    if (!nome) falha('vf-nome', 'Escreve o teu nome.');
+    if (!empresa) falha('vf-empresa', 'Escreve o nome da tua empresa.');
+    if (!tel) falha('vf-tel', 'Escreve o teu telemóvel.');
+
+    if (!email) {
+      falha('vf-email', 'Escreve o teu email profissional.');
+    } else if (email.indexOf('@') < 1 || email.indexOf('.') < 0) {
+      falha('vf-email', 'Confirma o email, parece estar incompleto.');
+    } else if (!ehEmailProfissional(email)) {
+      falha('vf-email', 'Usa o teu email profissional, não uma conta pessoal (Gmail, Hotmail, etc.).');
+    }
+
+    if (!document.getElementById('vf-consent').checked) {
+      falha('vf-consent', 'Marca esta caixa para confirmares que percebeste com quem vais falar.');
+    }
+    if (!document.getElementById('vf-marketing').checked) {
+      falha('vf-marketing', 'Marca esta caixa: sem ela não te podemos contactar depois da conversa.');
+    }
+
+    // leva a pessoa ao primeiro campo que está mal, em vez de a deixar à
+    // procura pelo formulário
+    if (primeiroMau) {
+      var alvo = document.getElementById(primeiroMau);
+      if (alvo && alvo.focus) alvo.focus();
+      return;
+    }
 
     var indicativo = document.getElementById('vf-tel-pais').value;
     var telefone = indicativo + ' ' + tel.replace(/\s+/g, ' ');
