@@ -828,7 +828,8 @@ h1.hero-headline em {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-parceiros-track { animation: none; }
+  .hero-parceiros-track,
+  .parceiros-track { animation: none; }
 }
 
 .hero-parceiro-logo {
@@ -1020,11 +1021,38 @@ h1.hero-headline em {
   transition: opacity 0.2s;
 }
 .parceiros-logo:hover { opacity: 1; }
-.parceiros-mais {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  font-style: italic;
-  margin-top: 20px;
+
+/* Os parceiros aqui em baixo estavam desatualizados (so a SIGNA) e parados.
+   Passam a ser os mesmos cinco da barra do hero, pela mesma ordem e com as
+   mesmas alturas por logo -- que nao sao iguais entre si de proposito, para
+   o peso visual ficar equilibrado -- e com o mesmo movimento. O gap fica em
+   28px porque a animacao parceiros-scroll desconta metade disso. */
+.parceiros-strip {
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.parceiros-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: max-content;
+  animation: parceiros-scroll 33s linear infinite;
+}
+.parceiros-track:hover { animation-play-state: paused; }
+.parceiros-track .pl-signa     { height: 40px; }
+.parceiros-track .pl-swonkie   { height: 26px; }
+.parceiros-track .pl-cc        { height: 40px; }
+.parceiros-track .pl-uptec     { height: 24px; }
+.parceiros-track .pl-inovagaia { height: 34px; }
+
+@media (max-width: 768px) {
+  .parceiros-track .pl-signa     { height: 31px; }
+  .parceiros-track .pl-swonkie   { height: 20px; }
+  .parceiros-track .pl-cc        { height: 32px; }
+  .parceiros-track .pl-uptec     { height: 19px; }
+  .parceiros-track .pl-inovagaia { height: 27px; }
 }
 @media (max-width: 768px) {
   .clientes-parceiros-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -4037,10 +4065,20 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
       <!-- Parceiros -->
       <div class="parceiros-col">
         <p class="col-label">Parceiros</p>
-        <div class="parceiros-logos">
-          <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="parceiros-logo">
+        <div class="parceiros-strip">
+          <div class="parceiros-track">
+            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="SIGNA" class="parceiros-logo pl-signa">
+            <img src="assets/images/logos/Swonkie.svg" alt="Swonkie" class="parceiros-logo pl-swonkie">
+            <img src="assets/images/logos/CC_Logo.svg" alt="Consumer Choice" class="parceiros-logo pl-cc">
+            <img src="assets/images/logos/UPTEC.svg" alt="UPTEC" class="parceiros-logo pl-uptec">
+            <img src="assets/images/logos/InovaGaia.svg" alt="InovaGaia" class="parceiros-logo pl-inovagaia">
+            <img src="assets/images/logos/SIGNA_BrandLogo.svg" alt="" aria-hidden="true" class="parceiros-logo pl-signa">
+            <img src="assets/images/logos/Swonkie.svg" alt="" aria-hidden="true" class="parceiros-logo pl-swonkie">
+            <img src="assets/images/logos/CC_Logo.svg" alt="" aria-hidden="true" class="parceiros-logo pl-cc">
+            <img src="assets/images/logos/UPTEC.svg" alt="" aria-hidden="true" class="parceiros-logo pl-uptec">
+            <img src="assets/images/logos/InovaGaia.svg" alt="" aria-hidden="true" class="parceiros-logo pl-inovagaia">
+          </div>
         </div>
-        <p class="parceiros-mais">e mais parceiros a ser anunciados em breve</p>
       </div><!-- /parceiros-col -->
 
     </div><!-- /clientes-parceiros-grid -->
