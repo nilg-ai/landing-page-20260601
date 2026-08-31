@@ -2501,6 +2501,38 @@ h1.hero-headline em {
   margin-right: 4px;
 }
 
+/* Escassez no VIP. Usa a linguagem que a página já tem para urgência -- o
+   laranja do --accent e o ponto a pulsar do pulse-dot, como no crachá do
+   hero -- e vive dentro do .plan-price-zone, no mesmo lugar onde o Standard
+   mostra o preço do lote anterior, para as três colunas manterem a linha do
+   preço à mesma altura. */
+.plan-escassez {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--accent);
+}
+
+.plan-escassez .dot {
+  width: 7px; height: 7px;
+  margin-top: 5px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse-dot 2s infinite;
+}
+
+/* Botão sem destino: continua a dizer o que falta, sem convidar ao clique. */
+.pricing-btn.sem-link {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
 /* Features list */
 .pricing-features {
   list-style: none;
@@ -3536,9 +3568,9 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
       <div class="hero-bottom-row">
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-          <div class="hero-urgency sold-out">
+          <div class="hero-urgency">
             <span class="urgency-pulse"></span>
-            <span>VIP · ESGOTADO</span>
+            <span>VIP · APENAS 5 LUGARES</span>
           </div>
           <a href="#investimento" class="hero-ver-lugares">Ver lugares disponíveis →</a>
           <div class="hero-urgency" id="hero-urgency-std">
@@ -4264,13 +4296,16 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
         <!-- VIP -->
         <div class="pricing-col-wrapper">
-        <div class="col-vip esgotado">
-          <span class="col-badge-grey">Esgotado</span>
+        <div class="col-vip">
+          <span class="col-badge">✦ Experiência Completa</span>
           <div class="plan-name">VIP</div>
 
+          <div class="plan-early-tag"><span class="dot"></span> Early Bird</div>
           <div class="plan-price-zone">
-            <div class="plan-esgotado">Esgotado</div>
-            <p class="plan-esgotado-sub">Já não há lugares VIP disponíveis.</p>
+            <div class="plan-price">
+              <span class="euro">€</span><span class="amount" id="price-vip">517</span><span class="iva"> + IVA</span>
+            </div>
+            <p class="plan-escassez"><span class="dot"></span> Apenas 5 lugares disponíveis a este preço</p>
           </div>
 
           <ul class="pricing-features">
@@ -4287,7 +4322,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
             <li class="hot"><span class="check">🔥</span> Gravação completa do evento</li>
           </ul>
 
-          <span class="btn btn-ghost pricing-btn esgotado" aria-disabled="true">Esgotado</span>
+          <a href="#" id="cta-vip" class="btn btn-primary pricing-btn">Garantir lugar VIP →</a>
         </div>
         </div><!-- /pricing-col-wrapper vip -->
 
@@ -4409,13 +4444,12 @@ const CONFIG = {
   PERCENTAGEM_VENDIDA: 82,     // % Standard já garantidos (0-100)
 };
 
-// { <fase> : { standard: <preço bilhete Standard>, vip: <preço bilhete VIP> } }
+// { <fase> : { standard: ..., plus: ..., vip: ... } }
 // O Plus entra no Lote 2 com o valor a que o VIP estava a ser vendido. O VIP
-// esgotou e o preço dele deixa de aparecer em qualquer sitio da página, por
-// isso sai daqui: o único stio que ainda o lia era a tabela de fases.
+// reabriu acima disso, com lugares contados.
 const PRECOS = {
   lote1: { standard: 247 },
-  lote2: { standard: 317, plus: 417 },
+  lote2: { standard: 317, plus: 417, vip: 517 },
 };
 
 const LABELS_FASE = {
@@ -4423,13 +4457,13 @@ const LABELS_FASE = {
   lote2: 'Lote 2',
 };
 
-// O Plus tem payment link próprio. O do VIP saiu daqui de vez: o VIP está
-// esgotado e o botão dele já não é um link, por isso desactivá-lo no Stripe
-// não parte nada nesta página.
+// Cada bilhete tem payment link próprio. Um link vazio deixa o botão
+// desactivado de propósito, em vez de o mandar para o bilhete errado.
 const LINKS = {
   lote1: { standard: 'https://buy.stripe.com/28E4gy1PDabXbtc1Pp5Vu0d' },
   lote2: { standard: 'https://buy.stripe.com/28E4gy1PDabXbtc1Pp5Vu0d',
-           plus:     'https://buy.stripe.com/9B600ifGtck57cW3Xx5Vu0r' },
+           plus:     'https://buy.stripe.com/9B600ifGtck57cW3Xx5Vu0r',
+           vip:      'https://buy.stripe.com/14A4gyam983P1SC3Xx5Vu0s' },
 };
 
 // ============================================
@@ -4443,6 +4477,7 @@ function initPricing() {
   // Prices
   document.getElementById('price-standard').textContent = precos.standard;
   document.getElementById('price-plus').textContent = precos.plus;
+  document.getElementById('price-vip').textContent = precos.vip;
 
   // Linha sob o preço: no Lote 1 anuncia a subida, no Lote 2 mostra o preço anterior
   document.getElementById('normal-standard').innerHTML =
@@ -4457,8 +4492,20 @@ function initPricing() {
 
   // CTAs
   document.getElementById('cta-standard').href = LINKS[fase].standard;
-  // O VIP esgotou e o botão dele já nem é um link, por isso só o Plus.
   document.getElementById('cta-plus').href = LINKS[fase].plus;
+
+  // O payment link do VIP ainda não existe. Sem ele o botão fica visivelmente
+  // desactivado, em vez de parecer clicável e não levar a nenhum lado.
+  const ctaVip = document.getElementById('cta-vip');
+  const linkVip = LINKS[fase].vip;
+  if (linkVip) {
+    ctaVip.href = linkVip;
+  } else {
+    ctaVip.removeAttribute('href');
+    ctaVip.setAttribute('aria-disabled', 'true');
+    ctaVip.classList.add('sem-link');
+    ctaVip.textContent = 'Link de pagamento em breve';
+  }
 
 
   // Hero urgency text + form badge
