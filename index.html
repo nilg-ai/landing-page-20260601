@@ -4457,14 +4457,13 @@ const LABELS_FASE = {
   lote2: 'Lote 2',
 };
 
-// Cada bilhete tem payment link próprio. O do VIP ainda não chegou: enquanto
-// estiver vazio o botão fica desactivado, para ninguém carregar e cair no
-// vazio ou, pior, no link de outro bilhete.
+// Cada bilhete tem payment link próprio. Um link vazio deixa o botão
+// desactivado de propósito, em vez de o mandar para o bilhete errado.
 const LINKS = {
   lote1: { standard: 'https://buy.stripe.com/28E4gy1PDabXbtc1Pp5Vu0d' },
   lote2: { standard: 'https://buy.stripe.com/28E4gy1PDabXbtc1Pp5Vu0d',
            plus:     'https://buy.stripe.com/9B600ifGtck57cW3Xx5Vu0r',
-           vip:      '' },
+           vip:      'https://buy.stripe.com/14A4gyam983P1SC3Xx5Vu0s' },
 };
 
 // ============================================
