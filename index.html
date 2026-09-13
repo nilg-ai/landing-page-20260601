@@ -317,7 +317,12 @@ body::before {
   position: sticky;
   top: 68px;
   z-index: 99;
-  background: rgba(255,105,0,0.07);
+  /* Opaca. Com o laranja sozinho (7% de alfa) a barra deixava o conteudo da
+     pagina passar por baixo e ler-se atraves do texto dela -- so nao dava nas
+     vistas porque a barra estava escondida desde que o prazo do contador
+     passou. O tom laranja fica por cima do fundo da pagina em vez de o
+     substituir. */
+  background: linear-gradient(rgba(255,105,0,0.07), rgba(255,105,0,0.07)), var(--bg);
   border-top: 1px solid rgba(255,105,0,0.18);
   border-bottom: 1px solid rgba(255,105,0,0.18);
   padding: 10px 24px;
@@ -333,13 +338,6 @@ body::before {
   flex-wrap: wrap;
 }
 
-.countdown-bar-left {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  flex-shrink: 0;
-}
-
 .countdown-bar-dot {
   width: 7px;
   height: 7px;
@@ -347,15 +345,6 @@ body::before {
   background: var(--accent);
   flex-shrink: 0;
   animation: counterPulse 1.6s ease-in-out infinite;
-}
-
-.countdown-bar-label {
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,105,0,0.85);
-  white-space: nowrap;
 }
 
 .countdown-bar-timer {
@@ -397,6 +386,27 @@ body::before {
   line-height: 1;
 }
 
+/* O numero ocupa o lugar que era do relogio, com o mesmo peso visual. */
+.countdown-bar-pct {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.countdown-bar-pct span {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.countdown-bar-pct-sinal {
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+}
+
 .countdown-bar-after {
   font-size: 0.6rem;
   color: rgba(255,255,255,0.32);
@@ -410,7 +420,12 @@ body::before {
 }
 
 @media (max-width: 767px) {
-  #countdown-bar { display: none; }
+  /* O cartao do contador que o telemovel tinha morreu com o prazo. Sem isto
+     a urgencia deixava de existir onde esta a maior parte das leads. */
+  #countdown-bar { padding: 8px 14px; }
+  .countdown-bar-inner { gap: 8px; }
+  .countdown-bar-pct span { font-size: 1.05rem; }
+  .countdown-bar-after { white-space: normal; text-align: center; }
   .hero-counter-card { display: flex; align-items: center; text-align: center; }
   .hero-counter-top { justify-content: center; }
   .hero-counter-nums { justify-content: center; }
@@ -3465,20 +3480,9 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 <!-- COUNTDOWN BAR -->
 <div id="countdown-bar">
   <div class="countdown-bar-inner">
-    <div class="countdown-bar-left">
-      <span class="countdown-bar-dot"></span>
-      <span class="countdown-bar-label">Lote 2 · Standard fecha em</span>
-    </div>
-    <div class="countdown-bar-timer">
-      <span class="countdown-unit"><span id="cd-days">--</span><small>dias</small></span>
-      <span class="countdown-sep">:</span>
-      <span class="countdown-unit"><span id="cd-hours">--</span><small>horas</small></span>
-      <span class="countdown-sep">:</span>
-      <span class="countdown-unit"><span id="cd-mins">--</span><small>min</small></span>
-      <span class="countdown-sep">:</span>
-      <span class="countdown-unit"><span id="cd-secs">--</span><small>seg</small></span>
-    </div>
-    <span class="countdown-bar-after"><strong>últimos lugares</strong> disponíveis nesta fase</span>
+    <span class="countdown-bar-dot"></span>
+    <div class="countdown-bar-pct"><span id="cd-pct">97</span><span class="countdown-bar-pct-sinal">%</span></div>
+    <span class="countdown-bar-after"><strong>preenchido</strong> · últimos lugares disponíveis</span>
   </div>
 </div>
 
@@ -4522,6 +4526,8 @@ function initPricing() {
 
   // Progress bar
   document.getElementById('progress-pct').textContent = pct + '%';
+  const cdPct = document.getElementById('cd-pct');
+  if (cdPct) cdPct.textContent = pct;
   setTimeout(() => {
     document.getElementById('progress-fill').style.width = pct + '%';
   }, 400);
@@ -4882,12 +4888,10 @@ function playVideo(id) {
 
 <script>
 (function() {
+  // A barra do topo deixou de ser um relogio e passou a mostrar a lotacao,
+  // por isso este contador ja nao manda nela. Continua a alimentar o cartao
+  // do hero, que esse sim desaparece quando o prazo passa.
   var deadline = new Date('2026-08-07T23:59:00');
-  var bar = document.getElementById('countdown-bar');
-  var dEl = document.getElementById('cd-days');
-  var hEl = document.getElementById('cd-hours');
-  var mEl = document.getElementById('cd-mins');
-  var sEl = document.getElementById('cd-secs');
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
@@ -4900,7 +4904,6 @@ function playVideo(id) {
     var now = new Date();
     var diff = deadline - now;
     if (diff <= 0) {
-      if (bar) bar.style.display = 'none';
       var card = document.querySelector('.hero-counter-card');
       if (card) card.style.display = 'none';
       return;
@@ -4909,10 +4912,6 @@ function playVideo(id) {
     var hours = Math.floor((diff % 86400000) / 3600000);
     var mins  = Math.floor((diff % 3600000) / 60000);
     var secs  = Math.floor((diff % 60000) / 1000);
-    if (dEl) dEl.textContent = days;
-    if (hEl) hEl.textContent = pad(hours);
-    if (mEl) mEl.textContent = pad(mins);
-    if (sEl) sEl.textContent = pad(secs);
     if (hcD) hcD.textContent = days;
     if (hcH) hcH.textContent = pad(hours);
     if (hcM) hcM.textContent = pad(mins);
