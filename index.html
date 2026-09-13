@@ -194,23 +194,66 @@ body::before {
 
 /* .nav-logo span removed — now uses SVG logo */
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  list-style: none;
-}
 
-.nav-links a {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  transition: color 0.2s;
-  font-weight: 400;
-}
 
-.nav-links a:hover { color: var(--text); }
 
 .nav-cta { margin-left: 16px; }
+
+/* A lotacao ocupa o espaco que era do menu, entre o logotipo e o CTA. Estava
+   numa tira propria por baixo da navegacao; encaixada aqui poupa 41px de
+   altura fixa no topo e deixa de haver duas barras coladas uma a outra. */
+.nav-lotacao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.nav-lotacao-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: counterPulse 1.6s ease-in-out infinite;
+}
+
+.nav-lotacao-pct {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.nav-lotacao-sinal {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.nav-lotacao-txt {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.38);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-lotacao-txt strong {
+  color: rgba(255,255,255,0.72);
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  /* O CTA do topo continua escondido, como estava antes de o menu sair: em
+     baixo ja ha a barra fixa com preco e botao, e dois botoes iguais no
+     mesmo ecra sao ruido. Sem ele, a frase da lotacao tem espaco. */
+  .nav-cta { display: none; }
+  .nav-lotacao { gap: 6px; }
+  .nav-lotacao-pct { font-size: 1.05rem; }
+  .nav-lotacao-txt { font-size: 0.62rem; }
+}
 
 /* =============================================
    COUNTDOWN BAR
@@ -313,39 +356,8 @@ body::before {
   .hero-counter-block { min-width: 36px; }
 }
 
-#countdown-bar {
-  position: sticky;
-  top: 68px;
-  z-index: 99;
-  /* Opaca. Com o laranja sozinho (7% de alfa) a barra deixava o conteudo da
-     pagina passar por baixo e ler-se atraves do texto dela -- so nao dava nas
-     vistas porque a barra estava escondida desde que o prazo do contador
-     passou. O tom laranja fica por cima do fundo da pagina em vez de o
-     substituir. */
-  background: linear-gradient(rgba(255,105,0,0.07), rgba(255,105,0,0.07)), var(--bg);
-  border-top: 1px solid rgba(255,105,0,0.18);
-  border-bottom: 1px solid rgba(255,105,0,0.18);
-  padding: 10px 24px;
-}
 
-.countdown-bar-inner {
-  max-width: 1160px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
 
-.countdown-bar-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-  animation: counterPulse 1.6s ease-in-out infinite;
-}
 
 .countdown-bar-timer {
   display: flex;
@@ -353,79 +365,19 @@ body::before {
   gap: 2px;
 }
 
-.countdown-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 34px;
-}
 
-.countdown-unit span {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--accent);
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
 
-.countdown-unit small {
-  font-size: 0.42rem;
-  font-weight: 500;
-  color: rgba(255,105,0,0.6);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-top: 2px;
-}
 
-.countdown-sep {
-  font-size: 1.1rem;
-  font-weight: 300;
-  color: rgba(255,105,0,0.28);
-  margin: 0 2px;
-  padding-bottom: 10px;
-  line-height: 1;
-}
 
 /* O numero ocupa o lugar que era do relogio, com o mesmo peso visual. */
-.countdown-bar-pct {
-  display: flex;
-  align-items: baseline;
-  gap: 1px;
-  flex-shrink: 0;
-}
 
-.countdown-bar-pct span {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--accent);
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
 
-.countdown-bar-pct-sinal {
-  font-size: 0.9rem !important;
-  font-weight: 700 !important;
-}
 
-.countdown-bar-after {
-  font-size: 0.6rem;
-  color: rgba(255,255,255,0.32);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
 
-.countdown-bar-after strong {
-  color: rgba(255,255,255,0.65);
-  font-weight: 600;
-}
 
 @media (max-width: 767px) {
   /* O cartao do contador que o telemovel tinha morreu com o prazo. Sem isto
      a urgencia deixava de existir onde esta a maior parte das leads. */
-  #countdown-bar { padding: 8px 14px; }
-  .countdown-bar-inner { gap: 8px; }
-  .countdown-bar-pct span { font-size: 1.05rem; }
-  .countdown-bar-after { white-space: normal; text-align: center; }
   .hero-counter-card { display: flex; align-items: center; text-align: center; }
   .hero-counter-top { justify-content: center; }
   .hero-counter-nums { justify-content: center; }
@@ -448,61 +400,13 @@ body::before {
   .hero-tag { border: none; background: none; padding: 0; letter-spacing: 0.02em; }
 }
 
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-}
 
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--text);
-  transition: transform 0.3s, opacity 0.3s;
-  border-radius: 2px;
-}
 
-#mobile-menu {
-  display: none;
-  position: fixed;
-  top: 68px; left: 0; right: 0;
-  background: rgba(10,10,18,0.98);
-  backdrop-filter: blur(20px);
-  z-index: 999;
-  border-bottom: 1px solid var(--border);
-  padding: 20px 24px;
-}
 
-#mobile-menu.open { display: block; }
 
-#mobile-menu ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
 
-#mobile-menu a {
-  font-size: 1rem;
-  color: var(--text-muted);
-  display: block;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-  transition: color 0.2s;
-}
 
-#mobile-menu a:hover { color: var(--text); }
 
-#mobile-menu .btn {
-  margin-top: 16px;
-  width: 100%;
-  justify-content: center;
-}
 
 /* =============================================
    HERO
@@ -2637,91 +2541,19 @@ h1.hero-headline em {
 }
 
 /* Phase table */
-.phase-table-toggle {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  border-radius: 8px;
-  padding: 10px 18px;
-  font-size: 0.82rem;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-  transition: border-color 0.2s, color 0.2s;
-}
 
-.phase-table-toggle:hover {
-  border-color: var(--primary-border);
-  color: var(--text);
-}
 
-.phase-table-wrap {
-  display: none;
-  margin-bottom: 28px;
-}
 
-.phase-table-wrap.open { display: block; }
 
-.phase-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-}
 
-.phase-table th {
-  text-align: left;
-  padding: 12px 16px;
-  background: var(--surface);
-  color: var(--text-muted);
-  font-weight: 500;
-  border-bottom: 1px solid var(--border);
-  font-family: 'DM Sans', sans-serif;
-}
 
-.phase-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-muted);
-}
 
-.phase-table tr.active td {
-  background: rgba(53,60,221,0.06);
-  color: var(--text);
-}
 
-.phase-table tr.active td:first-child {
-  border-left: 2px solid var(--primary);
-}
 
-.phase-table tr.closed td {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
 
-.phase-status {
-  padding: 3px 10px;
-  border-radius: 100px;
-  font-size: 0.72rem;
-  font-weight: 500;
-}
 
-.phase-status.active {
-  background: var(--accent-bg);
-  color: var(--accent);
-}
 
-.phase-status.next {
-  background: rgba(239,68,68,0.1);
-  color: #f87171;
-}
 
-.phase-status.closed {
-  background: rgba(255,255,255,0.05);
-  color: var(--text-muted);
-}
 
 .pricing-guarantee {
   padding: 28px;
@@ -3292,8 +3124,6 @@ html.voz-em-chamada #agente-voz-float elevenlabs-convai {
 @media (max-width: 768px) {
   section { padding: 64px 0; }
 
-  .nav-links, .nav-cta { display: none; }
-  .hamburger { display: flex; }
 
   h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
 
@@ -3461,45 +3291,14 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 <nav id="navbar">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo"><img src="assets/images/logos/NILG-AI_Logo-Secondary-White.svg" alt="NILG.AI" style="height:28px;display:block;"></a>
-    <ul class="nav-links">
-      <li><a href="#hero">Início</a></li>
-      <li><a href="#problema">O Problema</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#local">Local</a></li>
-      <li><a href="#investimento">Investimento</a></li>
-      <li><a href="#speaker">Speaker</a></li>
-      <li><a href="#testemunhos">Testemunhos</a></li>
-    </ul>
+    <div class="nav-lotacao">
+      <span class="nav-lotacao-dot"></span>
+      <span class="nav-lotacao-pct"><span id="cd-pct">97</span><span class="nav-lotacao-sinal">%</span></span>
+      <span class="nav-lotacao-txt"><strong>preenchido</strong> · últimos lugares disponíveis</span>
+    </div>
     <a href="#investimento" class="btn btn-primary nav-cta">Garantir Lugar →</a>
-    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menu">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
-
-<!-- COUNTDOWN BAR -->
-<div id="countdown-bar">
-  <div class="countdown-bar-inner">
-    <span class="countdown-bar-dot"></span>
-    <div class="countdown-bar-pct"><span id="cd-pct">97</span><span class="countdown-bar-pct-sinal">%</span></div>
-    <span class="countdown-bar-after"><strong>preenchido</strong> · últimos lugares disponíveis</span>
-  </div>
-</div>
-
-<!-- Mobile Menu -->
-<div id="mobile-menu">
-  <ul>
-    <li><a href="#hero" onclick="closeMobileMenu()">Início</a></li>
-    <li><a href="#problema" onclick="closeMobileMenu()">O Problema</a></li>
-    <li><a href="#sobre" onclick="closeMobileMenu()">Sobre</a></li>
-    <li><a href="#local" onclick="closeMobileMenu()">Local</a></li>
-    <li><a href="#investimento" onclick="closeMobileMenu()">Investimento</a></li>
-    <li><a href="#speaker" onclick="closeMobileMenu()">Speaker</a></li>
-    <li><a href="#testemunhos" onclick="closeMobileMenu()">Testemunhos</a></li>
-  </ul>
-  <a href="#investimento" class="btn btn-primary" onclick="closeMobileMenu()">Garantir Lugar →</a>
-</div>
-
 
 <!-- ============================================
      HERO
@@ -4341,25 +4140,6 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
         <p class="progress-text" id="progress-msg"></p>
       </div>
 
-      <!-- Phase table -->
-      <button class="phase-table-toggle fade-up" id="table-toggle-btn" onclick="togglePhaseTable()">
-        <span id="table-toggle-arrow">▾</span> Ver evolução de preços
-      </button>
-
-      <div class="phase-table-wrap" id="phase-table-wrap">
-        <table class="phase-table">
-          <thead>
-            <tr>
-              <th>Fase</th>
-              <th>Standard</th>
-              <th>Plus</th>
-              <th>Estado</th>
-            </tr>
-          </thead>
-          <tbody id="phase-table-body"></tbody>
-        </table>
-      </div>
-
 
     </div>
   </div>
@@ -4536,38 +4316,13 @@ function initPricing() {
   if (pct < 30) msg = 'Ainda há bons lugares disponíveis.';
   else if (pct < 60) msg = 'Mais de um terço dos lugares já estão garantidos.';
   else if (pct < 80) msg = 'Poucos lugares restantes. Não deixes para amanhã.';
-  else msg = '🔴 Últimos lugares. Esta fase fecha em breve.';
+  else msg = 'Últimos lugares disponíveis.';
   document.getElementById('progress-msg').textContent = msg;
 
   // Sticky CTA
   document.getElementById('sticky-label').textContent = LABELS_FASE[fase];
   document.getElementById('sticky-price').textContent = '€' + precos.standard;
 
-  // Phase table
-  const phases = ['lote1', 'lote2'];
-  const tbody = document.getElementById('phase-table-body');
-  tbody.innerHTML = '';
-
-  phases.forEach(p => {
-    const isActive = p === fase;
-    const isClosed = phases.indexOf(p) < phases.indexOf(fase);
-    const tr = document.createElement('tr');
-    if (isActive) tr.className = 'active';
-    if (isClosed) tr.className = 'closed';
-
-    let statusHtml = '';
-    if (isActive) statusHtml = '<span class="phase-status active">Ativa</span>';
-    else if (isClosed) statusHtml = '<span class="phase-status closed">Encerrada</span>';
-    else statusHtml = '<span class="phase-status next">A seguir</span>';
-
-    tr.innerHTML = `
-      <td>${LABELS_FASE[p]}</td>
-      <td>€${PRECOS[p].standard}</td>
-      <td>${PRECOS[p].plus ? '€' + PRECOS[p].plus : '—'}</td>
-      <td>${statusHtml}</td>
-    `;
-    tbody.appendChild(tr);
-  });
 }
 
 // ============================================
@@ -4636,27 +4391,6 @@ document.querySelectorAll('.accordion-header').forEach(header => {
 
   window.addEventListener('resize', () => goTo(current));
 })();
-
-// ============================================
-// PHASE TABLE TOGGLE
-// ============================================
-function togglePhaseTable() {
-  const wrap = document.getElementById('phase-table-wrap');
-  const arrow = document.getElementById('table-toggle-arrow');
-  wrap.classList.toggle('open');
-  arrow.textContent = wrap.classList.contains('open') ? '▴' : '▾';
-}
-
-// ============================================
-// HAMBURGER MENU
-// ============================================
-document.getElementById('hamburger-btn').addEventListener('click', () => {
-  document.getElementById('mobile-menu').classList.toggle('open');
-});
-
-function closeMobileMenu() {
-  document.getElementById('mobile-menu').classList.remove('open');
-}
 
 // ============================================
 // EMAIL PROFISSIONAL — bloqueia webmail pessoal
