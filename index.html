@@ -3568,14 +3568,14 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
       <div class="hero-bottom-row">
         <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-          <div class="hero-urgency">
+          <div class="hero-urgency sold-out">
             <span class="urgency-pulse"></span>
-            <span>VIP · APENAS 5 LUGARES</span>
+            <span>VIP · ESGOTADO</span>
           </div>
           <a href="#investimento" class="hero-ver-lugares">Ver lugares disponíveis →</a>
           <div class="hero-urgency" id="hero-urgency-std">
             <span class="urgency-pulse"></span>
-            <span id="hero-urgency-text">Lote 2 · Standard · 82% preenchido</span>
+            <span id="hero-urgency-text">Lote 2 · Standard · 97% preenchido</span>
           </div>
         </div>
         <div class="hero-tag">
@@ -4134,7 +4134,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
     <div class="lead-form-wrap fade-up">
       <div class="form-urgency-badge">
         <span class="dot"></span>
-        <span id="form-urgency-text">Lote 2 · Standard · 82% preenchido</span>
+        <span id="form-urgency-text">Lote 2 · Standard · 97% preenchido</span>
       </div>
       <iframe name="ac-submit-frame" style="display:none;"></iframe>
       <form id="lead-form" action="https://nilg.activehosted.com/proc.php" method="POST" target="ac-submit-frame">
@@ -4296,16 +4296,13 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 
         <!-- VIP -->
         <div class="pricing-col-wrapper">
-        <div class="col-vip">
-          <span class="col-badge">✦ Experiência Completa</span>
+        <div class="col-vip esgotado">
+          <span class="col-badge-grey">Esgotado</span>
           <div class="plan-name">VIP</div>
 
-          <div class="plan-early-tag"><span class="dot"></span> Early Bird</div>
           <div class="plan-price-zone">
-            <div class="plan-price">
-              <span class="euro">€</span><span class="amount" id="price-vip">517</span><span class="iva"> + IVA</span>
-            </div>
-            <p class="plan-escassez"><span class="dot"></span> Apenas 5 lugares disponíveis a este preço</p>
+            <div class="plan-esgotado">Esgotado</div>
+            <p class="plan-esgotado-sub">Já não há lugares VIP disponíveis.</p>
           </div>
 
           <ul class="pricing-features">
@@ -4322,7 +4319,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
             <li class="hot"><span class="check">🔥</span> Gravação completa do evento</li>
           </ul>
 
-          <a href="#" id="cta-vip" class="btn btn-primary pricing-btn">Garantir lugar VIP →</a>
+          <span class="btn btn-ghost pricing-btn esgotado" aria-disabled="true">Esgotado</span>
         </div>
         </div><!-- /pricing-col-wrapper vip -->
 
@@ -4332,7 +4329,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
       <div class="progress-section fade-up">
         <div class="progress-header">
           <span class="progress-label">Lugares garantidos</span>
-          <span class="progress-pct" id="progress-pct">38%</span>
+          <span class="progress-pct" id="progress-pct">97%</span>
         </div>
         <div class="progress-bar-bg">
           <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
@@ -4441,7 +4438,7 @@ src="https://www.facebook.com/tr?id=1292280743007473&ev=PageView&noscript=1"
 // ============================================
 const CONFIG = {
   FASE_ATIVA: 'lote2',         // 'lote1' | 'lote2'
-  PERCENTAGEM_VENDIDA: 82,     // % Standard já garantidos (0-100)
+  PERCENTAGEM_VENDIDA: 97,     // % Standard já garantidos (0-100)
 };
 
 // { <fase> : { standard: ..., plus: ..., vip: ... } }
@@ -4477,7 +4474,12 @@ function initPricing() {
   // Prices
   document.getElementById('price-standard').textContent = precos.standard;
   document.getElementById('price-plus').textContent = precos.plus;
-  document.getElementById('price-vip').textContent = precos.vip;
+  // O VIP alterna entre aberto e esgotado. Esgotado, a coluna nao tem preco
+  // nem botao -- por isso estes dois so correm se os elementos existirem.
+  // Assim alternar o estado e' so markup, e o preco e o link continuam
+  // guardados em PRECOS e LINKS para a reabertura seguinte.
+  const precoVip = document.getElementById('price-vip');
+  if (precoVip) precoVip.textContent = precos.vip;
 
   // Linha sob o preço: no Lote 1 anuncia a subida, no Lote 2 mostra o preço anterior
   document.getElementById('normal-standard').innerHTML =
@@ -4494,17 +4496,19 @@ function initPricing() {
   document.getElementById('cta-standard').href = LINKS[fase].standard;
   document.getElementById('cta-plus').href = LINKS[fase].plus;
 
-  // O payment link do VIP ainda não existe. Sem ele o botão fica visivelmente
-  // desactivado, em vez de parecer clicável e não levar a nenhum lado.
   const ctaVip = document.getElementById('cta-vip');
-  const linkVip = LINKS[fase].vip;
-  if (linkVip) {
-    ctaVip.href = linkVip;
-  } else {
-    ctaVip.removeAttribute('href');
-    ctaVip.setAttribute('aria-disabled', 'true');
-    ctaVip.classList.add('sem-link');
-    ctaVip.textContent = 'Link de pagamento em breve';
+  if (ctaVip) {
+    const linkVip = LINKS[fase].vip;
+    if (linkVip) {
+      ctaVip.href = linkVip;
+    } else {
+      // Sem link, o botao fica esbatido em vez de parecer clicavel e nao
+      // levar a lado nenhum.
+      ctaVip.removeAttribute('href');
+      ctaVip.setAttribute('aria-disabled', 'true');
+      ctaVip.classList.add('sem-link');
+      ctaVip.textContent = 'Link de pagamento em breve';
+    }
   }
 
 
@@ -5113,7 +5117,7 @@ function playVideo(id) {
     try {
       return { preco: String(PRECOS[CONFIG.FASE_ATIVA].standard),
                pct:   String(CONFIG.PERCENTAGEM_VENDIDA) };
-    } catch (e) { return { preco: '317', pct: '82' }; }
+    } catch (e) { return { preco: '317', pct: '97' }; }
   }
 
   // ---- a janela de convite e a porta de entrada ----
